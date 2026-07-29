@@ -56,6 +56,33 @@ const transform = reactive<RouteNavigatorTransformState>({
 const stack = ref<RouteStack[]>([]);
 const activeIndex = ref(0);
 const backdropIndex = ref(0);
+let backTimer: ReturnType<typeof setTimeout> | undefined;
+let forwardTimer1: ReturnType<typeof setTimeout> | undefined;
+let forwardTimer2: ReturnType<typeof setTimeout> | undefined;
+
+const clearRouteTimers = () => {
+  if (backTimer !== undefined) {
+    clearTimeout(backTimer);
+    backTimer = undefined;
+  }
+  if (forwardTimer1 !== undefined) {
+    clearTimeout(forwardTimer1);
+    forwardTimer1 = undefined;
+  }
+  if (forwardTimer2 !== undefined) {
+    clearTimeout(forwardTimer2);
+    forwardTimer2 = undefined;
+  }
+};
+
+const syncStack = (data: RouteStack[]) => {
+  stack.value = data;
+  activeIndex.value = Math.max(0, data.length - 1);
+  backdropIndex.value = activeIndex.value;
+  resetTransform();
+  transform.backdrop = data.length > 0 ? 100 : 0;
+  emit("transform", transform);
+};
 
 // Computed properties
 // ----------------------------------------------------------------------------
@@ -91,58 +118,83 @@ const isGestureEnabled = computed(() => {
 // ----------------------------------------------------------------------------
 const changeRoute = (value: RouteStack[]) => {
   const data = clone(value);
+  clearRouteTimers();
 
   // Case: first time
   if (stack.value.length === 0) {
     stack.value = data;
+    activeIndex.value = Math.max(0, data.length - 1);
+    backdropIndex.value = activeIndex.value;
     return;
   }
 
-  // Case: update
-  if (stack.value.length === data.length) {
+  const stepsBack = stack.value.length - data.length;
+
+  // Case: update (same depth)
+  if (stepsBack === 0) {
     const ln = stack.value.length - 1;
-    stack.value[ln].stack = data[ln].stack;
+    if (ln >= 0 && data[ln]) {
+      stack.value[ln].stack = data[ln].stack;
+    }
+    if (activeIndex.value >= data.length) {
+      syncStack(data);
+    }
+    return;
   }
-  // Case: back
-  else if (stack.value.length > data.length) {
-    const newIndex = activeIndex.value - 1;
+
+  // Case: back — parent popped one or more levels at once
+  if (stepsBack > 0) {
+    const targetIndex = Math.max(0, data.length - 1);
+
+    // Sudden multi-step back or activeIndex out of sync: skip animation
+    if (stepsBack > 1 || activeIndex.value > targetIndex || data.length === 0) {
+      syncStack(data);
+      return;
+    }
+
     resetTransform();
-    activeIndex.value = newIndex;
+    activeIndex.value = targetIndex;
     transform.backdrop = 0;
     emit("transform", transform);
 
-    setTimeout(() => {
-      stack.value = stack.value.slice(0, -1);
-      backdropIndex.value = newIndex;
-      transform.backdrop = 100;
+    backTimer = setTimeout(() => {
+      stack.value = data;
+      backdropIndex.value = targetIndex;
+      transform.backdrop = data.length > 0 ? 100 : 0;
       emit("transform", transform);
+      backTimer = undefined;
     }, 250);
+    return;
   }
+
   // Case: next
-  else {
-    stack.value.push(data[data.length - 1]);
-    transform.duration = "0s";
-    transform.backdrop = 0;
-    emit("transform", transform);
+  const nextItem = data[data.length - 1];
+  if (!nextItem) return;
 
-    setTimeout(
-      () => {
-        backdropIndex.value = backdropIndex.value + 1;
-        transform.duration = undefined;
-        emit("transform", transform);
-      },
-      props.variant !== "none" ? 10 : 0
-    );
+  stack.value.push(nextItem);
+  transform.duration = "0s";
+  transform.backdrop = 0;
+  emit("transform", transform);
 
-    setTimeout(
-      () => {
-        transform.backdrop = 100;
-        activeIndex.value = stack.value.length - 1;
-        emit("transform", transform);
-      },
-      props.variant !== "none" ? 100 : 0
-    );
-  }
+  forwardTimer1 = setTimeout(
+    () => {
+      backdropIndex.value = backdropIndex.value + 1;
+      transform.duration = undefined;
+      emit("transform", transform);
+      forwardTimer1 = undefined;
+    },
+    props.variant !== "none" ? 10 : 0
+  );
+
+  forwardTimer2 = setTimeout(
+    () => {
+      transform.backdrop = 100;
+      activeIndex.value = stack.value.length - 1;
+      emit("transform", transform);
+      forwardTimer2 = undefined;
+    },
+    props.variant !== "none" ? 100 : 0
+  );
 };
 
 const goBack = () => {
@@ -253,6 +305,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  clearRouteTimers();
   if (ges.value) (ges.value as { destroy: () => void }).destroy();
 });
 </script>

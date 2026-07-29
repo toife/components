@@ -6,7 +6,8 @@ const stack = shallowRef<RouteStack[]>([]);
 
 /** Recursively builds a nested stack from vue-router `matched` for the navigator. */
 const buildTree = (matched: RouteLocationMatched[], current: RouteStack[]) => {
-  if (matched.length === 0) return current;
+  // No deeper matched routes — drop stale leaf entries (e.g. parent navigated back).
+  if (matched.length === 0) return [];
 
   // User navigated back: drop the leaf so we merge into the parent segment
   if (current.length > 1 && current[current.length - 2]?.name === matched[0].name) {
