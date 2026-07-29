@@ -1,0 +1,37 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$cable: sass.fn-naming-prefix("cable");
+
+.#{$cable} {
+  position: absolute;
+  z-index: 1000;
+
+  &.bottom {
+    bottom: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+  }
+
+  &.top {
+    left: 0;
+    top: 0;
+    height: auto;
+    width: 100%;
+  }
+
+  &.left {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+  }
+
+  &.right {
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+  }
+}

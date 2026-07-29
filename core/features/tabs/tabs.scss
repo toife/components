@@ -1,0 +1,185 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$tabs: sass.fn-naming-prefix("tabs");
+$tab: sass.fn-naming-prefix("tab");
+
+// Property name - layer: tabs
+$tabs-color: sass.fn-naming-var("color");
+$tabs-color-active: sass.fn-naming-var("color", "active");
+$tabs-color-hover: sass.fn-naming-var("color", "hover");
+$tabs-color-focus: sass.fn-naming-var("color", "focus");
+$tabs-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$tabs-background-color: sass.fn-naming-var("background-color");
+$tabs-background-color-active: sass.fn-naming-var("background-color", "active");
+$tabs-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$tabs-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$tabs-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$highlight-top: sass.fn-naming-var("highlight", "top");
+$highlight-left: sass.fn-naming-var("highlight", "left");
+$highlight-width: sass.fn-naming-var("highlight", "width");
+$highlight-height: sass.fn-naming-var("highlight", "height");
+$highlight-space-x: sass.fn-naming-var("highlight", "space-x");
+$highlight-space-y: sass.fn-naming-var("highlight", "space-y");
+
+.#{$tabs} {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  list-style: none;
+  border: none;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  > * {
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: #{$highlight-width};
+    height: #{$highlight-height};
+    transform: translate(#{$highlight-left}, #{$highlight-top});
+    box-sizing: border-box;
+    border-radius: #{$border-radius};
+    background-color: rgba(#{$tabs-background-color-active});
+  }
+
+  &.top-start,
+  &.bottom-start,
+  &.left-start,
+  &.right-start {
+    justify-content: flex-start;
+  }
+
+  &.top-end,
+  &.bottom-end,
+  &.left-end,
+  &.right-end {
+    justify-content: flex-end;
+  }
+
+  &.top-center,
+  &.bottom-center,
+  &.left-center,
+  &.right-center {
+    justify-content: center;
+  }
+
+  &.top-start,
+  &.top-center,
+  &.top-end,
+  &.bottom-start,
+  &.bottom-center,
+  &.bottom-end {
+    flex-direction: row;
+    height: fit-content;
+    width: 100%;
+    padding-top: #{$highlight-space-y};
+    padding-bottom: #{$highlight-space-y};
+    overflow-x: auto;
+
+    > * {
+      height: 100%;
+    }
+  }
+
+  &.left-start,
+  &.left-center,
+  &.left-end,
+  &.right-start,
+  &.right-center,
+  &.right-end {
+    padding-left: #{$highlight-space-x};
+    padding-right: #{$highlight-space-x};
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+    overflow-y: auto;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &.transition {
+    transition:
+      box-shadow #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    &::before {
+      transition:
+        background-color #{$transition-duration} ease,
+        color #{$transition-duration} ease,
+        border-radius #{$transition-duration} ease,
+        transform #{$transition-duration} ease,
+        width #{$transition-duration} ease,
+        height #{$transition-duration} ease;
+    }
+
+    :deep(.#{$tab}) {
+      button {
+        transition:
+          box-shadow #{$transition-duration} ease,
+          background-color #{$transition-duration} ease,
+          color #{$transition-duration} ease,
+          border-radius #{$transition-duration} ease;
+      }
+    }
+  }
+
+  :deep(.#{$tab}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+      button {
+        color: rgba(#{$tabs-color-active});
+      }
+    }
+
+    &:not(.active) {
+      button {
+        color: rgba(#{$tabs-color});
+      }
+
+      &:hover,
+      &.hover {
+        button {
+          color: rgba(#{$tabs-color-hover});
+          background-color: rgba(#{$tabs-background-color-hover});
+        }
+      }
+
+      &:focus,
+      &.focus {
+        button {
+          color: rgba(#{$tabs-color-focus});
+          background-color: rgba(#{$tabs-background-color-focus});
+        }
+      }
+
+      &:disabled,
+      &.disabled {
+        button {
+          color: rgba(#{$tabs-color-disabled});
+        }
+      }
+    }
+  }
+}

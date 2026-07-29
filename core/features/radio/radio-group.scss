@@ -1,0 +1,16 @@
+@use "@toife/sass-layer" as sass;
+
+$radio-group: sass.fn-naming-prefix("radio-group");
+
+.#{$radio-group} {
+  display: flex;
+  gap: 0.5rem;
+
+  &.horizontal {
+    flex-direction: row;
+  }
+
+  &.vertical {
+    flex-direction: column;
+  }
+}

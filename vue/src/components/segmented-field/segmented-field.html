@@ -1,0 +1,16 @@
+<div v-bind="wrapperAttrs">
+  <div v-bind="contentAttrs" @pointerup="onFieldClick">
+    <Field
+      v-for="(_, index) in props.length"
+      :key="index"
+      v-bind="fieldAttrs"
+      :model-value="segments[index]"
+      :tabindex="index === firstEmptyIndex ? 0 : -1"
+      @beforeinput="onSegmentBeforeinput($event, index)"
+      @input="onSegmentInput($event, index)"
+      @focus="onSegmentFocus($event, index)"
+      ref="fields"
+    />
+  </div>
+  <div v-bind="messageAttrs" v-if="message">{{ message }}</div>
+</div>

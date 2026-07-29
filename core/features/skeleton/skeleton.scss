@@ -1,0 +1,50 @@
+@use "@toife/sass-layer" as sass;
+
+// Classes
+$skeleton: sass.fn-naming-prefix("skeleton");
+
+// Property name - layer: skeleton
+$skeleton-width: sass.fn-naming-var("width");
+$skeleton-height: sass.fn-naming-var("height");
+$skeleton-background-color: sass.fn-naming-var("background-color");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$skeleton} {
+  width: #{$skeleton-width};
+  height: #{$skeleton-height};
+  position: relative;
+  overflow: hidden;
+  border-radius: #{$border-radius};
+  background-color: rgba(#{$skeleton-background-color}, 0.2);
+  display: inline-block;
+  line-height: 0;
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(#{$skeleton-background-color}, 1),
+      transparent
+    );
+    opacity: 0.2;
+    animation: shimmer 1.2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

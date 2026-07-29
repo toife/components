@@ -1,0 +1,41 @@
+@use "@toife/sass-layer" as sass;
+@use "sass:map";
+@use "sass:list";
+
+/// Class name
+$grid: sass.fn-naming-prefix("grid");
+
+/// Base tokens (breakpoint "")
+$grid-gap: sass.fn-naming-var("gap");
+$grid-columns: sass.fn-naming-var("columns");
+$grid-rows: sass.fn-naming-var("rows");
+$grid-auto-flow: sass.fn-naming-var("auto-flow");
+
+.#{$grid} {
+  display: grid;
+  box-sizing: border-box;
+  gap: #{$grid-gap};
+  grid-template-columns: #{$grid-columns};
+  grid-template-rows: #{$grid-rows};
+  grid-auto-flow: #{$grid-auto-flow};
+
+  $bp-names: map.keys(sass.$breakpoints);
+  $bp-count: list.length($bp-names);
+
+  @for $i from 1 through $bp-count {
+    $bp-name: list.nth($bp-names, $i);
+    $bp-min: map.get(sass.$breakpoints, $bp-name);
+
+    @media (min-width: $bp-min) {
+      gap: #{sass.fn-naming-cascade-dvar(("gap"), $bp-names, $i, $grid-gap)};
+      grid-template-columns: #{sass.fn-naming-cascade-dvar(
+          ("columns"),
+          $bp-names,
+          $i,
+          $grid-columns
+        )};
+      grid-template-rows: #{sass.fn-naming-cascade-dvar(("rows"), $bp-names, $i, $grid-rows)};
+      grid-auto-flow: #{sass.fn-naming-cascade-dvar(("auto-flow"), $bp-names, $i, $grid-auto-flow)};
+    }
+  }
+}

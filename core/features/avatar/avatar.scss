@@ -1,0 +1,44 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$avatar: sass.fn-naming-prefix("avatar");
+$shape-pill: sass.fn-naming-prefix("shape-pill");
+
+// Property - layer: avatar
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$width: sass.fn-naming-var("width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$avatar-background-color: sass.fn-naming-var("background-color");
+$avatar-border-color: sass.fn-naming-var("border-color");
+
+// Avatar default is circle
+// With props square then is square
+.#{$avatar} {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(#{$avatar-background-color});
+  width: #{$width};
+  aspect-ratio: 1/1;
+  border-radius: #{$border-radius};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition:
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+  display: inline-block;
+  border: #{$border-width} solid transparent;
+
+  &.#{$shape-pill} {
+    border-radius: 50%;
+  }
+
+  &.divider {
+    border: #{$border-width} solid rgba(#{$avatar-border-color});
+  }
+}

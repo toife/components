@@ -1,0 +1,11 @@
+<Teleport :to="teleportTo" :disabled="!isTeleportReady">
+  <div
+    v-bind="backdropAttrs"
+    @click="onClickBackdrop"
+    v-if="isRender && backdrop !== 'none'"
+    v-show="isShow"
+  ></div>
+  <div v-bind="presentAttrs" v-if="isRender" v-show="isShow">
+    <slot />
+  </div>
+</Teleport>

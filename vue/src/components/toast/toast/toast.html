@@ -1,0 +1,9 @@
+<div v-bind="toastAttrs" v-if="toastMessages.length > 0">
+  <slot name="content">
+    <ToastContent
+      v-for="(msg, index) in toastMessages"
+      v-bind="msg"
+      @close="dismiss(msg.id)"
+    ></ToastContent>
+  </slot>
+</div>

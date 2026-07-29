@@ -1,0 +1,6 @@
+<button v-bind="buttonAttrs" @focus="onFocus" @blur="onBlur">
+  <span v-show="!props.loading"><slot></slot></span>
+  <template v-if="props.loading">
+    <span v-bind="loaderAttrs"><slot name="loading"></slot></span>
+  </template>
+</button>

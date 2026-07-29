@@ -1,0 +1,34 @@
+### Eslint
+.eslintcache
+.editorconfig
+eslint.config.js
+
+### Git
+.github/
+.git/
+.gitattributes
+.gitignore
+GITFLOW.md
+
+### YARN
+yarn.lock
+.yarnrc.yml
+.yarn/
+
+### DEV
+**/node_modules/*
+docs/
+generators/
+package.json
+plopfile.cjs
+
+### Typescript
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+
+### ENV and Build CICD
+.env
+dist/
+buildspec.yml
+README.md

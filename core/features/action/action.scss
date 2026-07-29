@@ -1,0 +1,106 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$action: sass.fn-naming-prefix("action");
+$button: sass.fn-naming-prefix("button");
+
+// Property name - layer: action
+$action-border-color: sass.fn-naming-var("border-color");
+
+$margin-y: sass.fn-naming-var("spacing", "y");
+$margin-x: sass.fn-naming-var("spacing", "x");
+$width: sass.fn-naming-var("viewport", "width");
+$max-width: sass.fn-naming-var("overlay", "max-width");
+$height: sass.fn-naming-var("viewport", "height");
+$max-height: sass.fn-naming-var("overlay", "max-height");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$safe-area-bottom: sass.fn-naming-var("safe-area", "bottom");
+$safe-area-top: sass.fn-naming-var("safe-area", "top");
+$safe-area-left: sass.fn-naming-var("safe-area", "left");
+$safe-area-right: sass.fn-naming-var("safe-area", "right");
+$border-width: sass.fn-naming-var("border", "width");
+
+.#{$action} {
+  // Styles
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: calc(#{$margin-y} * 2);
+  row-gap: calc(#{$margin-x} * 2);
+  border-width: #{$border-width};
+
+  &.top,
+  &.bottom {
+    width: #{$width};
+
+    > div {
+      width: 100%;
+      max-width: #{$max-width};
+    }
+  }
+
+  &.bottom {
+    margin-bottom: calc(#{$margin-y} * 4 + #{$safe-area-bottom});
+  }
+
+  &.top {
+    margin-top: calc(#{$margin-y} * 4 + #{$safe-area-top});
+  }
+
+  &.left,
+  &.right {
+    > div {
+      width: 100%;
+      max-width: #{$max-width};
+    }
+  }
+
+  &.left {
+    margin-left: calc(#{$margin-x} * 4 + #{$safe-area-left});
+  }
+
+  &.right {
+    margin-right: calc(#{$margin-x} * 4 + #{$safe-area-right});
+  }
+
+  &.pop {
+    animation: pop #{$transition-duration} ease-in-out;
+  }
+
+  &.divider {
+    :deep(.#{$button}) {
+      border-color: transparent;
+      border-bottom-color: rgba(#{$action-border-color});
+    }
+  }
+
+  &:not(.divider) {
+    :deep(.#{$button}) {
+      border-color: transparent;
+    }
+  }
+}
+
+// Effect when click outside action modal
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

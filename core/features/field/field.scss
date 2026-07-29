@@ -1,0 +1,166 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$field: sass.fn-naming-prefix("field");
+$field-content: sass.fn-naming-prefix("field-content");
+$field-input: sass.fn-naming-prefix("field-input");
+$field-message: sass.fn-naming-prefix("field-message");
+
+// Property name - layer: field
+$field-border-color: sass.fn-naming-var("border-color");
+$field-border-color-focus: sass.fn-naming-var("border-color", "focus");
+$field-border-color-hover: sass.fn-naming-var("border-color", "hover");
+$field-border-color-active: sass.fn-naming-var("border-color", "active");
+$field-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+$field-background-color: sass.fn-naming-var("background-color");
+$field-color: sass.fn-naming-var("color");
+$field-placeholder-color: sass.fn-naming-var("placeholder-color");
+$field-line: sass.fn-naming-var("line");
+$field-max-line: sass.fn-naming-var("max-line");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$direction-text-align: sass.fn-naming-var("text-align");
+$direction-justify-content: sass.fn-naming-var("justify-content");
+
+.#{$field} {
+  width: 100%;
+  box-shadow: none !important;
+
+  // Field
+  .#{$field-content} {
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+    border-color: rgba(#{$field-border-color});
+    border-radius: #{$border-radius};
+    border-width: #{$border-width};
+    border-style: solid;
+    overflow: hidden;
+    line-height: 0;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // Native password <input> (single node, not wrapped).
+  .#{$field-input} {
+    text-align: #{$direction-text-align};
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y})
+      calc(#{$spacing-x} * #{$size-coefficient-x});
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+    min-height: calc(#{$field-line} * #{$size-control-block-size} - 2 * #{$border-width});
+    max-height: calc(#{$field-max-line} * #{$size-control-block-size} - 2 * #{$border-width});
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+    color: rgba(#{$field-color});
+    caret-color: rgba(#{$field-color});
+    border: none;
+    -webkit-user-select: text;
+    user-select: text;
+    font-size: #{$size-font-size};
+    line-height: #{$size-line-height};
+    overflow: auto;
+    resize: none;
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    // Firefox
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    // Chrome, Edge, Safari
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      border: none;
+    }
+
+    &::placeholder {
+      color: rgba(#{$field-placeholder-color});
+    }
+  }
+
+  // Message
+  .#{$field-message} {
+    color: rgba(#{$field-background-color});
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: #{$direction-text-align};
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+  }
+
+  &.focus {
+    .#{$field-content} {
+      border-color: rgba(#{$field-border-color-focus});
+    }
+
+    &.shadow {
+      .#{$field-content} {
+        box-shadow: 0 0 0 0.25rem rgba(#{$field-border-color-focus}, 0.25);
+      }
+    }
+
+    &:not(.shadow) {
+      .#{$field-content} {
+        box-shadow: 0 0 0 calc(#{$border-width} * 1.5) rgba(#{$field-border-color-focus});
+      }
+    }
+  }
+
+  &.hover {
+    .#{$field-content} {
+      border-color: rgba(#{$field-border-color-hover});
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    .#{$field-input} {
+      cursor: not-allowed;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .#{$field-content} {
+      border-color: rgba(#{$field-border-color-disabled});
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$container: sass.fn-naming-prefix("container");
+
+.#{$container} {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}

@@ -1,0 +1,25 @@
+<Present
+  :placement="placement"
+  backdrop="display"
+  :keepalive="false"
+  :visible="visible"
+  @close="onClose"
+>
+  <div v-bind="actionAttrs">
+    <slot name="body">
+      <FormGroup direction="vertical" v-for="(buttons, groupIndex) in actions" :key="groupIndex">
+        <CustomButton
+          v-for="(btn, btnIndex) in buttons"
+          :key="`${groupIndex}-${btnIndex}`"
+          :role="btn.role"
+          :variant="btn.variant"
+          @click="onChoose(btn)"
+          :shape="shape"
+          :shadow="btn.shadow !== undefined ? btn.shadow : shadow"
+          block
+          >{{ btn.text }}</CustomButton
+        >
+      </FormGroup>
+    </slot>
+  </div>
+</Present>

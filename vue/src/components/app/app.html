@@ -1,0 +1,24 @@
+<div ref="rootEl" v-bind="appAttrs">
+  <slot />
+  <slot name="global"></slot>
+  <Toast placement="top-start" />
+  <Toast placement="bottom-start" />
+  <Toast placement="bottom-center" />
+  <Toast placement="bottom-end" />
+  <Toast placement="top-center" />
+  <Toast placement="top-end" />
+  <Action
+    v-if="action.data.value"
+    :visible="action.visible.value"
+    v-bind="action.data.value"
+    @close="action.close"
+    @choose="action.choose"
+  />
+  <DecisionModal
+    v-if="decisionModal.data.value"
+    :visible="decisionModal.visible.value"
+    v-bind="decisionModal.data.value"
+    @close="decisionModal.close"
+    @choose="decisionModal.choose"
+  />
+</div>

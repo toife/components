@@ -1,0 +1,30 @@
+<div v-bind="fieldAttrs">
+  <div v-bind="fieldContentAttrs">
+    <slot name="start-input"></slot>
+    <slot name="input">
+      <textarea
+        v-bind="fieldInputAttrs"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @beforeinput="onBeforeinput"
+        v-model="content"
+        :rows="line"
+        v-if="type === 'paragraph'"
+      />
+      <input
+        v-bind="fieldInputAttrs"
+        @input="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @beforeinput="onBeforeinput"
+        v-model="content"
+        :type="type"
+        v-else
+      />
+    </slot>
+    <slot name="end-input"></slot>
+  </div>
+  <div v-bind="fieldMessageAttrs" v-if="message">{{ message }}</div>
+  <slot></slot>
+</div>

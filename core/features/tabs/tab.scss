@@ -1,0 +1,34 @@
+@use "@toife/sass-layer" as sass;
+
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+
+button {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  white-space: nowrap;
+
+  padding: calc(#{$spacing-y} * #{$size-coefficient-y}) calc(#{$spacing-x} * #{$size-coefficient-x});
+  font-size: #{$size-font-size};
+  height: #{$size-control-block-size};
+  line-height: #{$size-font-size};
+  border-radius: #{$border-radius};
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}

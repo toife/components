@@ -1,0 +1,61 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$toast: sass.fn-naming-prefix("toast");
+$toastContent: sass.fn-naming-prefix("toast-content");
+
+// Properties
+$max-width: sass.fn-naming-var("overlay", "max-width");
+$space-x: sass.fn-naming-var("spacing", "x");
+$safe-area-right: sass.fn-naming-var("safe-area", "right");
+$safe-area-left: sass.fn-naming-var("safe-area", "left");
+$safe-area-bottom: sass.fn-naming-var("safe-area", "bottom");
+$safe-area-top: sass.fn-naming-var("safe-area", "top");
+
+.#{$toast} {
+  width: fit-content;
+  height: fit-content;
+  max-width: #{$max-width};
+  position: absolute;
+  z-index: 10000;
+  font-size: 0.8em;
+  line-height: 0.8em;
+  display: flex;
+  flex-direction: column;
+  gap: #{$space-x};
+
+  &.bottom-start {
+    bottom: calc(#{$safe-area-bottom} + #{$space-x} * 4);
+    left: calc(#{$space-x} * 4);
+  }
+
+  &.bottom-center {
+    bottom: calc(#{$safe-area-bottom} + #{$space-x} * 4);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bottom-end {
+    bottom: calc(#{$safe-area-bottom} + #{$space-x} * 4);
+    right: calc(#{$space-x} * 4);
+  }
+
+  &.top-start {
+    top: calc(#{$safe-area-top} + #{$space-x} * 4);
+    left: calc(#{$space-x} * 4);
+    flex-direction: column-reverse;
+  }
+
+  &.top-center {
+    top: calc(#{$safe-area-top} + #{$space-x} * 4);
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+  }
+
+  &.top-end {
+    top: calc(#{$safe-area-top} + #{$space-x} * 4);
+    right: calc(#{$space-x} * 4);
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,115 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$select: sass.fn-naming-prefix("select");
+$select-icon: sass.fn-naming-prefix("select-icon");
+$select-option: sass.fn-naming-prefix("select-option");
+$select-message: sass.fn-naming-prefix("select-message");
+$field: sass.fn-naming-prefix("field");
+$field-input: sass.fn-naming-prefix("field-input");
+
+// Property name
+$color: sass.fn-naming-var("color");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$select-background-color: sass.fn-naming-var("background-color");
+$select-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$select-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$select-background-color-active: sass.fn-naming-var("background-color", "active");
+$select-color: sass.fn-naming-var("color");
+$select-color-disabled: sass.fn-naming-var("color", "disabled");
+$select-border-color: sass.fn-naming-var("border-color");
+$select-message-color: sass.fn-naming-var("message-color");
+
+.#{$select} {
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  .#{$select-icon} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-inline-end: calc(#{$spacing-x} * #{$size-coefficient-x} * 0.5);
+    color: inherit;
+    pointer-events: none;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.1rem;
+    border-right: 2px solid rgba(var(--t-app-color));
+    border-bottom: 2px solid rgba(var(--t-app-color));
+    margin: calc(var(--t-spacing-y) * var(--t-coefficient-y))
+      calc(var(--t-spacing-x) * var(--t-coefficient-x));
+    transition: transform #{$transition-duration} ease;
+    transform-origin: center;
+
+    &.open {
+      transform: rotate(225deg);
+    }
+
+    &:not(.open) {
+      transform: rotate(45deg);
+    }
+  }
+
+  .#{$select-option} {
+    display: block;
+    width: 100%;
+    padding: calc(var(--t-spacing-y)) calc(var(--t-spacing-x) * var(--t-coefficient-x));
+    text-align: var(--t-text-align);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background: transparent;
+    cursor: pointer;
+    color: rgba(#{$select-color});
+    background-color: rgba(#{$select-background-color});
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    &:not(:disabled):not(.disabled):not(.readonly) {
+      &:hover,
+      &.hover {
+        background: rgba(#{$select-background-color-hover});
+      }
+
+      &:focus,
+      &.focus {
+        background: rgba(#{$select-background-color-focus});
+      }
+
+      &:active,
+      &.active {
+        background: rgba(#{$select-background-color-active});
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+      color: rgba(#{$select-color-disabled});
+    }
+  }
+
+  // Message
+  .#{$select-message} {
+    color: rgba(#{$select-message-color});
+    font-size: 0.9em;
+    line-height: 1.5;
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+  }
+}

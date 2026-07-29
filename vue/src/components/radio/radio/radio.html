@@ -1,0 +1,11 @@
+<div
+  v-bind="radioAttrs"
+  @pointerup="onRadio"
+  :tabindex="disabled ? -1 : 0"
+  @focus="onFocus"
+  @blur="onBlur"
+  @keydown="onKeydown"
+>
+  <div v-bind="radioIconAttrs"></div>
+  <slot></slot>
+</div>

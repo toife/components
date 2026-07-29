@@ -1,0 +1,23 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$card-body: sass.fn-naming-prefix("card-body");
+
+// Property name - layer: card
+$card-background-color: sass.fn-naming-var("background-color");
+$card-color: sass.fn-naming-var("color");
+$padding-y: sass.fn-naming-var("spacing", "y");
+$padding-x: sass.fn-naming-var("spacing", "x");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$card-body} {
+  background-color: rgba(#{$card-background-color});
+  color: rgba(#{$card-color});
+  padding: calc(#{$padding-y} * 4) calc(#{$padding-x} * 4);
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+}

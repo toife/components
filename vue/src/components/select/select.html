@@ -1,0 +1,28 @@
+<div v-bind="selectAttrs">
+  <Dropdown v-bind="dropdownAttrs" v-model="visible">
+    <template #trigger="{ toggle, isOpen }">
+      <Field
+        :role="role"
+        variant="outline"
+        @pointerup="toggle"
+        v-bind="fieldAttrs"
+        :class="{focus: isOpen}"
+      >
+        <template #end-input>
+          <span v-bind="selectIconAttrs" :class="{open: isOpen}"></span>
+        </template>
+      </Field>
+    </template>
+    <button
+      v-for="option in options"
+      :key="option.value"
+      type="button"
+      :disabled="option.disabled"
+      v-bind="selectOptionAttrs"
+      @pointerup="pickOption(option)"
+    >
+      {{ option.label }}
+    </button>
+  </Dropdown>
+  <div v-bind="selectMessageAttrs" v-if="message">{{ message }}</div>
+</div>

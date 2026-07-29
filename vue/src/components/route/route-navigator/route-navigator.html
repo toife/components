@@ -1,0 +1,19 @@
+<div v-bind="navigatorAttrs" ref="navigatorRef">
+  <div
+    v-for="(item, index) in stack"
+    :key="item.name"
+    v-bind="componentAttrs"
+    :style="{zIndex: index * 2 + 100}"
+    :name="item.name"
+    :class="{
+      active: index === activeIndex,
+      prepare: index === activeIndex + 1,
+      back: index === activeIndex - 1,
+    }"
+  >
+    <RouteProvider :stack="item.stack">
+      <RouteOutlet :component="item.component" />
+    </RouteProvider>
+  </div>
+  <div v-bind="backdropAttrs"></div>
+</div>

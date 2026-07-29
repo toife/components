@@ -1,0 +1,33 @@
+@use "@toife/sass-layer" as sass;
+@use "sass:map";
+@use "sass:list";
+
+$flex-item: sass.fn-naming-prefix("flex-item");
+$flex-item-grow: sass.fn-naming-var("grow");
+$flex-item-shrink: sass.fn-naming-var("shrink");
+$flex-item-basis: sass.fn-naming-var("basis");
+$flex-item-order: sass.fn-naming-var("order");
+
+.#{$flex-item} {
+  box-sizing: border-box;
+  min-width: 0;
+  flex-grow: #{$flex-item-grow};
+  flex-shrink: #{$flex-item-shrink};
+  flex-basis: #{$flex-item-basis};
+  order: #{$flex-item-order};
+
+  $bp-names: map.keys(sass.$breakpoints);
+  $bp-count: list.length($bp-names);
+
+  @for $i from 1 through $bp-count {
+    $bp-name: list.nth($bp-names, $i);
+    $bp-min: map.get(sass.$breakpoints, $bp-name);
+
+    @media (min-width: $bp-min) {
+      flex-grow: #{sass.fn-naming-cascade-dvar(("grow"), $bp-names, $i, $flex-item-grow)};
+      flex-shrink: #{sass.fn-naming-cascade-dvar(("shrink"), $bp-names, $i, $flex-item-shrink)};
+      flex-basis: #{sass.fn-naming-cascade-dvar(("basis"), $bp-names, $i, $flex-item-basis)};
+      order: #{sass.fn-naming-cascade-dvar(("order"), $bp-names, $i, $flex-item-order)};
+    }
+  }
+}

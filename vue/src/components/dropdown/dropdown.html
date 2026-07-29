@@ -1,0 +1,6 @@
+<div ref="rootRef" v-bind="wrapperAttrs">
+  <slot name="trigger" :toggle="toggle" :isOpen="isOpen" />
+  <div v-show="isOpen" v-bind="panelAttrs">
+    <slot />
+  </div>
+</div>

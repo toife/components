@@ -1,0 +1,29 @@
+<Present
+  :placement="placement"
+  backdrop="display"
+  :keepalive="keepalive"
+  :visible="visible"
+  @close="onClose"
+>
+  <div v-bind="decisionModalAttrs">
+    <slot name="header">
+      <div v-bind="decisionModalHeaderAttrs" v-if="title">{{ title }}</div>
+    </slot>
+    <slot name="body">
+      <div v-bind="decisionModalBodyAttrs">{{ message }}</div>
+    </slot>
+    <slot name="footer">
+      <div v-bind="decisionModalFooterAttrs">
+        <CustomButton
+          v-for="(btn, btnIndex) in actions"
+          :key="`${btnIndex}`"
+          :role="btn.role"
+          :variant="btn.variant"
+          @click="onChoose(btn)"
+          :shape="shape"
+          >{{ btn.text }}</CustomButton
+        >
+      </div>
+    </slot>
+  </div>
+</Present>

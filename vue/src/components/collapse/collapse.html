@@ -1,0 +1,16 @@
+<div v-bind="wrapperAttrs">
+  <div
+    v-bind="triggerAttrs"
+    role="button"
+    tabindex="0"
+    @pointerup="toggle"
+    @keydown.enter.space.prevent="toggle"
+  >
+    <slot name="trigger" />
+  </div>
+  <div v-bind="contentAttrs" @transitionend="onTransitionEnd">
+    <div ref="contentRef" :class="contentInnerClass">
+      <slot />
+    </div>
+  </div>
+</div>

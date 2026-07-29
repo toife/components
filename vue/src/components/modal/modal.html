@@ -1,0 +1,21 @@
+<Present
+  ref="present"
+  :duration="duration"
+  :bounce="bounce"
+  :class="class"
+  :placement="placement"
+  :backdrop="backdrop"
+  :visible="visible"
+  :keepalive="keepalive"
+  @close="close"
+  :style="style"
+>
+  <slot name="extra"></slot>
+  <GestureIndicator
+    :placement="placement"
+    v-if="gesture && indicator && placement != 'center'"
+  ></GestureIndicator>
+  <div ref="modal" v-bind="modalAttrs">
+    <slot />
+  </div>
+</Present>

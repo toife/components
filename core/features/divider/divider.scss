@@ -1,0 +1,29 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$divider: sass.fn-naming-prefix("divider");
+
+// Property name - layer: divider
+$divider-border-color: sass.fn-naming-var("border-color");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+// Divider
+.#{$divider} {
+  transition:
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease;
+
+  &.horizontal {
+    width: 100%;
+    border-bottom: #{$border-width} solid rgba(#{$divider-border-color});
+  }
+
+  &.vertical {
+    height: 100%;
+    border-right: #{$border-width} solid rgba(#{$divider-border-color});
+  }
+}

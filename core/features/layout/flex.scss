@@ -1,0 +1,39 @@
+@use "@toife/sass-layer" as sass;
+@use "sass:map";
+@use "sass:list";
+
+/// Class name
+$flex: sass.fn-naming-prefix("flex");
+
+/// Base tokens (breakpoint "")
+$flex-gap: sass.fn-naming-var("gap");
+$flex-direction: sass.fn-naming-var("direction");
+$flex-wrap: sass.fn-naming-var("wrap");
+$flex-justify: sass.fn-naming-var("justify");
+$flex-align: sass.fn-naming-var("align");
+
+.#{$flex} {
+  display: flex;
+  box-sizing: border-box;
+  gap: #{$flex-gap};
+  flex-direction: #{$flex-direction};
+  flex-wrap: #{$flex-wrap};
+  justify-content: #{$flex-justify};
+  align-items: #{$flex-align};
+
+  $bp-names: map.keys(sass.$breakpoints);
+  $bp-count: list.length($bp-names);
+
+  @for $i from 1 through $bp-count {
+    $bp-name: list.nth($bp-names, $i);
+    $bp-min: map.get(sass.$breakpoints, $bp-name);
+
+    @media (min-width: $bp-min) {
+      gap: #{sass.fn-naming-cascade-dvar(("gap"), $bp-names, $i, $flex-gap)};
+      flex-direction: #{sass.fn-naming-cascade-dvar(("direction"), $bp-names, $i, $flex-direction)};
+      flex-wrap: #{sass.fn-naming-cascade-dvar(("wrap"), $bp-names, $i, $flex-wrap)};
+      justify-content: #{sass.fn-naming-cascade-dvar(("justify"), $bp-names, $i, $flex-justify)};
+      align-items: #{sass.fn-naming-cascade-dvar(("align"), $bp-names, $i, $flex-align)};
+    }
+  }
+}

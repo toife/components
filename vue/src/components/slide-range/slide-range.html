@@ -1,0 +1,20 @@
+<div v-bind="slideRangeAttrs">
+  <div v-bind="trackContainerAttrs" ref="container">
+    <div v-bind="trackBodyAttrs" @pointerdown="onTrackPointerDown" @pointerup="onClickPath">
+      <div v-bind="trackBackAttrs"></div>
+      <div v-bind="trackFrontAttrs"></div>
+      <div
+        v-for="value in ticks"
+        :key="value"
+        v-bind="tickAttrs(value)"
+        @pointerdown="onTrackPointerDown"
+        @pointerup="onTickSelect(value, $event)"
+      ></div>
+    </div>
+
+    <div v-bind="thumbAttrs" ref="point" @pointerdown.stop.prevent="onThumbPointerDown">
+      <div v-bind="thumbInnerAttrs"></div>
+      <span v-if="percent > 0 && isShowTooltip" v-bind="tooltipAttrs">{{ displayValue }}</span>
+    </div>
+  </div>
+</div>

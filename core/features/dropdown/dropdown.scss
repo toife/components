@@ -1,0 +1,70 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$dropdown: sass.fn-naming-prefix("dropdown");
+$dropdown-panel: sass.fn-naming-prefix("dropdown-panel");
+
+// Property name - layer: dropdown
+$dropdown-border-color: sass.fn-naming-var("border-color");
+$dropdown-background-color: sass.fn-naming-var("background-color");
+$dropdown-color: sass.fn-naming-var("color");
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-line-height: sass.fn-naming-var("line-height");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+
+.#{$dropdown} {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.#{$dropdown-panel} {
+  position: absolute;
+  z-index: 20;
+  min-width: 100%;
+  box-sizing: border-box;
+  border-radius: #{$border-radius};
+  border-width: #{$border-width};
+  margin: #{$spacing-y} 0;
+  border-style: solid;
+  border-color: rgba(#{$dropdown-border-color});
+  background-color: rgba(#{$dropdown-background-color});
+  color: rgba(#{$dropdown-color});
+  font-size: #{$size-font-size};
+  line-height: #{$size-line-height};
+  max-height: min(50vh, 16rem);
+  overflow-y: auto;
+  transition:
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease;
+
+  &.bottom-start {
+    top: 100%;
+    left: 0;
+  }
+
+  &.bottom-end {
+    top: 100%;
+    right: 0;
+    left: auto;
+  }
+
+  &.top-start {
+    bottom: 100%;
+    left: 0;
+  }
+
+  &.top-end {
+    bottom: 100%;
+    right: 0;
+    left: auto;
+  }
+}

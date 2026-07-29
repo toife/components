@@ -1,0 +1,72 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$toolbar: sass.fn-naming-prefix("toolbar");
+
+// Property name - layer: toolbar
+$toolbar-background-color: sass.fn-naming-var("background-color");
+$toolbar-color: sass.fn-naming-var("color");
+$toolbar-border-color: sass.fn-naming-var("border-color");
+$safe-area-right: sass.fn-naming-var("safe-area", "right");
+$safe-area-left: sass.fn-naming-var("safe-area", "left");
+$safe-area-bottom: sass.fn-naming-var("safe-area", "bottom");
+$safe-area-top: sass.fn-naming-var("safe-area", "top");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+$border-width: sass.fn-naming-var("border", "width");
+$border: #{$border-width} solid rgba(#{$toolbar-border-color});
+
+.#{$toolbar} {
+  background-color: rgba(#{$toolbar-background-color});
+  color: rgba(#{$toolbar-color});
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+
+  &.right, &.left {
+    height: 100%;
+  }
+
+  &.bottom, &.top {
+    width: 100%;
+  }
+
+  &.safe {
+    &.right {
+      padding-right: #{$safe-area-right};
+    }
+
+    &.left {
+      padding-left: #{$safe-area-left};
+    }
+
+    &.bottom {
+      padding-bottom: #{$safe-area-bottom};
+    }
+
+    &.top {
+      padding-top: #{$safe-area-top};
+    }
+  }
+
+  &.divider {
+    &.bottom {
+      border-top: #{$border};
+    }
+
+    &.top {
+      border-bottom: #{$border};
+    }
+
+    &.left {
+      border-right: #{$border};
+    }
+
+    &.right {
+      border-left: #{$border};
+    }
+  }
+}

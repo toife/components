@@ -1,0 +1,44 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$tag: sass.fn-naming-prefix("tag");
+
+// Properties
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+
+$tag-color: sass.fn-naming-var("color");
+$tag-background-color: sass.fn-naming-var("background-color");
+$tag-border-color: sass.fn-naming-var("border-color");
+
+.#{$tag} {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-style: solid;
+  border-width: #{$border-width};
+  white-space: nowrap;
+  border-radius: #{$border-radius};
+  vertical-align: middle;
+  color: rgba(#{$tag-color});
+  background: rgba(#{$tag-background-color});
+  border-color: rgba(#{$tag-border-color});
+  transition:
+    color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+
+  padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.5)
+    calc(#{$spacing-x} * #{$size-coefficient-x} * 0.75);
+  font-size: #{$size-font-size};
+}

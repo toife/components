@@ -1,0 +1,118 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$button: sass.fn-naming-prefix("button");
+$loader: sass.fn-naming-prefix("loader");
+
+// Properties
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+
+$button-color: sass.fn-naming-var("color");
+$button-color-hover: sass.fn-naming-var("color", "hover");
+$button-color-focus: sass.fn-naming-var("color", "focus");
+$button-color-active: sass.fn-naming-var("color", "active");
+$button-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$button-border-color: sass.fn-naming-var("border-color");
+$button-border-color-hover: sass.fn-naming-var("border-color", "hover");
+$button-border-color-focus: sass.fn-naming-var("border-color", "focus");
+$button-border-color-active: sass.fn-naming-var("border-color", "active");
+$button-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+
+$button-background-color: sass.fn-naming-var("background-color");
+$button-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$button-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$button-background-color-active: sass.fn-naming-var("background-color", "active");
+$button-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
+
+.#{$button} {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-style: solid;
+  border-width: #{$border-width};
+  white-space: nowrap;
+  border-radius: #{$border-radius};
+  cursor: pointer;
+  color: rgba(#{$button-color});
+  background: rgba(#{$button-background-color});
+  border-color: rgba(#{$button-border-color});
+  transition:
+    color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease;
+  box-shadow: none;
+
+  padding: calc(#{$spacing-y} * #{$size-coefficient-y}) calc(#{$spacing-x} * #{$size-coefficient-x});
+  font-size: #{$size-font-size};
+  height: #{$size-control-block-size};
+  line-height: #{$size-line-height};
+
+  &:hover {
+    border-color: rgba(#{$button-border-color-hover});
+    background-color: rgba(#{$button-background-color-hover});
+    color: rgba(#{$button-color-hover});
+  }
+
+  &.focus,
+  &:focus {
+    border-color: rgba(#{$button-border-color-focus});
+    background-color: rgba(#{$button-background-color-focus});
+    color: rgba(#{$button-color-focus});
+
+    &.shadow {
+      box-shadow: 0 0 0 0.25rem rgba(#{$button-box-shadow-color-focus}, 0.25);
+    }
+  }
+
+  &:active,
+  &.active {
+    border-color: rgba(#{$button-border-color-active});
+    background-color: rgba(#{$button-background-color-active});
+    color: rgba(#{$button-color-active});
+  }
+
+  &:disabled,
+  &.disabled {
+    border-color: rgba(#{$button-border-color-disabled});
+    background-color: rgba(#{$button-background-color-disabled});
+    color: rgba(#{$button-color-disabled});
+    cursor: not-allowed;
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  .#{$loader} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

@@ -1,0 +1,78 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$modal: sass.fn-naming-prefix("modal");
+
+// Property name - layer: modal
+$modal-background-color: sass.fn-naming-var("background-color");
+$viewport-width: sass.fn-naming-var("viewport", "width");
+$viewport-max-width: sass.fn-naming-var("viewport", "max-width");
+$viewport-height: sass.fn-naming-var("viewport", "height");
+$viewport-max-height: sass.fn-naming-var("viewport", "max-height");
+$border-radius: sass.fn-naming-var("border-radius");
+$safe-area-top: sass.fn-naming-var("safe-area", "top");
+$safe-area-bottom: sass.fn-naming-var("safe-area", "bottom");
+$safe-area-left: sass.fn-naming-var("safe-area", "left");
+$safe-area-right: sass.fn-naming-var("safe-area", "right");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$modal} {
+  background: rgba(#{$modal-background-color});
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+  position: relative;
+
+  &.bottom,
+  &.top,
+  &.fullscreen {
+    width: #{$viewport-width};
+    max-width: #{$viewport-max-width};
+  }
+
+  &.left,
+  &.right,
+  &.fullscreen {
+    height: #{$viewport-height};
+    max-height: #{$viewport-max-height};
+  }
+
+  &:not(.fullscreen) {
+    overflow: hidden;
+
+    &.top {
+      max-height: calc(#{$viewport-max-height} - #{$safe-area-bottom});
+      max-width: #{$viewport-max-width};
+      border-bottom-left-radius: #{$border-radius};
+      border-bottom-right-radius: #{$border-radius};
+    }
+
+    &.bottom {
+      max-height: calc(#{$viewport-max-height} - #{$safe-area-top});
+      max-width: #{$viewport-max-width};
+      border-top-left-radius: #{$border-radius};
+      border-top-right-radius: #{$border-radius};
+    }
+
+    &.left {
+      max-width: calc(#{$viewport-max-width} - #{$safe-area-right});
+      max-height: #{$viewport-max-height};
+      border-top-right-radius: #{$border-radius};
+      border-bottom-right-radius: #{$border-radius};
+    }
+
+    &.right {
+      max-width: calc(#{$viewport-max-width} - #{$safe-area-left});
+      max-height: #{$viewport-max-height};
+      border-top-left-radius: #{$border-radius};
+      border-bottom-left-radius: #{$border-radius};
+    }
+
+    &.center {
+      border-radius: #{$border-radius};
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div
+  v-bind="checkboxAttrs"
+  :tabindex="disabled ? -1 : 0"
+  :aria-checked="props.modelValue"
+  @pointerup="onCheckbox"
+  @focus="onFocus"
+  @blur="onBlur"
+  @keydown="onKeydown"
+>
+  <div v-bind="checkboxIconAttrs"></div>
+  <slot></slot>
+</div>

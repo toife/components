@@ -1,0 +1,27 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$app: sass.fn-naming-prefix("app");
+
+// Property name - layer: app
+$app-background-color: sass.fn-naming-var("background-color");
+$app-color: sass.fn-naming-var("color");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$app} {
+  width: #{sass.fn-naming-var("viewport", "width")};
+  max-width: #{sass.fn-naming-var("viewport", "max-width")};
+  height: #{sass.fn-naming-var("viewport", "height")};
+  max-height: #{sass.fn-naming-var("viewport", "max-height")};
+  background-color: rgba(#{$app-background-color});
+  color: rgba(#{$app-color});
+  transition:
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -1,0 +1,132 @@
+@use "@toife/sass-layer" as sass;
+
+// Classes
+$checkbox: sass.fn-naming-prefix("checkbox");
+$checkbox-icon: sass.fn-naming-prefix("checkbox-icon");
+$shape-rounded: sass.fn-naming-prefix("shape-rounded");
+$shape-pill: sass.fn-naming-prefix("shape-pill");
+
+// Properties - layer: item
+$checkbox-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$checkbox-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$checkbox-background-color-unchecked: sass.fn-naming-var("background-color", "unchecked");
+$checkbox-background-color-checked: sass.fn-naming-var("background-color", "checked");
+$checkbox-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$checkbox-color-checked: sass.fn-naming-var("color", "checked");
+$checkbox-color-unchecked: sass.fn-naming-var("color", "unchecked");
+$checkbox-color-hover: sass.fn-naming-var("color", "hover");
+$checkbox-color-focus: sass.fn-naming-var("color", "focus");
+$checkbox-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$checkbox-border-color-hover: sass.fn-naming-var("border-color", "hover");
+$checkbox-border-color-focus: sass.fn-naming-var("border-color", "focus");
+$checkbox-border-color-checked: sass.fn-naming-var("border-color", "checked");
+$checkbox-border-color-unchecked: sass.fn-naming-var("border-color", "unchecked");
+$checkbox-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+
+$checkbox-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
+
+$transition-duration: sass.fn-naming-var("transition-duration");
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border-width");
+$size-control-mark-size: sass.fn-naming-var("control-mark-size");
+
+.#{$checkbox} {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: none !important;
+
+  .#{$checkbox-icon} {
+    flex-shrink: 0;
+    width: #{$size-control-mark-size};
+    height: #{$size-control-mark-size};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: #{$border-width} solid transparent;
+    background-color: transparent;
+    border-radius: #{$border-radius};
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease,
+      transform #{$transition-duration} ease;
+    box-sizing: border-box;
+
+    &::after {
+      content: "";
+      width: calc(#{$size-control-mark-size} * 0.2);
+      height: calc(#{$size-control-mark-size} * 0.5);
+      border: solid rgba(#{$checkbox-color-unchecked});
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      transform-origin: center;
+      transition:
+        transform #{$transition-duration} ease,
+        background-color #{$transition-duration} ease,
+        color #{$transition-duration} ease,
+        border-color #{$transition-duration} ease;
+      margin-bottom: 0.15rem;
+    }
+  }
+
+  &:not(.on) {
+    .#{$checkbox-icon} {
+      background-color: transparent;
+      border-color: rgba(#{$checkbox-border-color-unchecked});
+    }
+
+    &:not(.disabled):not(.readonly):hover {
+      .#{$checkbox-icon} {
+        border-color: rgba(#{$checkbox-border-color-hover});
+      }
+    }
+  }
+
+  &.on {
+    .#{$checkbox-icon} {
+      background-color: rgba(#{$checkbox-background-color-checked});
+      border-color: rgba(#{$checkbox-border-color-checked});
+
+      &::after {
+        transform: rotate(45deg) scale(1);
+        border-color: rgba(#{$checkbox-color-checked});
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+
+    &.on {
+      .#{$checkbox-icon} {
+        background-color: rgba(#{$checkbox-background-color-disabled});
+        border-color: rgba(#{$checkbox-border-color-disabled});
+      }
+    }
+  }
+
+  &.readonly {
+    cursor: default;
+  }
+
+  &.focus {
+    &.shadow {
+      .#{$checkbox-icon} {
+        box-shadow: 0 0 0 0.25rem rgba(#{$checkbox-box-shadow-color-focus}, 0.25);
+      }
+    }
+
+    .#{$checkbox-icon} {
+      border-color: rgba(#{$checkbox-border-color-focus});
+    }
+  }
+}

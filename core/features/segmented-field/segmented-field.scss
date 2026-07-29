@@ -1,0 +1,47 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$segmented-field-wrapper: sass.fn-naming-prefix("segmented-field-wrapper");
+$segmented-field-content: sass.fn-naming-prefix("segmented-field-content");
+$segmented-field-message: sass.fn-naming-prefix("segmented-field-message");
+$direction-flex-direction: sass.fn-naming-prefix("direction", "right");
+
+// Property name - layer: segmented-field
+$segmented-field-color: sass.fn-naming-var("color");
+
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$direction-text-align: sass.fn-naming-var("text-align");
+
+.#{$segmented-field-wrapper} {
+  .#{$segmented-field-content} {
+    display: flex;
+    gap: calc(#{$spacing-x} * 2);
+  }
+
+  &.#{$direction-flex-direction} {
+    .#{$segmented-field-content} {
+      flex-direction: row-reverse;
+    }
+  }
+
+  // Message
+  .#{$segmented-field-message} {
+    color: rgba(#{$segmented-field-color});
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: #{$direction-text-align};
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+  }
+
+  // State
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

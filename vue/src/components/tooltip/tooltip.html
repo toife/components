@@ -1,0 +1,15 @@
+<div ref="rootRef" v-bind="wrapperAttrs">
+  <div
+    ref="triggerRef"
+    v-bind="triggerAttrs"
+    @pointerenter="show"
+    @pointerleave="hide"
+    @focusin="show"
+    @focusout="onFocusOut"
+  >
+    <slot />
+  </div>
+  <div v-show="visible" v-bind="contentAttrs">
+    <slot name="content" />
+  </div>
+</div>

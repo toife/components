@@ -1,0 +1,153 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$tooltip: sass.fn-naming-prefix("tooltip");
+$tooltip-content: sass.fn-naming-prefix("tooltip-content");
+$tooltip-trigger: sass.fn-naming-prefix("tooltip-trigger");
+
+// Property name - layer: tooltip
+$tooltip-background-color: sass.fn-naming-var("background-color");
+$tooltip-color: sass.fn-naming-var("color");
+$tooltip-border-color: sass.fn-naming-var("border-color");
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$arrow-size: 5px;
+$arrow-border-size: 6px;
+$arrow-anchor-offset: calc(100% - #{$border-width} - 1px);
+
+.#{$tooltip} {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.#{$tooltip-trigger} {
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.#{$tooltip-content} {
+  position: absolute;
+  z-index: 30;
+  box-sizing: border-box;
+  width: max-content;
+  border-radius: #{$border-radius};
+  border-width: #{$border-width};
+  border-style: solid;
+  border-color: rgba(#{$tooltip-border-color});
+  background-color: rgba(#{$tooltip-background-color});
+  color: rgba(#{$tooltip-color});
+  white-space: normal;
+  pointer-events: none;
+  transition:
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    opacity #{$transition-duration} ease;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    transition: border-color #{$transition-duration} ease;
+  }
+
+  &.top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: calc(#{$spacing-y} * 2);
+
+    &::before {
+      top: #{$arrow-anchor-offset};
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: #{$arrow-border-size} #{$arrow-border-size} 0;
+      border-top-color: rgba(#{$tooltip-border-color});
+    }
+
+    &::after {
+      top: #{$arrow-anchor-offset};
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: #{$arrow-size} #{$arrow-size} 0;
+      border-top-color: rgba(#{$tooltip-background-color});
+    }
+  }
+
+  &.bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: calc(#{$spacing-y} * 2);
+
+    &::before {
+      bottom: #{$arrow-anchor-offset};
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 #{$arrow-border-size} #{$arrow-border-size};
+      border-bottom-color: rgba(#{$tooltip-border-color});
+    }
+
+    &::after {
+      bottom: #{$arrow-anchor-offset};
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 0 #{$arrow-size} #{$arrow-size};
+      border-bottom-color: rgba(#{$tooltip-background-color});
+    }
+  }
+
+  &.left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: calc(#{$spacing-x} * 2);
+
+    &::before {
+      left: #{$arrow-anchor-offset};
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: #{$arrow-border-size} 0 #{$arrow-border-size} #{$arrow-border-size};
+      border-left-color: rgba(#{$tooltip-border-color});
+    }
+
+    &::after {
+      left: #{$arrow-anchor-offset};
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: #{$arrow-size} 0 #{$arrow-size} #{$arrow-size};
+      border-left-color: rgba(#{$tooltip-background-color});
+    }
+  }
+
+  &.right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: calc(#{$spacing-x} * 2);
+
+    &::before {
+      right: #{$arrow-anchor-offset};
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: #{$arrow-border-size} #{$arrow-border-size} #{$arrow-border-size} 0;
+      border-right-color: rgba(#{$tooltip-border-color});
+    }
+
+    &::after {
+      right: #{$arrow-anchor-offset};
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: #{$arrow-size} #{$arrow-size} #{$arrow-size} 0;
+      border-right-color: rgba(#{$tooltip-background-color});
+    }
+  }
+}

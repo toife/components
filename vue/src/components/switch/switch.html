@@ -1,0 +1,14 @@
+<div
+  v-bind="switchWrapperAttrs"
+  :tabindex="disabled ? -1 : 0"
+  :aria-checked="props.modelValue"
+  @pointerup="onSwitch"
+  @focus="onFocus"
+  @blur="onBlur"
+  @keydown="onKeydown"
+>
+  <div v-bind="switchAttrs">
+    <div v-bind="switchIconAttrs"></div>
+  </div>
+  <slot />
+</div>

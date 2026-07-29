@@ -1,0 +1,59 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$collapse: sass.fn-naming-prefix("collapse");
+$collapse-trigger: sass.fn-naming-prefix("collapse-trigger");
+$collapse-content: sass.fn-naming-prefix("collapse-content");
+$collapse-content-inner: sass.fn-naming-prefix("collapse-content-inner");
+
+// Property name - layer: collapse
+$collapse-height: sass.fn-naming-dvar(("height"), 0);
+$collapse-duration: sass.fn-naming-dvar(("duration"), sass.fn-naming-var("transition-duration"));
+
+$collapse-background-color: sass.fn-naming-var("background-color");
+$collapse-color: sass.fn-naming-var("color");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+// Collapse
+.#{$collapse} {
+  background-color: rgba(#{$collapse-background-color});
+  color: rgba(#{$collapse-color});
+  transition:
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease;
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// Trigger
+.#{$collapse-trigger} {
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 0;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Content wrapper - height animated from Vue
+.#{$collapse-content} {
+  overflow: hidden;
+  height: #{$collapse-height};
+
+  &.transition {
+    transition: height #{$collapse-duration} ease;
+  }
+}

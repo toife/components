@@ -1,0 +1,131 @@
+@use "@toife/sass-layer" as sass;
+
+// Classes
+$radio: sass.fn-naming-prefix("radio");
+$radio-icon: sass.fn-naming-prefix("radio-icon");
+$shape-rounded: sass.fn-naming-prefix("shape-rounded");
+$shape-pill: sass.fn-naming-prefix("shape-pill");
+
+// Properties - layer: item
+$radio-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$radio-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$radio-background-color-unchecked: sass.fn-naming-var("background-color", "unchecked");
+$radio-background-color-checked: sass.fn-naming-var("background-color", "checked");
+$radio-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$radio-color-unchecked: sass.fn-naming-var("color", "unchecked");
+$radio-color-checked: sass.fn-naming-var("color", "checked");
+$radio-color-hover: sass.fn-naming-var("color", "hover");
+$radio-color-focus: sass.fn-naming-var("color", "focus");
+$radio-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$radio-border-color-hover: sass.fn-naming-var("border-color", "hover");
+$radio-border-color-focus: sass.fn-naming-var("border-color", "focus");
+$radio-border-color-checked: sass.fn-naming-var("border-color", "checked");
+$radio-border-color-unchecked: sass.fn-naming-var("border-color", "unchecked");
+$radio-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+
+$radio-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
+
+$transition-duration: sass.fn-naming-var("transition-duration");
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border-width");
+$size-control-mark-size: sass.fn-naming-var("control-mark-size");
+
+.#{$radio} {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: none !important;
+
+  .#{$radio-icon} {
+    flex-shrink: 0;
+    width: #{$size-control-mark-size};
+    height: #{$size-control-mark-size};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: #{$border-width} solid transparent;
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease,
+      transform #{$transition-duration} ease;
+    border-radius: #{$border-radius};
+    box-sizing: border-box;
+
+    &::after {
+      content: "";
+      width: calc(#{$size-control-mark-size} * 0.5);
+      height: calc(#{$size-control-mark-size} * 0.5);
+      border-radius: #{$border-radius};
+      background-color: rgba(#{$radio-color-unchecked});
+      transform: scale(0);
+      transform-origin: center;
+      transition:
+        transform #{$transition-duration} ease,
+        background-color #{$transition-duration} ease,
+        color #{$transition-duration} ease,
+        border-color #{$transition-duration} ease;
+    }
+  }
+
+  &:not(.on) {
+    .#{$radio-icon} {
+      background-color: transparent;
+      border-color: rgba(#{$radio-border-color-unchecked});
+    }
+
+    &:not(.disabled):not(.readonly):hover {
+      .#{$radio-icon} {
+        border-color: rgba(#{$radio-border-color-hover});
+      }
+    }
+  }
+
+  &.on {
+    .#{$radio-icon} {
+      background-color: rgba(#{$radio-background-color-checked});
+      border-color: rgba(#{$radio-border-color-checked});
+
+      &::after {
+        transform: scale(1);
+        background-color: rgba(#{$radio-color-checked});
+      }
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+
+    &.on {
+      .#{$radio-icon} {
+        background-color: rgba(#{$radio-background-color-disabled});
+        border-color: rgba(#{$radio-border-color-disabled});
+      }
+    }
+  }
+
+  &.readonly {
+    cursor: default;
+  }
+
+  &.focus {
+    &.shadow {
+      .#{$radio-icon} {
+        box-shadow: 0 0 0 0.25rem rgba(#{$radio-box-shadow-color-focus}, 0.25);
+      }
+    }
+
+    .#{$radio-icon} {
+      border-color: rgba(#{$radio-border-color-focus});
+    }
+  }
+}

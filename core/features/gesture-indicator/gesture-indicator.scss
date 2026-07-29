@@ -1,0 +1,46 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$gesture-indicator: sass.fn-naming-prefix("gesture-indicator");
+
+// Property name - layer: gesture-indicator
+$gesture-indicator-border-color: sass.fn-naming-var("border-color");
+$border-radius: sass.fn-naming-var("border-radius");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$gesture-indicator} {
+  background-color: rgba(#{$gesture-indicator-border-color});
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+  position: absolute;
+  border-radius: #{$border-radius};
+  z-index: 99;
+
+  &.bottom {
+    width: 40px;
+    height: 4px;
+    top: 5px;
+  }
+
+  &.top {
+    width: 40px;
+    height: 4px;
+    bottom: 5px;
+  }
+
+  &.left {
+    height: 40px;
+    width: 4px;
+    right: 5px;
+  }
+
+  &.right {
+    height: 40px;
+    width: 4px;
+    left: 5px;
+  }
+}

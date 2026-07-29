@@ -1,0 +1,127 @@
+@use "@toife/sass-layer" as sass;
+
+// Classes
+$switch: sass.fn-naming-prefix("switch");
+$switch-icon: sass.fn-naming-prefix("switch-icon");
+$switch-wrapper: sass.fn-naming-prefix("switch-wrapper");
+
+// Property name - layer: switch (track + thumb; states like button + inactive)
+$switch-background-color-off: sass.fn-naming-var("background-color", "off");
+$switch-background-color-on: sass.fn-naming-var("background-color", "on");
+$switch-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$switch-color-on: sass.fn-naming-var("color", "on");
+$switch-color-off: sass.fn-naming-var("color", "off");
+$switch-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$switch-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
+
+$transition-duration: sass.fn-naming-var("transition-duration");
+$border-radius: sass.fn-naming-var("border-radius");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$size-control-mark-size: sass.fn-naming-var("control-mark-size");
+$icon-size: calc(#{$size-control-mark-size} - #{$size-control-mark-size} * 0.2);
+$bounce-ratio: sass.fn-naming-var("bounce", "ratio");
+
+.#{$switch-wrapper} {
+  display: inline-flex;
+  gap: calc(#{$spacing-x} * 2);
+  align-items: center;
+  cursor: pointer;
+  box-shadow: none !important;
+
+  &.transition {
+    .#{$switch},
+    .#{$switch-icon} {
+      transition:
+        background-color #{$transition-duration} ease,
+        color #{$transition-duration} ease,
+        border-color #{$transition-duration} ease,
+        border-radius #{$transition-duration} ease,
+        box-shadow #{$transition-duration} ease,
+        transform #{$transition-duration} ease;
+    }
+  }
+
+  .#{$switch} {
+    height: #{$size-control-mark-size};
+    aspect-ratio: 14/8;
+    position: relative;
+    border-radius: #{$border-radius};
+
+    .#{$switch-icon} {
+      width: #{$icon-size};
+      height: #{$icon-size};
+      position: absolute;
+      top: 0;
+      border-radius: #{$border-radius};
+      margin: calc(#{$size-control-mark-size} * 0.1);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .#{$switch} {
+      background-color: rgba(#{$switch-background-color-disabled});
+      cursor: not-allowed;
+      opacity: 0.3;
+
+      .#{$switch-icon} {
+        background-color: rgba(#{$switch-color-disabled});
+      }
+    }
+  }
+
+  &.readonly {
+    cursor: default;
+
+    .#{$switch} {
+      cursor: default;
+    }
+  }
+
+  &:not(.on) {
+    .#{$switch} {
+      background-color: rgba(#{$switch-background-color-off});
+
+      .#{$switch-icon} {
+        background-color: rgba(#{$switch-color-off});
+        left: 0;
+      }
+    }
+  }
+
+  &.on {
+    .#{$switch} {
+      background-color: rgba(#{$switch-background-color-on});
+
+      .#{$switch-icon} {
+        right: 0;
+        animation: shrink #{$transition-duration} linear;
+        animation-fill-mode: forwards;
+        background-color: rgba(#{$switch-color-on});
+      }
+    }
+  }
+
+  &.focus {
+    &.shadow {
+      .#{$switch} {
+        box-shadow: 0 0 0 0.25rem rgba(#{$switch-box-shadow-color-focus}, 0.25);
+      }
+    }
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(#{$bounce-ratio});
+  }
+  100% {
+    transform: scale(1);
+  }
+}

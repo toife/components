@@ -1,0 +1,80 @@
+# Publishes @toife/vue to npm (built `dist/` — see package.json "files").
+# Prerequisites in npmjs.com: org/user scope @toife with publish rights; Automation token in repo secrets.
+
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Semver to publish (e.g. 3.0.2). Omit to use package.json as-is."
+        required: false
+        type: string
+
+concurrency:
+  group: publish-npm-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      HUSKY: "0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      # Release / manual input: semver must match package.json (single source of truth in git).
+      - name: Verify version matches package.json
+        run: |
+          set -e
+          CURRENT="$(node -p "require('./package.json').version")"
+          if [ "${{ github.event_name }}" = "release" ]; then
+            TAG="${{ github.event.release.tag_name }}"
+            VER="${TAG#v}"
+            echo "Release tag: $TAG → semver: $VER"
+            echo "package.json version: $CURRENT"
+            if [ "$CURRENT" != "$VER" ]; then
+              echo "::error::Tag version ($VER) must equal package.json version ($CURRENT). Bump and commit package.json before tagging."
+              exit 1
+            fi
+          elif [ -n "${{ inputs.version }}" ]; then
+            VER="${{ inputs.version }}"
+            echo "Workflow input version: $VER"
+            echo "package.json version: $CURRENT"
+            if [ "$CURRENT" != "$VER" ]; then
+              echo "::error::Input version ($VER) must equal package.json version ($CURRENT)."
+              exit 1
+            fi
+          else
+            echo "workflow_dispatch without version: publishing package.json version $CURRENT"
+          fi
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      - name: Build
+        run: yarn build
+
+      # `yarn npm publish` does not pick up setup-node auth (YN0033). `npm publish` uses the same
+      # package.json / files list and respects NODE_AUTH_TOKEN + registry-url from setup-node.
+      - name: Publish to npm (public scoped package)
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

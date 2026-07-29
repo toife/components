@@ -1,0 +1,158 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$slide-range: sass.fn-naming-prefix("slide-range");
+$slide-range-track-container: sass.fn-naming-prefix("slide-range-track-container");
+$slide-range-track-body: sass.fn-naming-prefix("slide-range-track-body");
+$slide-range-track: sass.fn-naming-prefix("slide-range-track");
+$slide-range-tick: sass.fn-naming-prefix("slide-range-tick");
+$slide-range-thumb: sass.fn-naming-prefix("slide-range-thumb");
+$slide-range-thumb-inner: sass.fn-naming-prefix("slide-range-thumb-inner");
+$slide-range-tooltip: sass.fn-naming-prefix("slide-range-tooltip");
+$shape-pill: sass.fn-naming-prefix("shape-pill");
+$shape-rounded: sass.fn-naming-prefix("shape-rounded");
+$shape-flat: sass.fn-naming-prefix("shape-flat");
+$property-border-radius: sass.fn-naming-property("border-radius");
+
+// Property name
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$border-width: sass.fn-naming-var("border", "width");
+$border-radius: sass.fn-naming-var("border-radius");
+
+$slide-range-background-color: sass.fn-naming-var("background-color");
+$slide-range-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$slide-range-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$slide-range-background-color-active: sass.fn-naming-var("background-color", "active");
+$slide-range-border-color: sass.fn-naming-var("border-color");
+$slide-range-border-color-hover: sass.fn-naming-var("border-color", "hover");
+$slide-range-border-color-focus: sass.fn-naming-var("border-color", "focus");
+$slide-range-border-color-active: sass.fn-naming-var("border-color", "active");
+$slide-range-percent: sass.fn-naming-var("percent");
+$slide-range-left: sass.fn-naming-var("left");
+$slide-range-tooltip-background-color: sass.fn-naming-var("tooltip-background-color");
+$slide-range-tooltip-color: sass.fn-naming-var("tooltip-color");
+
+.#{$slide-range} {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  &.#{$shape-pill} {
+    #{$property-border-radius}: 50%;
+
+    .#{$slide-range-tooltip} {
+      border-radius: 3px;
+    }
+  }
+
+  &.#{$shape-rounded} {
+    #{$property-border-radius}: 2px;
+
+    .#{$slide-range-tooltip} {
+      border-radius: 2px;
+    }
+  }
+
+  &.#{$shape-flat} {
+    #{$property-border-radius}: 0;
+
+    .#{$slide-range-tooltip} {
+      border-radius: 0;
+    }
+  }
+
+  &.disabled,
+  &.readonly {
+    opacity: 0.6;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  .#{$slide-range-track-container} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    height: 2rem;
+  }
+
+  .#{$slide-range-track-body} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .#{$slide-range-track} {
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.back {
+      width: 100%;
+      background-color: rgba(#{$slide-range-border-color});
+    }
+
+    &.front {
+      width: #{$slide-range-percent};
+      background-color: rgba(#{$slide-range-border-color-active});
+    }
+  }
+
+  .#{$slide-range-tick} {
+    position: absolute;
+    left: #{$slide-range-left};
+    top: 50%;
+    transform-origin: center;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    height: 8px;
+    width: 8px;
+    border-radius: #{$border-radius};
+    background-color: rgba(#{$slide-range-background-color});
+    border: 1px solid rgba(#{$slide-range-border-color});
+
+    &.active {
+      border-color: rgba(#{$slide-range-border-color-active});
+      background-color: rgba(#{$slide-range-background-color-active});
+    }
+  }
+
+  .#{$slide-range-thumb} {
+    position: absolute;
+    left: #{$slide-range-percent};
+    top: 50%;
+    height: 25px;
+    width: 25px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .#{$slide-range-thumb-inner} {
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgba(#{$slide-range-border-color-active});
+      border-radius: #{$border-radius};
+      background-color: rgba(#{$slide-range-background-color});
+      transform: rotate(45deg);
+    }
+
+    .#{$slide-range-tooltip} {
+      position: absolute;
+      top: -15px;
+      left: calc(50%);
+      transform: translateX(-50%);
+      padding: 0 calc(#{$spacing-x} * 0.5);
+      font-size: 0.6rem;
+      line-height: 0.9rem;
+      white-space: nowrap;
+      color: rgba(#{$slide-range-tooltip-color});
+      background-color: rgba(#{$slide-range-tooltip-background-color});
+      z-index: 10;
+    }
+  }
+}

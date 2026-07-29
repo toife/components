@@ -1,0 +1,35 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$card: sass.fn-naming-prefix("card");
+
+// Property name - layer: card
+$card-background-color: sass.fn-naming-var("background-color");
+$card-color: sass.fn-naming-var("color");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$card} {
+  background-color: rgba(#{$card-background-color});
+  color: rgba(#{$card-color});
+  border-radius: #{$border-radius};
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+
+  > div {
+    &:first-child {
+      border-top-left-radius: #{$border-radius};
+      border-top-right-radius: #{$border-radius};
+    }
+
+    &:last-child {
+      border-bottom-left-radius: #{$border-radius};
+      border-bottom-right-radius: #{$border-radius};
+    }
+  }
+}

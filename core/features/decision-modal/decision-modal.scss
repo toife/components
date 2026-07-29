@@ -1,0 +1,142 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$decision-modal: sass.fn-naming-prefix("decision-modal");
+$decision-modal-header: sass.fn-naming-prefix("decision-modal-header");
+$decision-modal-body: sass.fn-naming-prefix("decision-modal-body");
+$decision-modal-footer: sass.fn-naming-prefix("decision-modal-footer");
+$button: sass.fn-naming-prefix("button");
+$shape-pill: sass.fn-naming-prefix("shape-pill");
+
+// Property name - layer: decision-modal
+$decision-modal-background-color: sass.fn-naming-var("background-color");
+$decision-modal-border-color: sass.fn-naming-var("border-color");
+$decision-modal-color: sass.fn-naming-var("color");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$width: sass.fn-naming-var("viewport", "width");
+$max-width: sass.fn-naming-var("overlay", "max-width");
+$padding-y: sass.fn-naming-var("spacing", "y");
+$padding-x: sass.fn-naming-var("spacing", "x");
+$margin-y: sass.fn-naming-var("spacing", "y");
+$margin-x: sass.fn-naming-var("spacing", "x");
+$animation-duration: sass.fn-naming-var("transition-duration");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$decision-modal} {
+  // Styles
+  background-color: rgba(#{$decision-modal-background-color});
+  color: rgba(#{$decision-modal-color});
+  width: #{$width};
+  max-width: #{$max-width};
+  overflow: hidden;
+  position: relative;
+  margin: calc(#{$margin-x} * 4) calc(#{$margin-y} * 2);
+  border-radius: #{$border-radius};
+  transition:
+    box-shadow #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease;
+
+  // Header of alert
+  .#{$decision-modal-header} {
+    padding: calc(#{$padding-y} * 4) calc(#{$padding-x} * 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border-bottom: #{$border-width} solid transparent;
+    color: rgba(#{$decision-modal-color});
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+  }
+
+  // Content of alert
+  .#{$decision-modal-body} {
+    padding: calc(#{$padding-y} * 4) calc(#{$padding-x} * 4);
+    color: rgba(#{$decision-modal-color});
+  }
+
+  // Footer of alert
+  .#{$decision-modal-footer} {
+    display: flex;
+    border-top: #{$border-width} solid transparent;
+    color: rgba(#{$decision-modal-color});
+    transition:
+      box-shadow #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    > * {
+      flex: 1;
+    }
+
+    .#{$button} {
+      font-weight: 600;
+      border-radius: 0rem;
+    }
+
+    &.actions-flow-column {
+      flex-direction: column;
+    }
+
+    &.actions-flow-row {
+      flex-direction: row;
+    }
+  }
+
+  &.#{$shape-pill} {
+    .#{$decision-modal-footer} {
+      column-gap: #{$padding-x};
+      row-gap: #{$padding-y};
+      padding: calc(#{$padding-y} * 2) calc(#{$padding-x} * 2);
+
+      .#{$button} {
+        border-radius: #{$border-radius};
+      }
+    }
+  }
+
+  &.divider {
+    .#{$decision-modal-header},
+    .#{$decision-modal-footer} {
+      border-color: rgba(#{$decision-modal-border-color});
+    }
+  }
+
+  // Set effect with class
+  &.pop {
+    animation: pop #{$animation-duration} ease-in-out;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
