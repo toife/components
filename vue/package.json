@@ -42,7 +42,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "pnpm run build",
     "build": "vite build && vite build --config vite.styles.config.ts",
     "format": "prettier . --write",
     "prepare": "husky || true"
