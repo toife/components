@@ -157,13 +157,15 @@ const changeRoute = (value: RouteStack[]) => {
     transform.backdrop = 0;
     emit("transform", transform);
 
+    // Keep the leaving page until the back transition finishes (and a beat longer
+    // so the previous page is fully visible before unmount).
     backTimer = setTimeout(() => {
       stack.value = data;
       backdropIndex.value = targetIndex;
       transform.backdrop = data.length > 0 ? 100 : 0;
       emit("transform", transform);
       backTimer = undefined;
-    }, 250);
+    }, 500);
     return;
   }
 
