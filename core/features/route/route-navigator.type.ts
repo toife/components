@@ -8,6 +8,7 @@ export type RouteNavigatorProps = {
   variant?: RouteNavigatorVariant;
   keepalive?: boolean;
   gesture?: boolean;
+  name?: string;
 };
 
 /**
