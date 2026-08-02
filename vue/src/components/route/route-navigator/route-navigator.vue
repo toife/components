@@ -56,33 +56,6 @@ const transform = reactive<RouteNavigatorTransformState>({
 const stack = ref<RouteStack[]>([]);
 const activeIndex = ref(0);
 const backdropIndex = ref(0);
-let backTimer: ReturnType<typeof setTimeout> | undefined;
-let forwardTimer1: ReturnType<typeof setTimeout> | undefined;
-let forwardTimer2: ReturnType<typeof setTimeout> | undefined;
-
-const clearRouteTimers = () => {
-  if (backTimer !== undefined) {
-    clearTimeout(backTimer);
-    backTimer = undefined;
-  }
-  if (forwardTimer1 !== undefined) {
-    clearTimeout(forwardTimer1);
-    forwardTimer1 = undefined;
-  }
-  if (forwardTimer2 !== undefined) {
-    clearTimeout(forwardTimer2);
-    forwardTimer2 = undefined;
-  }
-};
-
-const syncStack = (data: RouteStack[]) => {
-  stack.value = data;
-  activeIndex.value = Math.max(0, data.length - 1);
-  backdropIndex.value = activeIndex.value;
-  resetTransform();
-  transform.backdrop = data.length > 0 ? 100 : 0;
-  emit("transform", transform);
-};
 
 // Computed properties
 // ----------------------------------------------------------------------------
@@ -118,9 +91,8 @@ const isGestureEnabled = computed(() => {
 // ----------------------------------------------------------------------------
 const changeRoute = (value: RouteStack[]) => {
   const data = clone(value);
-  clearRouteTimers();
 
-  // Case: first time
+  // Case init
   if (stack.value.length === 0) {
     stack.value = data;
     activeIndex.value = Math.max(0, data.length - 1);
@@ -128,75 +100,57 @@ const changeRoute = (value: RouteStack[]) => {
     return;
   }
 
-  const stepsBack = stack.value.length - data.length;
-
-  // Case: update (same depth)
-  if (stepsBack === 0) {
-    const ln = stack.value.length - 1;
-    if (ln >= 0 && data[ln]) {
-      stack.value[ln].stack = data[ln].stack;
-    }
-    if (activeIndex.value >= data.length) {
-      syncStack(data);
-    }
+  // Case update
+  if (stack.value.length === data.length) {
+    stack.value = data;
     return;
   }
 
-  // Case: back — parent popped one or more levels at once
-  if (stepsBack > 0) {
-    const targetIndex = Math.max(0, data.length - 1);
-
-    // Sudden multi-step back or activeIndex out of sync: skip animation
-    if (stepsBack > 1 || activeIndex.value > targetIndex || data.length === 0) {
-      syncStack(data);
-      return;
-    }
-
-    resetTransform();
-    activeIndex.value = targetIndex;
+  // Case Back
+  if (data.length < stack.value.length) {
+    // Clear gesture freeze (duration:"0s" + mid-swipe active %) so CSS can animate
+    transform.duration = undefined;
+    transform.active = 0;
+    transform.back = BACK_LAYER_PEEK_PCT;
+    transform.prepare = 100;
     transform.backdrop = 0;
+
+    activeIndex.value = Math.max(0, data.length - 1);
+    backdropIndex.value = activeIndex.value;
     emit("transform", transform);
 
-    // Keep the leaving page until the back transition finishes (and a beat longer
-    // so the previous page is fully visible before unmount).
-    backTimer = setTimeout(() => {
+    setTimeout(() => {
       stack.value = data;
-      backdropIndex.value = targetIndex;
-      transform.backdrop = data.length > 0 ? 100 : 0;
-      emit("transform", transform);
-      backTimer = undefined;
-    }, 500);
+    }, 400);
     return;
   }
 
-  // Case: next
-  const nextItem = data[data.length - 1];
-  if (!nextItem) return;
+  // Case Next
+  if (data.length > stack.value.length) {
+    stack.value = data;
 
-  stack.value.push(nextItem);
-  transform.duration = "0s";
+    setTimeout(() => {
+      activeIndex.value = Math.max(0, data.length - 1);
+      backdropIndex.value = activeIndex.value;
+    }, 50);
+
+    return;
+  }
+};
+
+/** Finish swipe visually (active → 100%), then navigate back after the transition. */
+const commitGestureBack = () => {
+  if (activeIndex.value <= 0) return;
+
+  // Match CSS transition so the page eases out instead of snapping
+  const durationMs = 250;
+  transform.duration = `${durationMs / 1000}s`;
+  transform.active = 100;
+  transform.back = 0;
   transform.backdrop = 0;
   emit("transform", transform);
 
-  forwardTimer1 = setTimeout(
-    () => {
-      backdropIndex.value = backdropIndex.value + 1;
-      transform.duration = undefined;
-      emit("transform", transform);
-      forwardTimer1 = undefined;
-    },
-    props.variant !== "none" ? 10 : 0
-  );
-
-  forwardTimer2 = setTimeout(
-    () => {
-      transform.backdrop = 100;
-      activeIndex.value = stack.value.length - 1;
-      emit("transform", transform);
-      forwardTimer2 = undefined;
-    },
-    props.variant !== "none" ? 100 : 0
-  );
+  setTimeout(() => goBack(), durationMs);
 };
 
 const goBack = () => {
@@ -243,7 +197,7 @@ const up = (data: RouteNavigatorGesture) => {
   }
 
   if (percent >= 60) {
-    goBack();
+    commitGestureBack();
   } else {
     resetTransform();
   }
@@ -281,7 +235,7 @@ onMounted(() => {
 
         fast({ initialDirection }: GestureFastPayload) {
           if (!initialDirection || initialDirection !== props.direction) return;
-          goBack();
+          commitGestureBack();
         },
 
         move({ deltaX, deltaY, initialDirection, event }: GestureMovePayload) {
@@ -307,7 +261,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  clearRouteTimers();
   if (ges.value) (ges.value as { destroy: () => void }).destroy();
 });
 </script>
