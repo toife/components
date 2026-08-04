@@ -34,9 +34,40 @@ function stripLibCss(): Plugin {
 export default defineConfig({
   plugins: [
     dts({
-      entryRoot: "src",
+      // Parent of vue/ + core/ so core declarations are emitted into dist
+      // (entryRoot: "src" left exports as `../../core`, which is outside the package).
+      entryRoot: fileURLToPath(new URL("..", import.meta.url)),
+      include: ["src/**/*.{ts,vue}", "../core/**/*.ts"],
       outDir: "dist",
       insertTypesEntry: true,
+      beforeWriteFile(filePath, content) {
+        // Flatten dist/vue/src/* → dist/* while keeping dist/core/*
+        const nestedSrc = path.join(packageRoot, "dist", "vue", "src");
+        if (!filePath.startsWith(nestedSrc + path.sep) && filePath !== nestedSrc) {
+          return { filePath, content };
+        }
+
+        const flatPath = path.join(
+          packageRoot,
+          "dist",
+          path.relative(nestedSrc, filePath),
+        );
+
+        // Imports were computed from vue/src/... (2 extra segments vs flattened dist/).
+        // Drop two `../` so they resolve to dist/core.
+        // Handles both `from '...core'` and inline `import('...core')`.
+        const rewritten = content.replace(
+          /((?:from\s+|import\()['"])((?:\.\.\/)+)core(\/[^'"]*)?(['"])/g,
+          (_match, lead, ups: string, subpath = "", quote) => {
+            const levels = ups.length / 3; // "../" === 3 chars
+            const next = levels - 2;
+            const prefix = next <= 0 ? "./" : "../".repeat(next);
+            return `${lead}${prefix}core${subpath}${quote}`;
+          },
+        );
+
+        return { filePath: flatPath, content: rewritten };
+      },
     }),
     vue(),
     stripLibCss(),
