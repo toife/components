@@ -1,0 +1,120 @@
+@use "@toife/sass-layer" as sass;
+
+// Overlay scrollbar: the component owns the scrollport, so the tracks are
+// absolutely positioned siblings of the content inside the same box. Nothing is
+// sticky or fixed — the tracks are laid out and clipped by the root alone, so no
+// ancestor's `overflow` can push them out of place and nothing has to be
+// measured per frame.
+
+// Class name
+$scrollbar: sass.fn-naming-prefix("scrollbar");
+$scrollbar-content: sass.fn-naming-prefix("scrollbar-content");
+$scrollbar-track: sass.fn-naming-prefix("scrollbar-track");
+$scrollbar-thumb: sass.fn-naming-prefix("scrollbar-thumb");
+
+// Property name - layer: scrollbar
+$color: sass.fn-naming-var("color");
+$transition-duration: sass.fn-naming-dvar("transition-duration", 100ms);
+
+// Geometry, written by `getScrollbarAttrs` / `getScrollbarTrackAttrs` /
+// `getScrollbarThumbAttrs`. The fallbacks keep a bare `.t-scrollbar` usable.
+$size: sass.fn-naming-dvar(("scrollbar", "size"), 10px);
+$inset: sass.fn-naming-dvar(("scrollbar", "inset"), 0px);
+$thumb-size: sass.fn-naming-dvar(("scrollbar", "thumb-size"), 6px);
+$thumb-inset: sass.fn-naming-dvar(("scrollbar", "thumb-inset"), 2px);
+$thumb-radius: sass.fn-naming-dvar(("scrollbar", "thumb-radius"), 3px);
+$thumb-length: sass.fn-naming-dvar(("scrollbar", "thumb-length"), 0px);
+$thumb-offset: sass.fn-naming-dvar(("scrollbar", "thumb-offset"), 0px);
+
+// Thumb paint. These are `channels, alpha` pairs fed to `rgba()`, not finished
+// colors, so the layer can supply them as a 3-item `(palette, weight, alpha)`
+// token like any other. The fallback is an alpha over the surrounding layer's
+// foreground, which covers every mode with one value and needs no layer at all.
+$thumb-color: sass.fn-naming-dvar(("scrollbar", "thumb-color"), $color + ", 0.1");
+$thumb-color-hover: sass.fn-naming-dvar(("scrollbar", "thumb-color-hover"), $color + ", 0.15");
+$thumb-color-active: sass.fn-naming-dvar(("scrollbar", "thumb-color-active"), $color + ", 0.2");
+
+// The wrapper has no size of its own: give the parent a definite height, the way
+// any scroll container needs.
+.#{$scrollbar} {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+
+  // The real scrollport. Native bars are hidden — the tracks replace them,
+  // overlaying the content instead of taking a gutter out of it.
+  .#{$scrollbar-content} {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+  }
+
+  .#{$scrollbar-track} {
+    position: absolute;
+    touch-action: none;
+    opacity: 0;
+    transition: opacity #{$transition-duration} linear;
+
+    // `inset` is the gutter left for the other track, so the two thumbs never
+    // meet in the corner. It is 0 while only one track is out.
+    &.vertical {
+      top: 0;
+      right: 0;
+      bottom: #{$inset};
+      width: #{$size};
+
+      .#{$scrollbar-thumb} {
+        width: #{$thumb-size};
+        height: #{$thumb-length};
+        margin-left: #{$thumb-inset};
+        transform: translate3d(0, #{$thumb-offset}, 0);
+      }
+    }
+
+    &.horizontal {
+      left: 0;
+      right: #{$inset};
+      bottom: 0;
+      height: #{$size};
+
+      .#{$scrollbar-thumb} {
+        width: #{$thumb-length};
+        height: #{$thumb-size};
+        margin-top: #{$thumb-inset};
+        transform: translate3d(#{$thumb-offset}, 0, 0);
+      }
+    }
+  }
+
+  .#{$scrollbar-thumb} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: #{$thumb-radius};
+    background-color: rgba(#{$thumb-color});
+    transition: background-color #{$transition-duration} linear;
+
+    &:hover {
+      background-color: rgba(#{$thumb-color-hover});
+    }
+  }
+
+  &.visible .#{$scrollbar-track} {
+    opacity: 1;
+  }
+
+  &.dragging .#{$scrollbar-thumb} {
+    background-color: rgba(#{$thumb-color-active});
+  }
+}

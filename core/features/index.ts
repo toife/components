@@ -21,6 +21,7 @@ export * from "./present";
 export * from "./radio";
 export * from "./refresher";
 export * from "./route";
+export * from "./scrollbar";
 export * from "./segmented-field";
 export * from "./select";
 export * from "./skeleton";
