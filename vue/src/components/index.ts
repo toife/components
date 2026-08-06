@@ -23,6 +23,7 @@ export * from "./segmented-field";
 export * from "./container";
 export * from "./refresher";
 export * from "./route";
+export * from "./scrollbar";
 export * from "./page";
 export * from "./collapse";
 export * from "./form-group";

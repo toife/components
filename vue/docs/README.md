@@ -40,6 +40,7 @@
 | [route-provider.md](./route-provider.md) | RouteProvider | `t-route-provider` |
 | [route-navigator.md](./route-navigator.md) | RouteNavigator | `t-route-navigator` |
 | [route-outlet.md](./route-outlet.md) | RouteOutlet | `t-route-outlet` |
+| [scrollbar.md](./scrollbar.md) | Scrollbar | `t-scrollbar` |
 | [segmented-field.md](./segmented-field.md) | SegmentedField | `t-segmented-field` |
 | [select.md](./select.md) | Select | `t-select` |
 | [slide-range.md](./slide-range.md) | SlideRange | `t-slide-range` |

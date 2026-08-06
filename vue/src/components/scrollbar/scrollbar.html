@@ -1,0 +1,27 @@
+<div v-bind="scrollbarAttrs" @pointerenter="hovered = true" @pointerleave="hovered = false">
+  <div v-bind="contentAttrs" ref="content" @scroll="onScroll">
+    <slot />
+  </div>
+
+  <div
+    v-if="hasVertical"
+    v-bind="trackAttrs('y')"
+    ref="trackY"
+    aria-hidden="true"
+    @click="onTrackClick('y', $event)"
+    @wheel="onWheel"
+  >
+    <div v-bind="thumbAttrs('y')"></div>
+  </div>
+
+  <div
+    v-if="hasHorizontal"
+    v-bind="trackAttrs('x')"
+    ref="trackX"
+    aria-hidden="true"
+    @click="onTrackClick('x', $event)"
+    @wheel="onWheel"
+  >
+    <div v-bind="thumbAttrs('x')"></div>
+  </div>
+</div>

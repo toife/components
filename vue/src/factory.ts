@@ -32,6 +32,7 @@ import {
   RouteWrapper,
   RouteProvider,
   RouteOutlet,
+  Scrollbar,
   SegmentedField,
   Select,
   SlideRange,
@@ -109,6 +110,7 @@ class Toife {
     this.app.component(prefix + "route-wrapper", RouteWrapper);
     this.app.component(prefix + "route-provider", RouteProvider);
     this.app.component(prefix + "route-outlet", RouteOutlet);
+    this.app.component(prefix + "scrollbar", Scrollbar);
     this.app.component(prefix + "segmented-field", SegmentedField);
     this.app.component(prefix + "select", Select);
     this.app.component(prefix + "slide-range", SlideRange);
