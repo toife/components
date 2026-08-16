@@ -11,10 +11,6 @@ $transition-duration: sass.fn-naming-var("transition-duration");
 .#{$card-body} {
   padding: calc(#{$padding-y} * 4) calc(#{$padding-x} * 4);
   transition:
-    box-shadow #{$transition-duration} ease,
-    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
-    background-color #{$transition-duration} ease,
-    color #{$transition-duration} ease,
     border-radius #{$transition-duration} ease;
 }
