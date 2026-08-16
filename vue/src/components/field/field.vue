@@ -34,7 +34,6 @@ const content = ref("");
 const fieldAttrs = computed(() => {
   const role = props.role || unref(appState?.role) || "";
   const shape = props.shape || unref(appState?.shape) || "";
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   const direction = props.direction || unref(appState?.direction) || "left";
 
   return getFieldAttrs({
@@ -46,7 +45,6 @@ const fieldAttrs = computed(() => {
     type: props.type,
     disabled: props.disabled,
     focus: isFocus.value,
-    shadow,
     readonly: props.readonly,
     line: Number(props.line),
     maxLine: props.maxLine !== undefined ? Number(props.maxLine) : undefined,

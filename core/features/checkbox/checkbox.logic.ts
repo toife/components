@@ -12,7 +12,6 @@ export const getCheckboxAttrs = (options: CheckboxAttrOptions) => ({
       on: options.modelValue,
       disabled: options.disabled,
       readonly: options.readonly,
-      shadow: options.shadow,
       focus: options.focus,
     },
   ],

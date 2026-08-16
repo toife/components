@@ -15,7 +15,6 @@ export type AppProps = {
   shape?: string;
   divider?: boolean;
   role?: string;
-  shadow?: boolean;
   triple?: boolean;
   direction?: AppDirection;
   data?: AppData;
@@ -28,7 +27,6 @@ export type AppProviderState = {
   shape: string;
   divider: boolean;
   role: string;
-  shadow: boolean;
   triple: boolean;
   direction: AppDirection;
   rootEl: HTMLElement | undefined;

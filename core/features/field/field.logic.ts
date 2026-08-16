@@ -13,7 +13,6 @@ export const getFieldAttrs = (options: FieldAttrOptions) => ({
     {
       disabled: options.disabled,
       focus: options.focus,
-      shadow: options.shadow,
       readonly: options.readonly,
     },
   ],

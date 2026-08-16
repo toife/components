@@ -31,7 +31,6 @@ const checkboxAttrs = computed(() => {
   const baseRole = unref(appState?.role) || "";
   const role = props.role || baseRole;
   const shape = props.shape || unref(appState?.shape) || "";
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   return getCheckboxAttrs({
     role,
     shape,
@@ -40,7 +39,6 @@ const checkboxAttrs = computed(() => {
     modelValue: props.modelValue,
     disabled: props.disabled,
     readonly: props.readonly,
-    shadow: shadow && !props.disabled && isFocused.value,
     focus: isFocused.value,
   });
 });

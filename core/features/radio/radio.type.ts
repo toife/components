@@ -12,7 +12,6 @@ export type RadioProps = {
   variant?: RadioVariant;
   disabled?: boolean;
   readonly?: boolean;
-  shadow?: boolean;
 };
 
 export type RadioAttrOptions = {
@@ -23,6 +22,5 @@ export type RadioAttrOptions = {
   checked: boolean;
   disabled: boolean;
   readonly: boolean;
-  shadow: boolean;
   focus: boolean;
 };

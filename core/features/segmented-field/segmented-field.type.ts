@@ -15,7 +15,6 @@ export type SegmentedFieldProps = {
   type?: string;
   role?: string;
   shape?: string;
-  shadow?: boolean;
   message?: string;
   pattern?: string[];
   direction?: AppDirection;

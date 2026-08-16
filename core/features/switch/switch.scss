@@ -14,8 +14,6 @@ $switch-color-on: sass.fn-naming-var("color", "on");
 $switch-color-off: sass.fn-naming-var("color", "off");
 $switch-color-disabled: sass.fn-naming-var("color", "disabled");
 
-$switch-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
-
 $transition-duration: sass.fn-naming-var("transition-duration");
 $border-radius: sass.fn-naming-var("border-radius");
 $spacing-x: sass.fn-naming-var("spacing", "x");
@@ -28,7 +26,6 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
   gap: calc(#{$spacing-x} * 2);
   align-items: center;
   cursor: pointer;
-  box-shadow: none !important;
 
   &.transition {
     .#{$switch},
@@ -106,11 +103,7 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
   }
 
   &.focus {
-    &.shadow {
-      .#{$switch} {
-        box-shadow: 0 0 0 0.25rem rgba(#{$switch-box-shadow-color-focus}, 0.25);
-      }
-    }
+
   }
 }
 

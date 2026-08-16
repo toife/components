@@ -18,7 +18,6 @@ export type SelectProps = {
   role?: string;
   shape?: string;
   size?: FieldSize;
-  shadow?: boolean;
   direction?: AppDirection;
 
   // Input

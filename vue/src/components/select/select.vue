@@ -37,10 +37,6 @@ const direction = computed(() => {
   return props.direction || unref(appState?.direction) || "left";
 });
 
-const shadow = computed(() => {
-  return props.shadow || unref(appState?.shadow) || false;
-});
-
 const shape = computed(() => {
   return props.shape || unref(appState?.shape) || "";
 });
@@ -58,7 +54,6 @@ const dropdownAttrs = computed(() => {
   return {
     role: role.value,
     direction: direction.value,
-    shadow: shadow.value,
     shape: shape.value,
     disabled: props.disabled,
   };
@@ -82,7 +77,6 @@ const fieldAttrs = computed(() => {
     shape: shape.value,
     readonly: true,
     disabled: props.disabled,
-    shadow: shadow.value,
   };
 });
 

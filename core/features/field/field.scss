@@ -37,7 +37,6 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
 
 .#{$field} {
   width: 100%;
-  box-shadow: none !important;
 
   // Field
   .#{$field-content} {
@@ -129,18 +128,6 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
   &.focus {
     .#{$field-content} {
       border-color: rgba(#{$field-border-color-focus});
-    }
-
-    &.shadow {
-      .#{$field-content} {
-        box-shadow: 0 0 0 0.25rem rgba(#{$field-border-color-focus}, 0.25);
-      }
-    }
-
-    &:not(.shadow) {
-      .#{$field-content} {
-        box-shadow: 0 0 0 calc(#{$border-width} * 1.5) rgba(#{$field-border-color-focus});
-      }
     }
   }
 

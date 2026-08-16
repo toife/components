@@ -35,7 +35,17 @@ $button-background-color-focus: sass.fn-naming-var("background-color", "focus");
 $button-background-color-active: sass.fn-naming-var("background-color", "active");
 $button-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
 
-$button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
+$button-box-shadow: sass.fn-naming-var("box-shadow");
+$button-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$button-box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$button-box-shadow-active: sass.fn-naming-var("box-shadow", "active");
+$button-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$button-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$button-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$button-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$button-backdrop-filter-active: sass.fn-naming-var("backdrop-filter", "active");
+$button-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
 
 .#{$button} {
   display: inline-flex;
@@ -50,6 +60,8 @@ $button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
   cursor: pointer;
   color: rgba(#{$button-color});
   background: rgba(#{$button-background-color});
+  box-shadow: #{$button-box-shadow};
+  backdrop-filter: #{$button-backdrop-filter};
   border-color: rgba(#{$button-border-color});
   transition:
     color #{$transition-duration} ease,
@@ -57,8 +69,7 @@ $button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
     border-color #{$transition-duration} ease,
     border-radius #{$transition-duration} ease,
     box-shadow #{$transition-duration} ease;
-  box-shadow: none;
-
+    
   padding: calc(#{$spacing-y} * #{$size-coefficient-y}) calc(#{$spacing-x} * #{$size-coefficient-x});
   font-size: #{$size-font-size};
   height: #{$size-control-block-size};
@@ -67,6 +78,8 @@ $button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
   &:hover {
     border-color: rgba(#{$button-border-color-hover});
     background-color: rgba(#{$button-background-color-hover});
+    box-shadow: #{$button-box-shadow-hover};
+    backdrop-filter: #{$button-backdrop-filter-hover};
     color: rgba(#{$button-color-hover});
   }
 
@@ -74,17 +87,17 @@ $button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
   &:focus {
     border-color: rgba(#{$button-border-color-focus});
     background-color: rgba(#{$button-background-color-focus});
+    box-shadow: #{$button-box-shadow-focus};
+    backdrop-filter: #{$button-backdrop-filter-focus};
     color: rgba(#{$button-color-focus});
-
-    &.shadow {
-      box-shadow: 0 0 0 0.25rem rgba(#{$button-box-shadow-color-focus}, 0.25);
-    }
   }
 
   &:active,
   &.active {
     border-color: rgba(#{$button-border-color-active});
     background-color: rgba(#{$button-background-color-active});
+    box-shadow: #{$button-box-shadow-active};
+    backdrop-filter: #{$button-backdrop-filter-active};
     color: rgba(#{$button-color-active});
   }
 
@@ -92,6 +105,8 @@ $button-box-shadow-color-focus: sass.fn-naming-var("box-shadow-color", "focus");
   &.disabled {
     border-color: rgba(#{$button-border-color-disabled});
     background-color: rgba(#{$button-background-color-disabled});
+    box-shadow: #{$button-box-shadow-disabled};
+    backdrop-filter: #{$button-backdrop-filter-disabled};
     color: rgba(#{$button-color-disabled});
     cursor: not-allowed;
   }

@@ -12,7 +12,6 @@ export const getActionAttrs = (options: ActionAttrOptions) => {
       {
         pop: options.pop,
         divider: options.divider,
-        shadow: options.shadow,
       },
     ],
   };

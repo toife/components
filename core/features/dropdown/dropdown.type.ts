@@ -9,7 +9,6 @@ export type DropdownProps = {
   disabled?: boolean;
   placement?: DropdownPlacement;
   role?: string;
-  shadow?: boolean;
   shape?: string;
   direction?: AppDirection;
   size?: DropdownSize;
@@ -21,5 +20,5 @@ export type DropdownEvent = {
   (e: "close"): void;
 };
 
-export type DropdownAttrOptions = { role: string; shape: string; size: string; open: boolean; disabled: boolean; shadow: boolean };
+export type DropdownAttrOptions = { role: string; shape: string; size: string; open: boolean; disabled: boolean };
 export type DropdownPanelAttrOptions = { placement: string };

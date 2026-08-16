@@ -12,7 +12,6 @@ export const getRadioAttrs = (options: RadioAttrOptions) => ({
       on: options.checked,
       disabled: options.disabled,
       readonly: options.readonly,
-      shadow: options.shadow,
       focus: options.focus,
     },
   ],

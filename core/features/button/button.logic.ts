@@ -10,7 +10,6 @@ export const getButtonAttrs = (options: ButtonAttrOptions) => ({
     cssPrefix(["size", options.size]),
     {
       block: options.block,
-      shadow: options.shadow,
       focus: options.focus
     },
   ],

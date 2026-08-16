@@ -30,11 +30,9 @@ const isFirstRender = ref(true);
 // Computed properties
 // ----------------------------------------------------------------------------
 const switchWrapperAttrs = computed(() => {
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   return getSwitchWrapperAttrs({
     disabled: props.disabled,
     readonly: props.readonly,
-    shadow: shadow && !props.disabled && isFocused.value,
     focus: isFocused.value,
     modelValue: props.modelValue,
     transition: !isFirstRender.value,

@@ -40,7 +40,6 @@ const readonly = computed(() => {
 });
 
 const radioAttrs = computed(() => {
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   const role = props.role || unref(radioGroupState?.role) || unref(appState?.role) || "";
   const shape = props.shape || unref(radioGroupState?.shape) || unref(appState?.shape) || "";
   const variant = props.variant || unref(radioGroupState?.variant) || "";
@@ -54,7 +53,6 @@ const radioAttrs = computed(() => {
     checked: isChecked,
     disabled: disabled.value,
     readonly: readonly.value,
-    shadow: shadow && !props.disabled && isFocused.value,
     focus: isFocused.value,
   });
 });

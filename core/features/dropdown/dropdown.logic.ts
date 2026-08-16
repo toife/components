@@ -8,7 +8,7 @@ export const getDropdownAttrs = (options: DropdownAttrOptions) => ({
     cssPrefix(["shape", options.shape]),
     cssPrefix(["size", options.size]),
     cssPrefix("dropdown"),
-    { open: options.open, disabled: options.disabled, shadow: options.shadow },
+    { open: options.open, disabled: options.disabled },
   ],
 });
 

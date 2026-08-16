@@ -7,7 +7,6 @@ export const getSwitchWrapperAttrs = (options: SwitchWrapperAttrOptions) => ({
     {
       disabled: options.disabled,
       readonly: options.readonly,
-      shadow: options.shadow,
       focus: options.focus,
       on: options.modelValue,
     },

@@ -34,7 +34,6 @@ const pop = ref(false);
 const actionAttrs = computed(() => {
   const divider =
     (props?.divider !== undefined ? props.divider : unref(appState?.divider)) ?? false;
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   const shape = props.shape ?? unref(appState?.shape) ?? "";
   const role = props.role ?? unref(appState?.role) ?? "";
   return getActionAttrs({
@@ -42,7 +41,6 @@ const actionAttrs = computed(() => {
     shape,
     placement: props.placement,
     divider,
-    shadow,
     pop: pop.value,
   });
 });

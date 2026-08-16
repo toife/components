@@ -38,10 +38,6 @@ const variant = computed(() => {
   return props.variant;
 });
 
-const shadow = computed(() => {
-  return (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
-});
-
 const disabled = computed(() => props.disabled);
 const readonly = computed(() => props.readonly);
 
@@ -56,7 +52,6 @@ provide<ProviderStateRefs<RadioGroupProviderState>>(RADIO_GROUP_PROVIDER_STATE_K
   variant,
   disabled,
   readonly,
-  shadow,
   setValue: (val: string | number) => {
     emit("update:modelValue", val);
   },

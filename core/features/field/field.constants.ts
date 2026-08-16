@@ -12,7 +12,6 @@ export const FIELD_DEFAULT_PROPS = {
   message: "",
   variant: "outline",
   placeholder: "",
-  shadow: undefined,
   direction: undefined,
   line: 1,
   maxLine: 1,

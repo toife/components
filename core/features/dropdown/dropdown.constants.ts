@@ -6,7 +6,6 @@ export const DROPDOWN_DEFAULT_PROPS = {
   disabled: false,
   placement: "bottom-start",
   role: undefined,
-  shadow: undefined,
   shape: undefined,
   direction: undefined,
   size: "standard",

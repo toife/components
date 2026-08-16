@@ -9,7 +9,6 @@ export type CheckboxProps = {
   variant?: CheckboxVariant;
   readonly?: boolean;
   disabled?: boolean;
-  shadow?: boolean;
 };
 
 export type CheckboxEvent = {
@@ -26,6 +25,5 @@ export type CheckboxAttrOptions = {
   modelValue: boolean;
   disabled: boolean;
   readonly: boolean;
-  shadow: boolean;
   focus: boolean;
 };

@@ -8,7 +8,6 @@ export type ActionButton = {
   text?: string;
   role?: string;
   variant?: ButtonVariant;
-  shadow?: boolean;
   handler?: () => void;
   data?: unknown;
 };
@@ -23,7 +22,6 @@ export type ActionProps = {
   role?: string;
   shape?: string;
   divider?: boolean;
-  shadow?: boolean;
   placement?: ActionPlacement;
 };
 
@@ -48,6 +46,5 @@ export type ActionAttrOptions = {
   shape: string;
   placement: string;
   divider: boolean;
-  shadow: boolean;
   pop: boolean;
 };

@@ -66,13 +66,11 @@ const contentAttrs = getSegmentedFieldContentAttrs();
 const fieldAttrs = computed(() => {
   const role = props.role || unref(appState?.role) || "";
   const shape = props.shape || unref(appState?.shape) || "";
-  const shadow = (props.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
   return {
     variant: props.variant,
     size: props.size,
     disabled: props.disabled,
     readonly: props.readonly,
-    shadow,
     shape,
     role,
     type: props.type,

@@ -10,7 +10,6 @@ export const APP_DEFAULT_PROPS = {
   shape: "pill",
   divider: false,
   role: "mode",
-  shadow: false,
   triple: false,
   direction: "left",
   data: () => ({}),

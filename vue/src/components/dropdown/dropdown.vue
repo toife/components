@@ -30,7 +30,6 @@ const isOpen = ref(false);
 // ----------------------------------------------------------------------------
 const wrapperAttrs = computed(() => {
   const role = props.role ?? unref(appState?.role) ?? "";
-  const shadow = props.shadow ?? unref(appState?.shadow) ?? false;
   const shape = props.shape ?? unref(appState?.shape) ?? "";
 
   return getDropdownAttrs({
@@ -39,7 +38,6 @@ const wrapperAttrs = computed(() => {
     size: props.size,
     open: isOpen.value,
     disabled: props.disabled,
-    shadow,
   });
 });
 

@@ -13,7 +13,6 @@ export type FieldProps = {
   role?: string;
   shape?: string;
   size?: FieldSize;
-  shadow?: boolean;
   direction?: AppDirection;
 
   // Input
@@ -50,7 +49,6 @@ export type FieldAttrOptions = {
   type: string;
   disabled: boolean;
   focus: boolean;
-  shadow: boolean;
   readonly: boolean;
   line: number;
   maxLine?: number;

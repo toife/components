@@ -19,7 +19,7 @@ import type { ProviderStateRefs } from "../../shared/provider-state";
 const props = withDefaults(defineProps<AppProps>(), {
   ...APP_DEFAULT_PROPS,
 });
-const { shape, divider, role, shadow, triple, direction, data } = toRefs(props);
+const { shape, divider, role, triple, direction, data } = toRefs(props);
 const decisionModal = useDecisionModal();
 const action = useAction();
 const rootEl = ref<HTMLElement>();
@@ -31,12 +31,11 @@ const appAttrs = computed(() => getAppAttrs({ shape: shape.value }));
 
 // Provide / expose (public API)
 // ----------------------------------------------------------------------------
-// Theme tokens for child components (shape, role, shadows, navigation direction)
+// Theme tokens for child components (shape, role, navigation direction)
 provide<ProviderStateRefs<AppProviderState>>(APP_PROVIDER_STATE_KEY, {
   shape,
   divider,
   role,
-  shadow,
   triple,
   direction,
   rootEl: rootEl as Ref<HTMLElement | undefined>,

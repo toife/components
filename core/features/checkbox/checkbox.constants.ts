@@ -7,5 +7,4 @@ export const CHECKBOX_DEFAULT_PROPS = {
   size: "standard",
   variant: "fill",
   readonly: false,
-  shadow: undefined,
 } as const;

@@ -7,5 +7,4 @@ export const ACTION_DEFAULT_PROPS = {
   role: undefined,
   placement: "bottom",
   divider: undefined,
-  shadow: undefined,
 } as const;

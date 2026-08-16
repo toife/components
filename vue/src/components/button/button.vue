@@ -27,7 +27,6 @@ const isFocused = ref(false);
 const buttonAttrs = computed(() => {
   const shape = props.shape || unref(appState?.shape) || "";
   const role = props.role || unref(appState?.role) || "";
-  const shadow = (props?.shadow !== undefined ? props.shadow : unref(appState?.shadow)) ?? false;
 
   return getButtonAttrs({
     role,
@@ -35,7 +34,6 @@ const buttonAttrs = computed(() => {
     variant: props.variant,
     size: props.size,
     block: props.block,
-    shadow,
     focus: isFocused.value,
   });
 });

@@ -8,7 +8,6 @@ export type RadioGroupProps = {
   variant?: RadioVariant;
   disabled?: boolean;
   readonly?: boolean;
-  shadow?: boolean;
   direction?: RadioGroupDirection;
 };
 
@@ -23,7 +22,6 @@ export type RadioGroupProviderState = {
   variant: RadioVariant;
   disabled: boolean;
   readonly: boolean;
-  shadow: boolean;
   setValue: (val: string | number) => void;
 };
 

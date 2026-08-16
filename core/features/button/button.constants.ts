@@ -6,5 +6,4 @@ export const BUTTON_DEFAULT_PROPS = {
   block: false,
   loading: false,
   variant: "fill",
-  shadow: undefined,
 } as const;

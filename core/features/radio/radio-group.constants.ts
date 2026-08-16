@@ -4,6 +4,5 @@ export const RADIO_GROUP_DEFAULT_PROPS = {
   disabled: false,
   readonly: false,
   variant: "fill",
-  direction: "vertical",
-  shadow: undefined,
+  direction: "vertical"
 } as const;
