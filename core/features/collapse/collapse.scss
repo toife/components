@@ -14,13 +14,21 @@ $collapse-background-color: sass.fn-naming-var("background-color");
 $collapse-color: sass.fn-naming-var("color");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
+$collapse-box-shadow: sass.fn-naming-var("box-shadow");
+
+$collapse-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
 // Collapse
 .#{$collapse} {
   background-color: rgba(#{$collapse-background-color});
   color: rgba(#{$collapse-color});
+  box-shadow: #{$collapse-box-shadow};
+  backdrop-filter: #{$collapse-backdrop-filter};
   transition:
     background-color #{$transition-duration} ease,
-    color #{$transition-duration} ease;
+    color #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
 
   &.disabled {
     opacity: 0.6;

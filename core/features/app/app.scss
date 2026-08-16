@@ -8,6 +8,10 @@ $app-background-color: sass.fn-naming-var("background-color");
 $app-color: sass.fn-naming-var("color");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
+$app-box-shadow: sass.fn-naming-var("box-shadow");
+
+$app-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
 .#{$app} {
   width: #{sass.fn-naming-var("viewport", "width")};
   max-width: #{sass.fn-naming-var("viewport", "max-width")};
@@ -15,10 +19,14 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   max-height: #{sass.fn-naming-var("viewport", "max-height")};
   background-color: rgba(#{$app-background-color});
   color: rgba(#{$app-color});
+  box-shadow: #{$app-box-shadow};
+  backdrop-filter: #{$app-backdrop-filter};
   transition:
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,
-    border-color #{$transition-duration} ease;
+    border-color #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
   position: absolute;
   top: 0;
   left: 0;

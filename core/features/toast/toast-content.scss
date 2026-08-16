@@ -7,6 +7,8 @@ $toastContent: sass.fn-naming-prefix("toast-content");
 $toast-background-color: sass.fn-naming-var("background-color");
 $toast-color: sass.fn-naming-var("color");
 $toast-border-color: sass.fn-naming-var("border-color");
+$toast-box-shadow: sass.fn-naming-var("box-shadow");
+$toast-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 
 $space-x: sass.fn-naming-var("spacing", "x");
 $transition-duration: sass.fn-naming-var("transition-duration");
@@ -23,10 +25,14 @@ $max-height: sass.fn-naming-var("overlay", "max-height");
     color #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     border-radius #{$transition-duration} ease,
-    opacity #{$transition-duration} ease;
+    opacity #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
 
   background-color: rgba(#{$toast-background-color});
   color: rgba(#{$toast-color});
+  box-shadow: #{$toast-box-shadow};
+  backdrop-filter: #{$toast-backdrop-filter};
   border-color: rgba(#{$toast-border-color});
   border-width: #{$border-width};
   border-style: solid;

@@ -5,6 +5,8 @@ $modal: sass.fn-naming-prefix("modal");
 
 // Property name - layer: modal
 $modal-background-color: sass.fn-naming-var("background-color");
+$modal-box-shadow: sass.fn-naming-var("box-shadow");
+$modal-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $viewport-width: sass.fn-naming-var("viewport", "width");
 $viewport-max-width: sass.fn-naming-var("viewport", "max-width");
 $viewport-height: sass.fn-naming-var("viewport", "height");
@@ -18,8 +20,11 @@ $transition-duration: sass.fn-naming-var("transition-duration");
 
 .#{$modal} {
   background: rgba(#{$modal-background-color});
+  box-shadow: #{$modal-box-shadow};
+  backdrop-filter: #{$modal-backdrop-filter};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

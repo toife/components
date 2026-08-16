@@ -18,6 +18,16 @@ $field-placeholder-color: sass.fn-naming-var("placeholder-color");
 $field-line: sass.fn-naming-var("line");
 $field-max-line: sass.fn-naming-var("max-line");
 
+$field-box-shadow: sass.fn-naming-var("box-shadow");
+$field-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$field-box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$field-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$field-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$field-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$field-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$field-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
 $border-radius: sass.fn-naming-var("border-radius");
 $border-width: sass.fn-naming-var("border", "width");
 
@@ -42,11 +52,14 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
   .#{$field-content} {
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
       border-radius #{$transition-duration} ease;
     border-color: rgba(#{$field-border-color});
+    box-shadow: #{$field-box-shadow};
+    backdrop-filter: #{$field-backdrop-filter};
     border-radius: #{$border-radius};
     border-width: #{$border-width};
     border-style: solid;
@@ -83,6 +96,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
     resize: none;
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
@@ -119,6 +133,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
     text-align: #{$direction-text-align};
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
@@ -128,12 +143,16 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
   &.focus {
     .#{$field-content} {
       border-color: rgba(#{$field-border-color-focus});
+      box-shadow: #{$field-box-shadow-focus};
+      backdrop-filter: #{$field-backdrop-filter-focus};
     }
   }
 
   &.hover {
     .#{$field-content} {
       border-color: rgba(#{$field-border-color-hover});
+      box-shadow: #{$field-box-shadow-hover};
+      backdrop-filter: #{$field-backdrop-filter-hover};
     }
   }
 
@@ -148,6 +167,8 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
 
     .#{$field-content} {
       border-color: rgba(#{$field-border-color-disabled});
+      box-shadow: #{$field-box-shadow-disabled};
+      backdrop-filter: #{$field-backdrop-filter-disabled};
     }
   }
 }

@@ -13,6 +13,10 @@ $decision-modal-background-color: sass.fn-naming-var("background-color");
 $decision-modal-border-color: sass.fn-naming-var("border-color");
 $decision-modal-color: sass.fn-naming-var("color");
 
+$decision-modal-box-shadow: sass.fn-naming-var("box-shadow");
+
+$decision-modal-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
 $border-radius: sass.fn-naming-var("border-radius");
 $width: sass.fn-naming-var("viewport", "width");
 $max-width: sass.fn-naming-var("overlay", "max-width");
@@ -28,6 +32,8 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   // Styles
   background-color: rgba(#{$decision-modal-background-color});
   color: rgba(#{$decision-modal-color});
+  box-shadow: #{$decision-modal-box-shadow};
+  backdrop-filter: #{$decision-modal-backdrop-filter};
   width: #{$width};
   max-width: #{$max-width};
   overflow: hidden;
@@ -36,6 +42,7 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   border-radius: #{$border-radius};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,
@@ -52,6 +59,7 @@ $transition-duration: sass.fn-naming-var("transition-duration");
     color: rgba(#{$decision-modal-color});
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
@@ -71,6 +79,7 @@ $transition-duration: sass.fn-naming-var("transition-duration");
     color: rgba(#{$decision-modal-color});
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,

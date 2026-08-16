@@ -33,6 +33,7 @@ $direction-text-align: sass.fn-naming-var("text-align");
     text-align: #{$direction-text-align};
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,

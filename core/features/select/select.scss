@@ -25,6 +25,18 @@ $select-color-disabled: sass.fn-naming-var("color", "disabled");
 $select-border-color: sass.fn-naming-var("border-color");
 $select-message-color: sass.fn-naming-var("message-color");
 
+$select-box-shadow: sass.fn-naming-var("box-shadow");
+$select-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$select-box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$select-box-shadow-active: sass.fn-naming-var("box-shadow", "active");
+$select-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$select-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$select-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$select-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$select-backdrop-filter-active: sass.fn-naming-var("backdrop-filter", "active");
+$select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
 .#{$select} {
   &.disabled {
     cursor: not-allowed;
@@ -69,8 +81,11 @@ $select-message-color: sass.fn-naming-var("message-color");
     cursor: pointer;
     color: rgba(#{$select-color});
     background-color: rgba(#{$select-background-color});
+    box-shadow: #{$select-box-shadow};
+    backdrop-filter: #{$select-backdrop-filter};
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
@@ -80,16 +95,22 @@ $select-message-color: sass.fn-naming-var("message-color");
       &:hover,
       &.hover {
         background: rgba(#{$select-background-color-hover});
+        box-shadow: #{$select-box-shadow-hover};
+        backdrop-filter: #{$select-backdrop-filter-hover};
       }
 
       &:focus,
       &.focus {
         background: rgba(#{$select-background-color-focus});
+        box-shadow: #{$select-box-shadow-focus};
+        backdrop-filter: #{$select-backdrop-filter-focus};
       }
 
       &:active,
       &.active {
         background: rgba(#{$select-background-color-active});
+        box-shadow: #{$select-box-shadow-active};
+        backdrop-filter: #{$select-backdrop-filter-active};
       }
     }
 
@@ -97,6 +118,8 @@ $select-message-color: sass.fn-naming-var("message-color");
     &.disabled {
       cursor: not-allowed;
       color: rgba(#{$select-color-disabled});
+      box-shadow: #{$select-box-shadow-disabled};
+      backdrop-filter: #{$select-backdrop-filter-disabled};
     }
   }
 
@@ -107,6 +130,7 @@ $select-message-color: sass.fn-naming-var("message-color");
     line-height: 1.5;
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,

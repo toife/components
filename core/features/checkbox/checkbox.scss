@@ -25,6 +25,20 @@ $checkbox-border-color-checked: sass.fn-naming-var("border-color", "checked");
 $checkbox-border-color-unchecked: sass.fn-naming-var("border-color", "unchecked");
 $checkbox-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
 
+$checkbox-box-shadow: sass.fn-naming-var("box-shadow");
+$checkbox-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$checkbox-box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$checkbox-box-shadow-unchecked: sass.fn-naming-var("box-shadow", "unchecked");
+$checkbox-box-shadow-checked: sass.fn-naming-var("box-shadow", "checked");
+$checkbox-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$checkbox-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$checkbox-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$checkbox-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$checkbox-backdrop-filter-unchecked: sass.fn-naming-var("backdrop-filter", "unchecked");
+$checkbox-backdrop-filter-checked: sass.fn-naming-var("backdrop-filter", "checked");
+$checkbox-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
 $transition-duration: sass.fn-naming-var("transition-duration");
 $border-radius: sass.fn-naming-var("border-radius");
 $border-width: sass.fn-naming-var("border-width");
@@ -47,9 +61,12 @@ $size-control-mark-size: sass.fn-naming-var("control-mark-size");
     justify-content: center;
     border: #{$border-width} solid transparent;
     background-color: transparent;
+    box-shadow: #{$checkbox-box-shadow};
+    backdrop-filter: #{$checkbox-backdrop-filter};
     border-radius: #{$border-radius};
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       border-color #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
@@ -78,11 +95,15 @@ $size-control-mark-size: sass.fn-naming-var("control-mark-size");
     .#{$checkbox-icon} {
       background-color: transparent;
       border-color: rgba(#{$checkbox-border-color-unchecked});
+      box-shadow: #{$checkbox-box-shadow-unchecked};
+      backdrop-filter: #{$checkbox-backdrop-filter-unchecked};
     }
 
     &:not(.disabled):not(.readonly):hover {
       .#{$checkbox-icon} {
         border-color: rgba(#{$checkbox-border-color-hover});
+        box-shadow: #{$checkbox-box-shadow-hover};
+        backdrop-filter: #{$checkbox-backdrop-filter-hover};
       }
     }
   }
@@ -91,6 +112,8 @@ $size-control-mark-size: sass.fn-naming-var("control-mark-size");
     .#{$checkbox-icon} {
       background-color: rgba(#{$checkbox-background-color-checked});
       border-color: rgba(#{$checkbox-border-color-checked});
+      box-shadow: #{$checkbox-box-shadow-checked};
+      backdrop-filter: #{$checkbox-backdrop-filter-checked};
 
       &::after {
         transform: rotate(45deg) scale(1);
@@ -107,6 +130,8 @@ $size-control-mark-size: sass.fn-naming-var("control-mark-size");
       .#{$checkbox-icon} {
         background-color: rgba(#{$checkbox-background-color-disabled});
         border-color: rgba(#{$checkbox-border-color-disabled});
+        box-shadow: #{$checkbox-box-shadow-disabled};
+        backdrop-filter: #{$checkbox-backdrop-filter-disabled};
       }
     }
   }
@@ -118,6 +143,8 @@ $size-control-mark-size: sass.fn-naming-var("control-mark-size");
   &.focus {
     .#{$checkbox-icon} {
       border-color: rgba(#{$checkbox-border-color-focus});
+      box-shadow: #{$checkbox-box-shadow-focus};
+      backdrop-filter: #{$checkbox-backdrop-filter-focus};
     }
   }
 }

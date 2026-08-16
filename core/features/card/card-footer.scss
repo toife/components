@@ -7,6 +7,8 @@ $card-footer: sass.fn-naming-prefix("card-footer");
 $card-background-color: sass.fn-naming-var("background-color");
 $card-color: sass.fn-naming-var("color");
 $card-border-color: sass.fn-naming-var("border-color");
+$card-box-shadow: sass.fn-naming-var("box-shadow");
+$card-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 
 $padding-y: sass.fn-naming-var("spacing", "y");
 $padding-x: sass.fn-naming-var("spacing", "x");
@@ -17,10 +19,13 @@ $transition-duration: sass.fn-naming-var("transition-duration");
 .#{$card-footer} {
   background-color: rgba(#{$card-background-color});
   color: rgba(#{$card-color});
+  box-shadow: #{$card-box-shadow};
+  backdrop-filter: #{$card-backdrop-filter};
   padding: calc(#{$padding-y} * 4) calc(#{$padding-x} * 4);
   border-top: #{$border};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

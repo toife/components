@@ -5,13 +5,18 @@ $gesture-indicator: sass.fn-naming-prefix("gesture-indicator");
 
 // Property name - layer: gesture-indicator
 $gesture-indicator-border-color: sass.fn-naming-var("border-color");
+$gesture-indicator-box-shadow: sass.fn-naming-var("box-shadow");
+$gesture-indicator-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $border-radius: sass.fn-naming-var("border-radius");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
 .#{$gesture-indicator} {
   background-color: rgba(#{$gesture-indicator-border-color});
+  box-shadow: #{$gesture-indicator-box-shadow};
+  backdrop-filter: #{$gesture-indicator-backdrop-filter};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

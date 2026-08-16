@@ -14,6 +14,14 @@ $switch-color-on: sass.fn-naming-var("color", "on");
 $switch-color-off: sass.fn-naming-var("color", "off");
 $switch-color-disabled: sass.fn-naming-var("color", "disabled");
 
+$switch-box-shadow-off: sass.fn-naming-var("box-shadow", "off");
+$switch-box-shadow-on: sass.fn-naming-var("box-shadow", "on");
+$switch-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$switch-backdrop-filter-off: sass.fn-naming-var("backdrop-filter", "off");
+$switch-backdrop-filter-on: sass.fn-naming-var("backdrop-filter", "on");
+$switch-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
 $transition-duration: sass.fn-naming-var("transition-duration");
 $border-radius: sass.fn-naming-var("border-radius");
 $spacing-x: sass.fn-naming-var("spacing", "x");
@@ -36,6 +44,7 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
         border-color #{$transition-duration} ease,
         border-radius #{$transition-duration} ease,
         box-shadow #{$transition-duration} ease,
+        backdrop-filter #{$transition-duration} ease,
         transform #{$transition-duration} ease;
     }
   }
@@ -61,11 +70,15 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
 
     .#{$switch} {
       background-color: rgba(#{$switch-background-color-disabled});
+      box-shadow: #{$switch-box-shadow-disabled};
+      backdrop-filter: #{$switch-backdrop-filter-disabled};
       cursor: not-allowed;
       opacity: 0.3;
 
       .#{$switch-icon} {
         background-color: rgba(#{$switch-color-disabled});
+        box-shadow: #{$switch-box-shadow-disabled};
+        backdrop-filter: #{$switch-backdrop-filter-disabled};
       }
     }
   }
@@ -81,9 +94,13 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
   &:not(.on) {
     .#{$switch} {
       background-color: rgba(#{$switch-background-color-off});
+      box-shadow: #{$switch-box-shadow-off};
+      backdrop-filter: #{$switch-backdrop-filter-off};
 
       .#{$switch-icon} {
         background-color: rgba(#{$switch-color-off});
+        box-shadow: #{$switch-box-shadow-off};
+        backdrop-filter: #{$switch-backdrop-filter-off};
         left: 0;
       }
     }
@@ -92,12 +109,16 @@ $bounce-ratio: sass.fn-naming-var("bounce", "ratio");
   &.on {
     .#{$switch} {
       background-color: rgba(#{$switch-background-color-on});
+      box-shadow: #{$switch-box-shadow-on};
+      backdrop-filter: #{$switch-backdrop-filter-on};
 
       .#{$switch-icon} {
         right: 0;
         animation: shrink #{$transition-duration} linear;
         animation-fill-mode: forwards;
         background-color: rgba(#{$switch-color-on});
+        box-shadow: #{$switch-box-shadow-on};
+        backdrop-filter: #{$switch-backdrop-filter-on};
       }
     }
   }

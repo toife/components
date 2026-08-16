@@ -7,15 +7,22 @@ $card: sass.fn-naming-prefix("card");
 $card-background-color: sass.fn-naming-var("background-color");
 $card-color: sass.fn-naming-var("color");
 
+$card-box-shadow: sass.fn-naming-var("box-shadow");
+
+$card-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
 $border-radius: sass.fn-naming-var("border-radius");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
 .#{$card} {
   background-color: rgba(#{$card-background-color});
   color: rgba(#{$card-color});
+  box-shadow: #{$card-box-shadow};
+  backdrop-filter: #{$card-backdrop-filter};
   border-radius: #{$border-radius};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

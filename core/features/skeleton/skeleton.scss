@@ -7,6 +7,8 @@ $skeleton: sass.fn-naming-prefix("skeleton");
 $skeleton-width: sass.fn-naming-var("width");
 $skeleton-height: sass.fn-naming-var("height");
 $skeleton-background-color: sass.fn-naming-var("background-color");
+$skeleton-box-shadow: sass.fn-naming-var("box-shadow");
+$skeleton-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 
 $border-radius: sass.fn-naming-var("border-radius");
 $transition-duration: sass.fn-naming-var("transition-duration");
@@ -18,10 +20,13 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   overflow: hidden;
   border-radius: #{$border-radius};
   background-color: rgba(#{$skeleton-background-color}, 0.2);
+  box-shadow: #{$skeleton-box-shadow};
+  backdrop-filter: #{$skeleton-backdrop-filter};
   display: inline-block;
   line-height: 0;
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

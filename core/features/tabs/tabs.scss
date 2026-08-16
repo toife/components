@@ -17,6 +17,18 @@ $tabs-background-color-hover: sass.fn-naming-var("background-color", "hover");
 $tabs-background-color-focus: sass.fn-naming-var("background-color", "focus");
 $tabs-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
 
+$tabs-box-shadow: sass.fn-naming-var("box-shadow");
+$tabs-box-shadow-active: sass.fn-naming-var("box-shadow", "active");
+$tabs-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$tabs-box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$tabs-box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$tabs-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$tabs-backdrop-filter-active: sass.fn-naming-var("backdrop-filter", "active");
+$tabs-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$tabs-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$tabs-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
 $border-radius: sass.fn-naming-var("border-radius");
 $border-width: sass.fn-naming-var("border", "width");
 $transition-duration: sass.fn-naming-var("transition-duration");
@@ -55,6 +67,8 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
     box-sizing: border-box;
     border-radius: #{$border-radius};
     background-color: rgba(#{$tabs-background-color-active});
+    box-shadow: #{$tabs-box-shadow-active};
+    backdrop-filter: #{$tabs-backdrop-filter-active};
   }
 
   &.top-start,
@@ -117,6 +131,7 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
   &.transition {
     transition:
       box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
       border-radius #{$transition-duration} ease;
@@ -135,6 +150,7 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
       button {
         transition:
           box-shadow #{$transition-duration} ease,
+          backdrop-filter #{$transition-duration} ease,
           background-color #{$transition-duration} ease,
           color #{$transition-duration} ease,
           border-radius #{$transition-duration} ease;
@@ -150,12 +166,16 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
     &.active {
       button {
         color: rgba(#{$tabs-color-active});
+        box-shadow: #{$tabs-box-shadow-active};
+        backdrop-filter: #{$tabs-backdrop-filter-active};
       }
     }
 
     &:not(.active) {
       button {
         color: rgba(#{$tabs-color});
+        box-shadow: #{$tabs-box-shadow};
+        backdrop-filter: #{$tabs-backdrop-filter};
       }
 
       &:hover,
@@ -163,6 +183,8 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
         button {
           color: rgba(#{$tabs-color-hover});
           background-color: rgba(#{$tabs-background-color-hover});
+          box-shadow: #{$tabs-box-shadow-hover};
+          backdrop-filter: #{$tabs-backdrop-filter-hover};
         }
       }
 
@@ -171,6 +193,8 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
         button {
           color: rgba(#{$tabs-color-focus});
           background-color: rgba(#{$tabs-background-color-focus});
+          box-shadow: #{$tabs-box-shadow-focus};
+          backdrop-filter: #{$tabs-backdrop-filter-focus};
         }
       }
 
@@ -178,6 +202,8 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
       &.disabled {
         button {
           color: rgba(#{$tabs-color-disabled});
+          box-shadow: #{$tabs-box-shadow-disabled};
+          backdrop-filter: #{$tabs-backdrop-filter-disabled};
         }
       }
     }

@@ -7,6 +7,8 @@ $toolbar: sass.fn-naming-prefix("toolbar");
 $toolbar-background-color: sass.fn-naming-var("background-color");
 $toolbar-color: sass.fn-naming-var("color");
 $toolbar-border-color: sass.fn-naming-var("border-color");
+$toolbar-box-shadow: sass.fn-naming-var("box-shadow");
+$toolbar-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $safe-area-right: sass.fn-naming-var("safe-area", "right");
 $safe-area-left: sass.fn-naming-var("safe-area", "left");
 $safe-area-bottom: sass.fn-naming-var("safe-area", "bottom");
@@ -19,8 +21,11 @@ $border: #{$border-width} solid rgba(#{$toolbar-border-color});
 .#{$toolbar} {
   background-color: rgba(#{$toolbar-background-color});
   color: rgba(#{$toolbar-color});
+  box-shadow: #{$toolbar-box-shadow};
+  backdrop-filter: #{$toolbar-backdrop-filter};
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,

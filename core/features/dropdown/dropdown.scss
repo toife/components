@@ -8,6 +8,8 @@ $dropdown-panel: sass.fn-naming-prefix("dropdown-panel");
 $dropdown-border-color: sass.fn-naming-var("border-color");
 $dropdown-background-color: sass.fn-naming-var("background-color");
 $dropdown-color: sass.fn-naming-var("color");
+$dropdown-box-shadow: sass.fn-naming-var("box-shadow");
+$dropdown-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $border-radius: sass.fn-naming-var("border-radius");
 $border-width: sass.fn-naming-var("border", "width");
 $spacing-x: sass.fn-naming-var("spacing", "x");
@@ -36,6 +38,8 @@ $size-control-block-size: sass.fn-naming-var("control-block-size");
   border-color: rgba(#{$dropdown-border-color});
   background-color: rgba(#{$dropdown-background-color});
   color: rgba(#{$dropdown-color});
+  box-shadow: #{$dropdown-box-shadow};
+  backdrop-filter: #{$dropdown-backdrop-filter};
   font-size: #{$size-font-size};
   line-height: #{$size-line-height};
   max-height: min(50vh, 16rem);
@@ -44,7 +48,8 @@ $size-control-block-size: sass.fn-naming-var("control-block-size");
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,
-    box-shadow #{$transition-duration} ease;
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
 
   &.bottom-start {
     top: 100%;

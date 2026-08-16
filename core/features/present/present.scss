@@ -8,6 +8,8 @@ $backdrop: sass.fn-naming-prefix("present-backdrop");
 $transition-duration: sass.fn-naming-var("transition-duration");
 $backdrop-background-color: sass.fn-naming-var("background-color");
 $backdrop-opacity: sass.fn-naming-var("opacity");
+$backdrop-box-shadow: sass.fn-naming-var("box-shadow");
+$backdrop-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 
 $present-translate-plus: sass.fn-naming-dvar(("translate"), "100%");
 $present-translate-minus: sass.fn-naming-dvar(("translate"), "-100%");
@@ -21,12 +23,15 @@ $present-opacity: sass.fn-naming-dvar(("opacity"), 1);
   left: 0;
   transition:
     box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,
     border-radius #{$transition-duration} ease,
     opacity #{$transition-duration} ease;
   background-color: rgba(#{$backdrop-background-color});
+  box-shadow: #{$backdrop-box-shadow};
+  backdrop-filter: #{$backdrop-backdrop-filter};
   opacity: #{$backdrop-opacity};
 }
 

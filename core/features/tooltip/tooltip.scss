@@ -9,6 +9,8 @@ $tooltip-trigger: sass.fn-naming-prefix("tooltip-trigger");
 $tooltip-background-color: sass.fn-naming-var("background-color");
 $tooltip-color: sass.fn-naming-var("color");
 $tooltip-border-color: sass.fn-naming-var("border-color");
+$tooltip-box-shadow: sass.fn-naming-var("box-shadow");
+$tooltip-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $border-radius: sass.fn-naming-var("border-radius");
 $border-width: sass.fn-naming-var("border", "width");
 $spacing-x: sass.fn-naming-var("spacing", "x");
@@ -40,13 +42,17 @@ $arrow-anchor-offset: calc(100% - #{$border-width} - 1px);
   border-color: rgba(#{$tooltip-border-color});
   background-color: rgba(#{$tooltip-background-color});
   color: rgba(#{$tooltip-color});
+  box-shadow: #{$tooltip-box-shadow};
+  backdrop-filter: #{$tooltip-backdrop-filter};
   white-space: normal;
   pointer-events: none;
   transition:
     border-color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     color #{$transition-duration} ease,
-    opacity #{$transition-duration} ease;
+    opacity #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
 
   &::before,
   &::after {

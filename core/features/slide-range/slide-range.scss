@@ -32,6 +32,14 @@ $slide-range-left: sass.fn-naming-var("left");
 $slide-range-tooltip-background-color: sass.fn-naming-var("tooltip-background-color");
 $slide-range-tooltip-color: sass.fn-naming-var("tooltip-color");
 
+$slide-range-box-shadow: sass.fn-naming-var("box-shadow");
+$slide-range-box-shadow-active: sass.fn-naming-var("box-shadow", "active");
+$slide-range-tooltip-box-shadow: sass.fn-naming-var("tooltip-box-shadow");
+
+$slide-range-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$slide-range-backdrop-filter-active: sass.fn-naming-var("backdrop-filter", "active");
+$slide-range-tooltip-backdrop-filter: sass.fn-naming-var("tooltip-backdrop-filter");
+
 .#{$slide-range} {
   display: flex;
   justify-content: center;
@@ -113,11 +121,15 @@ $slide-range-tooltip-color: sass.fn-naming-var("tooltip-color");
     width: 8px;
     border-radius: #{$border-radius};
     background-color: rgba(#{$slide-range-background-color});
+    box-shadow: #{$slide-range-box-shadow};
+    backdrop-filter: #{$slide-range-backdrop-filter};
     border: 1px solid rgba(#{$slide-range-border-color});
 
     &.active {
       border-color: rgba(#{$slide-range-border-color-active});
       background-color: rgba(#{$slide-range-background-color-active});
+      box-shadow: #{$slide-range-box-shadow-active};
+      backdrop-filter: #{$slide-range-backdrop-filter-active};
     }
   }
 
@@ -138,6 +150,8 @@ $slide-range-tooltip-color: sass.fn-naming-var("tooltip-color");
       border: 1px solid rgba(#{$slide-range-border-color-active});
       border-radius: #{$border-radius};
       background-color: rgba(#{$slide-range-background-color});
+      box-shadow: #{$slide-range-box-shadow};
+      backdrop-filter: #{$slide-range-backdrop-filter};
       transform: rotate(45deg);
     }
 
@@ -152,6 +166,8 @@ $slide-range-tooltip-color: sass.fn-naming-var("tooltip-color");
       white-space: nowrap;
       color: rgba(#{$slide-range-tooltip-color});
       background-color: rgba(#{$slide-range-tooltip-background-color});
+      box-shadow: #{$slide-range-tooltip-box-shadow};
+      backdrop-filter: #{$slide-range-tooltip-backdrop-filter};
       z-index: 10;
     }
   }

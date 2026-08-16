@@ -68,7 +68,8 @@ $button-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
     background-color #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
     border-radius #{$transition-duration} ease,
-    box-shadow #{$transition-duration} ease;
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
     
   padding: calc(#{$spacing-y} * #{$size-coefficient-y}) calc(#{$spacing-x} * #{$size-coefficient-x});
   font-size: #{$size-font-size};

@@ -18,6 +18,10 @@ $tag-color: sass.fn-naming-var("color");
 $tag-background-color: sass.fn-naming-var("background-color");
 $tag-border-color: sass.fn-naming-var("border-color");
 
+$tag-box-shadow: sass.fn-naming-var("box-shadow");
+
+$tag-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
 .#{$tag} {
   display: inline-flex;
   justify-content: center;
@@ -31,12 +35,16 @@ $tag-border-color: sass.fn-naming-var("border-color");
   vertical-align: middle;
   color: rgba(#{$tag-color});
   background: rgba(#{$tag-background-color});
+  box-shadow: #{$tag-box-shadow};
+  backdrop-filter: #{$tag-backdrop-filter};
   border-color: rgba(#{$tag-border-color});
   transition:
     color #{$transition-duration} ease,
     background-color #{$transition-duration} ease,
     border-color #{$transition-duration} ease,
-    border-radius #{$transition-duration} ease;
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
 
   padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.5)
     calc(#{$spacing-x} * #{$size-coefficient-x} * 0.75);
