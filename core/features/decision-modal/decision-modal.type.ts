@@ -41,4 +41,4 @@ export type DecisionModalAttrOptions = {
   pop: boolean;
   divider: boolean;
 };
-export type DecisionModalFooterAttrOptions = { direction: string };
+export type DecisionModalFooterAttrOptions = { direction: DecisionModalDirection };
