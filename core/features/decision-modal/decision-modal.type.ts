@@ -9,7 +9,7 @@ export type DecisionModalButton = {
   data?: unknown;
 };
 
-export type DecisionModalFlow = "row" | "column";
+export type DecisionModalDirection = "row" | "column";
 
 export type DecisionModalProps = {
   visible?: boolean;
@@ -21,7 +21,7 @@ export type DecisionModalProps = {
   role?: string;
   shape?: string;
   divider?: boolean;
-  flow?: DecisionModalFlow;
+  direction?: DecisionModalDirection;
   keepalive?: boolean;
 };
 
@@ -41,4 +41,4 @@ export type DecisionModalAttrOptions = {
   pop: boolean;
   divider: boolean;
 };
-export type DecisionModalFooterAttrOptions = { flow: string };
+export type DecisionModalFooterAttrOptions = { direction: string };

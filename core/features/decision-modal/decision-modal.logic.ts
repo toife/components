@@ -20,5 +20,5 @@ export const getDecisionModalBodyAttrs = () => ({
 });
 
 export const getDecisionModalFooterAttrs = (options: DecisionModalFooterAttrOptions) => ({
-  class: [cssPrefix("decision-modal-footer"), `actions-flow-${options.flow}`],
+  class: [cssPrefix("decision-modal-footer"), `actions-direction-${options.direction}`],
 });

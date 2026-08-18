@@ -8,5 +8,5 @@ export const DECISION_MODAL_DEFAULT_PROPS = {
   shape: undefined,
   role: undefined,
   divider: undefined,
-  flow: "row",
+  direction: "row",
 } as const;

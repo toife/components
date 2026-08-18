@@ -53,7 +53,7 @@ const decisionModalAttrs = computed(() => {
 
 const decisionModalHeaderAttrs = computed(() => getDecisionModalHeaderAttrs());
 const decisionModalBodyAttrs = computed(() => getDecisionModalBodyAttrs());
-const decisionModalFooterAttrs = computed(() => getDecisionModalFooterAttrs({ flow: props.flow }));
+const decisionModalFooterAttrs = computed(() => getDecisionModalFooterAttrs({ direction: props.direction }));
 
 // Methods
 // ----------------------------------------------------------------------------

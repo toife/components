@@ -14,7 +14,7 @@ const modal = useDecisionModal();
 modal.open({
   title: "Xác nhận",
   message: "Bạn có chắc muốn xóa?",
-  flow: "column",
+  direction: "column",
   actions: [
     { text: "Xóa", role: "danger", variant: "fill", handler: () => {} },
     { text: "Hủy", variant: "text" },
@@ -46,7 +46,7 @@ modal.open({
 | `role` | `string` | — |  |
 | `shape` | `string` | — |  |
 | `divider` | `boolean` | — |  |
-| `flow` | `'row'` hoặc `'column'` | — |  |
+| `direction` | `'row'` hoặc `'column'` | — |  |
 
 ## Events (emit)
 

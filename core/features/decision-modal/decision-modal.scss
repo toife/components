@@ -94,11 +94,11 @@ $transition-duration: sass.fn-naming-var("transition-duration");
       border-radius: 0rem;
     }
 
-    &.actions-flow-column {
+    &.actions-direction-column {
       flex-direction: column;
     }
 
-    &.actions-flow-row {
+    &.actions-direction-row {
       flex-direction: row;
     }
   }
