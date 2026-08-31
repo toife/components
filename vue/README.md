@@ -89,6 +89,7 @@ The default prefix is `t-`. The **Tag** column is `prefix` + name (e.g. `t-butto
 | `t-modal` | Modal |
 | `t-page` | Page |
 | `t-present` | Present |
+| `t-progress` | Progress |
 | `t-refresher` | Refresher |
 | `t-route-navigator` | RouteNavigator |
 | `t-route-wrapper` | RouteWrapper |

@@ -9,7 +9,7 @@ Agent skills for building UI with Toife. Source of truth for types, class logic,
 | [toife-forms](./toife-forms/SKILL.md) | Inputs, select, checkbox, radio, switch, slider, OTP |
 | [toife-overlays](./toife-overlays/SKILL.md) | Modal, action sheet, confirm, toast, dropdown, tooltip |
 | [toife-navigation](./toife-navigation/SKILL.md) | Route stack, tabs, collapse, pull-to-refresh |
-| [toife-primitives](./toife-primitives/SKILL.md) | Button, avatar, image, tag, skeleton |
+| [toife-primitives](./toife-primitives/SKILL.md) | Button, avatar, image, tag, skeleton, progress |
 
 Human docs (Vue): `@toife/components/vue/docs/`.
 Core types: `@toife/components/core/features/*/`.

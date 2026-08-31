@@ -2,13 +2,13 @@
 name: toife-primitives
 description: >-
   Use Toife primitive components: t-button, t-avatar, t-image, t-tag, t-skeleton,
-  t-gesture-indicator. Use when adding CTAs, avatars, status chips, placeholders,
-  images, or sheet drag handles.
+  t-progress, t-gesture-indicator. Use when adding CTAs, avatars, status chips,
+  placeholders, progress bars, images, or sheet drag handles.
 ---
 
 # Toife primitives
 
-Core types: `@toife/components/core/features/{button,avatar,image,tag,skeleton,gesture-indicator}`.
+Core types: `@toife/components/core/features/{button,avatar,image,tag,skeleton,progress,gesture-indicator}`.
 
 Theme (`role`, `shape`, `size`) falls back to `t-app` except `t-image`.
 
@@ -79,6 +79,28 @@ Loading placeholder.
 ```
 
 Props: `width`, `height` (string or number), `role`, `shape`.
+
+## Progress — `t-progress`
+
+Determinate or indeterminate progress. `variant` here is **not** fill/outline/text.
+
+```vue
+<t-progress :value="60" />
+<t-progress variant="circle" :value="60" role="success">60%</t-progress>
+<t-progress indeterminate />
+<t-progress variant="circle" indeterminate size="large" />
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `variant` | `bar` | `bar` \| `circle` |
+| `value` | `0` | Current value |
+| `max` | `100` | Ceiling |
+| `indeterminate` | `false` | Animated, ignores `value` visually |
+| `size` | `standard` | `small` \| `standard` \| `large` |
+| `role`, `shape` | Theme | `shape` applies to bar track |
+
+Default slot: label (beside bar track, centered in circle).
 
 ## Gesture indicator — `t-gesture-indicator`
 

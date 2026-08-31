@@ -1,0 +1,21 @@
+<div
+  v-bind="progressAttrs"
+  role="progressbar"
+  :aria-valuemin="0"
+  :aria-valuemax="100"
+  :aria-valuenow="props.indeterminate ? undefined : Math.round(percent)"
+  :aria-busy="props.indeterminate ? true : undefined"
+>
+  <template v-if="props.variant === 'circle'">
+    <svg v-bind="svgAttrs">
+      <circle v-bind="circleTrackAttrs" cx="18" cy="18" r="16" pathLength="1" fill="none" />
+      <circle v-bind="circleBarAttrs" cx="18" cy="18" r="16" pathLength="1" fill="none" />
+    </svg>
+  </template>
+  <template v-else>
+    <div v-bind="trackAttrs">
+      <div v-bind="barAttrs"></div>
+    </div>
+  </template>
+  <div v-bind="labelAttrs"><slot></slot></div>
+</div>

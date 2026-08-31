@@ -34,6 +34,7 @@ export const STYLE_MAP: Record<string, string> = {
   modal: path.join(coreFeatures, "modal/modal.scss"),
   page: path.join(coreFeatures, "page/page.scss"),
   present: path.join(coreFeatures, "present/present.scss"),
+  progress: path.join(coreFeatures, "progress/progress.scss"),
   radio: path.join(coreFeatures, "radio/radio.scss"),
   "radio-group": path.join(coreFeatures, "radio/radio-group.scss"),
   refresher: path.join(coreFeatures, "refresher/refresher.scss"),

@@ -33,6 +33,7 @@
 | [modal.md](./modal.md) | Modal | `t-modal` |
 | [page.md](./page.md) | Page | `t-page` |
 | [present.md](./present.md) | Present | `t-present` |
+| [progress.md](./progress.md) | Progress | `t-progress` |
 | [radio.md](./radio.md) | Radio | `t-radio` |
 | [radio-group.md](./radio-group.md) | RadioGroup | `t-radio-group` |
 | [refresher.md](./refresher.md) | Refresher | `t-refresher` |

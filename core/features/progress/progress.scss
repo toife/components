@@ -1,0 +1,160 @@
+@use "@toife/sass-layer" as sass;
+
+// Classes
+$progress: sass.fn-naming-prefix("progress");
+$progress-track: sass.fn-naming-prefix("progress-track");
+$progress-bar: sass.fn-naming-prefix("progress-bar");
+$progress-svg: sass.fn-naming-prefix("progress-svg");
+$progress-circle: sass.fn-naming-prefix("progress-circle");
+$progress-label: sass.fn-naming-prefix("progress-label");
+
+// Property name - layer: progress
+$progress-color: sass.fn-naming-var("color");
+$progress-background-color: sass.fn-naming-var("background-color");
+$progress-percent: sass.fn-naming-var("percent");
+$progress-box-shadow: sass.fn-naming-var("box-shadow");
+$progress-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-control-mark-size: sass.fn-naming-var("control-mark-size");
+
+.#{$progress} {
+  color: rgba(#{$progress-color});
+  position: relative;
+  box-sizing: border-box;
+  transition:
+    color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
+
+  &.bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: calc(#{$spacing-x} * 1);
+    font-size: #{$size-font-size};
+
+    .#{$progress-track} {
+      flex: 1;
+      min-width: 0;
+      height: calc(#{$size-control-mark-size} * 0.4);
+      border-radius: #{$border-radius};
+      overflow: hidden;
+      background-color: rgba(#{$progress-background-color}, 0.25);
+      box-shadow: #{$progress-box-shadow};
+      backdrop-filter: #{$progress-backdrop-filter};
+    }
+
+    .#{$progress-bar} {
+      height: 100%;
+      width: 100%;
+      border-radius: inherit;
+      background-color: currentColor;
+      transform: scaleX(calc(#{$progress-percent} / 100));
+      transform-origin: left center;
+      transition: transform #{$transition-duration} ease;
+    }
+
+    &.indeterminate .#{$progress-bar} {
+      width: 35%;
+      transform: none;
+      transition: none;
+      animation: progress-bar-indeterminate 1.4s ease-in-out infinite;
+    }
+
+    .#{$progress-label} {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .#{$progress-label}:empty,
+    .#{$progress-label}:has(slot:empty) {
+      display: none;
+    }
+  }
+
+  &.circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(#{$size-control-block-size} * 1.75);
+    height: calc(#{$size-control-block-size} * 1.75);
+    font-size: #{$size-font-size};
+
+    .#{$progress-svg} {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+      transform: rotate(-90deg);
+    }
+
+    .#{$progress-circle} {
+      fill: none;
+      stroke-linecap: round;
+      stroke-width: calc(#{$size-control-mark-size} * 0.22);
+
+      &.track {
+        stroke: rgba(#{$progress-background-color}, 0.25);
+      }
+
+      &.bar {
+        stroke: currentColor;
+        stroke-dasharray: 1;
+        stroke-dashoffset: calc(1 - #{$progress-percent} / 100);
+        transition: stroke-dashoffset #{$transition-duration} ease;
+      }
+    }
+
+    &.indeterminate {
+      .#{$progress-svg} {
+        animation: progress-circle-rotate 0.9s linear infinite;
+      }
+
+      .#{$progress-circle}.bar {
+        stroke-dasharray: 0.25 0.75;
+        stroke-dashoffset: 0;
+        transition: none;
+      }
+    }
+
+    .#{$progress-label} {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .#{$progress-label}:empty,
+    .#{$progress-label}:has(slot:empty) {
+      display: none;
+    }
+  }
+}
+
+@keyframes progress-bar-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(385%);
+  }
+}
+
+@keyframes progress-circle-rotate {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}

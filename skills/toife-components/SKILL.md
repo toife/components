@@ -8,7 +8,7 @@ description: >-
 
 # Toife components
 
-Toife is a design-system. **Do not** invent native `<button>`, `<input>`, `<select>`, or ad-hoc sheets when a Toife tag exists.
+Toife is a design-system. **Do not** invent native `<button>`, `<input>`, `<select>`, `<progress>`, or ad-hoc sheets when a Toife tag exists.
 
 Types, defaults, attr builders, and SCSS live in `@toife/components/core`. Vue (`@toife/vue`) and Lit (`@toife/lit`) only adapt that core.
 
@@ -20,7 +20,7 @@ Types, defaults, attr builders, and SCSS live in `@toife/components/core`. Vue (
 | Forms and controls | `toife-forms` |
 | Modal, toast, action, dropdown | `toife-overlays` |
 | Router stack, tabs, refresh | `toife-navigation` |
-| Button, avatar, tag, image | `toife-primitives` |
+| Button, avatar, tag, image, progress | `toife-primitives` |
 
 Read the matching skill **before** writing markup.
 

@@ -18,6 +18,7 @@ export * from "./layout";
 export * from "./modal";
 export * from "./page";
 export * from "./present";
+export * from "./progress";
 export * from "./radio";
 export * from "./refresher";
 export * from "./route";

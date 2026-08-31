@@ -1,5 +1,6 @@
 export * from "./app";
 export * from "./present";
+export * from "./progress";
 export * from "./modal";
 export * from "./gesture-indicator";
 export * from "./layout";

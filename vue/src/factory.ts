@@ -25,6 +25,7 @@ import {
   Modal,
   Page,
   Present,
+  Progress,
   Radio,
   RadioGroup,
   Refresher,
@@ -105,6 +106,7 @@ class Toife {
     this.app.component(prefix + "modal", Modal);
     this.app.component(prefix + "page", Page);
     this.app.component(prefix + "present", Present);
+    this.app.component(prefix + "progress", Progress);
     this.app.component(prefix + "refresher", Refresher);
     this.app.component(prefix + "route-navigator", RouteNavigator);
     this.app.component(prefix + "route-wrapper", RouteWrapper);

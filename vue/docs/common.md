@@ -111,7 +111,7 @@ Hầu hết UI nên bọc trong `<t-app>` (hoặc prefix bạn chọn) để nh�
 
 ### Danh sách tag sau `subscribeAll()` (prefix mặc định `t-`)
 
-`t-app`, `t-action`, `t-avatar`, `t-button`, `t-cable`, `t-card`, `t-card-body`, `t-card-header`, `t-card-footer`, `t-checkbox`, `t-radio`, `t-radio-group`, `t-collapse`, `t-container`, `t-decision-modal`, `t-divider`, `t-dropdown`, `t-field`, `t-flex`, `t-flex-item`, `t-form-group`, `t-gesture-indicator`, `t-grid`, `t-grid-item`, `t-image`, `t-modal`, `t-page`, `t-present`, `t-refresher`, `t-route-navigator`, `t-route-wrapper`, `t-route-provider`, `t-route-outlet`, `t-segmented-field`, `t-select`, `t-slide-range`, `t-skeleton`, `t-switch`, `t-tab`, `t-tabs`, `t-toast`, `t-toast-content`, `t-toolbar`.
+`t-app`, `t-action`, `t-avatar`, `t-button`, `t-cable`, `t-card`, `t-card-body`, `t-card-header`, `t-card-footer`, `t-checkbox`, `t-radio`, `t-radio-group`, `t-collapse`, `t-container`, `t-decision-modal`, `t-divider`, `t-dropdown`, `t-field`, `t-flex`, `t-flex-item`, `t-form-group`, `t-gesture-indicator`, `t-grid`, `t-grid-item`, `t-image`, `t-modal`, `t-page`, `t-present`, `t-progress`, `t-refresher`, `t-route-navigator`, `t-route-wrapper`, `t-route-provider`, `t-route-outlet`, `t-segmented-field`, `t-select`, `t-slide-range`, `t-skeleton`, `t-switch`, `t-tab`, `t-tabs`, `t-toast`, `t-toast-content`, `t-toolbar`.
 
 Không dùng prefix `toife-` hay `tf-`. Tag luôn là `t-` + tên component.
 
