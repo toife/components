@@ -36,9 +36,7 @@ import { createToife } from "@toife/vue";
 import App from "./App.vue";
 
 const app = createApp(App);
-app.use(createToife());
-// or change the prefix:
-// app.use(createToife({ prefix: "toife-" })); // → <toife-app>, <toife-button>, ...
+app.use(createToife()); // prefix "t-" → <t-app>, <t-button>, …
 app.mount("#app");
 ```
 

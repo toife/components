@@ -34,10 +34,10 @@ const app = createApp(App);
 
 const toife = createToife(app, {
   name: "my-app",   // tên instance (dùng với useApp)
-  prefix: "t-",     // mặc định trong factory: "tf-"
+  prefix: "t-",     // mặc định — tag <t-button>, không dùng toife-
 });
 
-toife.subscribeComponents();
+toife.subscribeAll();
 
 // Đăng ký thêm component tùy chỉnh
 toife.subscribe("refresh-logo", RefreshLogo);
@@ -109,11 +109,11 @@ Hầu hết UI nên bọc trong `<t-app>` (hoặc prefix bạn chọn) để nh�
 | `useApp(name?)` | Lấy instance `Toife` đã tạo |
 | `createToife(app, options?)` | Khởi tạo và đăng ký component |
 
-### Danh sách tag sau `subscribeComponents()` (prefix mặc định `tf-`)
+### Danh sách tag sau `subscribeAll()` (prefix mặc định `t-`)
 
-`tf-app`, `tf-action`, `tf-avatar`, `tf-button`, `tf-cable`, `tf-card`, `tf-card-body`, `tf-card-header`, `tf-card-footer`, `tf-checkbox`, `tf-radio`, `tf-radio-group`, `tf-collapse`, `tf-container`, `tf-decision-modal`, `tf-divider`, `tf-dropdown`, `tf-field`, `tf-flex`, `tf-flex-item`, `tf-form-group`, `tf-gesture-indicator`, `tf-grid`, `tf-grid-item`, `tf-image`, `tf-modal`, `tf-page`, `tf-present`, `tf-refresher`, `tf-route-navigator`, `tf-route-wrapper`, `tf-route-provider`, `tf-route-outlet`, `tf-segmented-field`, `tf-select`, `tf-slide-range`, `tf-skeleton`, `tf-switch`, `tf-tab`, `tf-tabs`, `tf-toast`, `tf-toast-content`, `tf-toolbar`.
+`t-app`, `t-action`, `t-avatar`, `t-button`, `t-cable`, `t-card`, `t-card-body`, `t-card-header`, `t-card-footer`, `t-checkbox`, `t-radio`, `t-radio-group`, `t-collapse`, `t-container`, `t-decision-modal`, `t-divider`, `t-dropdown`, `t-field`, `t-flex`, `t-flex-item`, `t-form-group`, `t-gesture-indicator`, `t-grid`, `t-grid-item`, `t-image`, `t-modal`, `t-page`, `t-present`, `t-refresher`, `t-route-navigator`, `t-route-wrapper`, `t-route-provider`, `t-route-outlet`, `t-segmented-field`, `t-select`, `t-slide-range`, `t-skeleton`, `t-switch`, `t-tab`, `t-tabs`, `t-toast`, `t-toast-content`, `t-toolbar`.
 
-Trong tài liệu từng component, tag ví dụ dùng prefix `t-` (có thể đổi khi `createToife`).
+Không dùng prefix `toife-` hay `tf-`. Tag luôn là `t-` + tên component.
 
 ### Ví dụ khung ứng dụng đầy đủ
 
@@ -142,7 +142,7 @@ import App from "./App.vue";
 
 const app = createApp(App);
 const toife = createToife(app, { name: "my-app", prefix: "t-" });
-toife.subscribeComponents();
+toife.subscribeAll();
 
 const router = createRouter({
   history: createWebHistory(),

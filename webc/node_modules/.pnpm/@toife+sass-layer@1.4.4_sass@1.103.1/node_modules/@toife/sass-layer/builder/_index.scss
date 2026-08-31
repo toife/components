@@ -1,0 +1,13 @@
+@use "../config";
+@use "../mixins";
+@use "./modes";
+@use "./root";
+
+// Build
+@mixin build() {
+  // Root
+  @include root.build();
+
+  // Modes
+  @include modes.build();
+}

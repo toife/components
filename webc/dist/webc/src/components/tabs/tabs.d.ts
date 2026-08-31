@@ -1,0 +1,34 @@
+import { PropertyValues } from 'lit';
+import { TabsPlacement, TabsProps, TabsSize, TabsVariant } from '../../../../core';
+import { ToifeElement } from '../../shared';
+export declare class Tabs extends ToifeElement {
+    static readonly tagName = "t-tabs";
+    placement: TabsPlacement;
+    variant: TabsVariant;
+    role: string;
+    modelValue: string;
+    border: number[];
+    margin: number[];
+    shape: string;
+    transition: boolean;
+    size: TabsSize;
+    private width;
+    private height;
+    private top;
+    private left;
+    private isFirstRender;
+    private container?;
+    private readonly tabsState;
+    private notifier?;
+    private resizeHandler;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    updated(changed: PropertyValues): void;
+    firstUpdated(): void;
+    private get appState();
+    private syncProviderState;
+    private calcPosition;
+    private get tabsAttrs();
+    render(): import('lit').TemplateResult<1>;
+}
+export type { TabsProps };

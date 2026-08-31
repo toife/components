@@ -1,0 +1,51 @@
+import { PropertyValues } from 'lit';
+import { PresentPlacement, PresentProps, RenderOptions } from '../../../../core';
+import { ToifeElement } from '../../shared';
+type BackdropMode = "display" | "none" | "transparent";
+export declare class Present extends ToifeElement {
+    static readonly tagName = "t-present";
+    keepalive: boolean;
+    visible: boolean;
+    backdrop: BackdropMode;
+    placement: PresentPlacement;
+    teleport: string;
+    duration: number;
+    className: string;
+    overlayStyle?: unknown;
+    bounce: number | string | boolean;
+    private isBounced;
+    private zIndex;
+    private isShow;
+    private isReadyBackdrop;
+    private isTeleportReady;
+    private readonly styles;
+    private portalRoot?;
+    private presentContentHost?;
+    private backdropReadyTimer?;
+    private hideTimer?;
+    private openDelayTimer?;
+    private bounceTimer?;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    updated(changed: PropertyValues): void;
+    firstUpdated(): void;
+    /** Host element for teleported slot content (used by Modal gesture setup). */
+    getContentHost(): HTMLElement | undefined;
+    /** Vue-compatible `render()` — also serves as Lit template when called with no args. */
+    render(options?: RenderOptions): symbol;
+    private applyRender;
+    open: () => void;
+    close: () => void;
+    private get appState();
+    private get timeCss();
+    private get isRender();
+    private clearTimers;
+    private createIndex;
+    private syncTeleportReady;
+    private resolveTeleportTarget;
+    private syncPortalTarget;
+    private onClickBackdrop;
+    private adoptChildrenIntoPresent;
+    private renderPortal;
+}
+export type { PresentProps };

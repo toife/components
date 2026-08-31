@@ -92,9 +92,7 @@ const time = computed(() => {
 // Methods
 // ----------------------------------------------------------------------------
 const createIndex = () => {
-  if (zIndex.value === 0 || !props.keepalive) {
-    zIndex.value = presentIndex.newIndex();
-  }
+  zIndex.value = presentIndex.newIndex();
 };
 
 const render = (data: RenderOptions) => {
