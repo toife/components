@@ -13,6 +13,9 @@ $field-border-color-hover: sass.fn-naming-var("border-color", "hover");
 $field-border-color-active: sass.fn-naming-var("border-color", "active");
 $field-border-color-disabled: sass.fn-naming-var("border-color", "disabled");
 $field-background-color: sass.fn-naming-var("background-color");
+$field-background-color-focus: sass.fn-naming-var("background-color", "focus");
+$field-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$field-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
 $field-color: sass.fn-naming-var("color");
 $field-placeholder-color: sass.fn-naming-var("placeholder-color");
 $field-line: sass.fn-naming-var("line");
@@ -60,6 +63,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
     border-color: rgba(#{$field-border-color});
     box-shadow: #{$field-box-shadow};
     backdrop-filter: #{$field-backdrop-filter};
+    background-color: rgba(#{$field-background-color});
     border-radius: #{$border-radius};
     border-width: #{$border-width};
     border-style: solid;
@@ -145,6 +149,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
       border-color: rgba(#{$field-border-color-focus});
       box-shadow: #{$field-box-shadow-focus};
       backdrop-filter: #{$field-backdrop-filter-focus};
+      background-color: rgba(#{$field-background-color-focus});
     }
   }
 
@@ -153,6 +158,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
       border-color: rgba(#{$field-border-color-hover});
       box-shadow: #{$field-box-shadow-hover};
       backdrop-filter: #{$field-backdrop-filter-hover};
+      background-color: rgba(#{$field-background-color-hover});
     }
   }
 
@@ -169,6 +175,7 @@ $direction-justify-content: sass.fn-naming-var("justify-content");
       border-color: rgba(#{$field-border-color-disabled});
       box-shadow: #{$field-box-shadow-disabled};
       backdrop-filter: #{$field-backdrop-filter-disabled};
+      background-color: rgba(#{$field-background-color-disabled});
     }
   }
 }
