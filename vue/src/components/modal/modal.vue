@@ -55,7 +55,6 @@ const modalAttrs = computed(() => {
     shape,
     placement: props.placement,
     fullscreen: props.fullscreen,
-    className: props.class,
     style: props.style,
   });
 });
