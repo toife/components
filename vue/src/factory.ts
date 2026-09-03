@@ -46,6 +46,7 @@ import {
   Toast,
   ToastContent,
   Toolbar,
+  VirtualList,
 } from "./components";
 import { type SubscribeOptions } from "./types";
 import { DefineComponent, ref, type App as VueApp } from "vue";
@@ -125,6 +126,7 @@ class Toife {
     this.app.component(prefix + "toast", Toast);
     this.app.component(prefix + "toast-content", ToastContent);
     this.app.component(prefix + "toolbar", Toolbar);
+    this.app.component(prefix + "virtual-list", VirtualList);
   }
 
   /**

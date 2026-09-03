@@ -33,3 +33,4 @@ export * from "./select";
 export * from "./slide-range";
 export * from "./tag";
 export * from "./tooltip";
+export * from "./virtual-list";

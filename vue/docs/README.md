@@ -52,3 +52,4 @@
 | [toast.md](./toast.md) | Toast | `t-toast` |
 | [toast-content.md](./toast-content.md) | ToastContent | `t-toast-content` |
 | [toolbar.md](./toolbar.md) | Toolbar | `t-toolbar` |
+| [virtual-list.md](./virtual-list.md) | VirtualList | `t-virtual-list` |

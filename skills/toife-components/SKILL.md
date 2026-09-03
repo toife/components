@@ -123,6 +123,7 @@ Page chrome pattern used in Lamtoi:
 | `t-flex` / `t-grid` | `t-flex-item` / `t-grid-item` with `:options` |
 | `t-route-wrapper` | `t-route-navigator` |
 | `t-dropdown` | `#trigger` + default panel |
+| `t-scrollbar` | optional `t-virtual-list` for long lists |
 
 ## Source of truth
 

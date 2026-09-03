@@ -2,13 +2,13 @@
 name: toife-layout
 description: >-
   Build Toife app shell and layout: t-app, t-page, t-container, t-flex, t-grid,
-  t-card, t-cable, t-toolbar, t-divider, t-scrollbar. Use when creating pages,
-  headers, tab bars, cards, responsive grids, or sticky footers.
+  t-card, t-cable, t-toolbar, t-divider, t-scrollbar, t-virtual-list. Use when
+  creating pages, headers, tab bars, cards, responsive grids, or sticky footers.
 ---
 
 # Toife layout
 
-Core types: `@toife/components/core/features/{app,page,container,layout,card,cable,toolbar,divider,scrollbar}`.
+Core types: `@toife/components/core/features/{app,page,container,layout,card,cable,toolbar,divider,scrollbar,virtual-list}`.
 
 ## App — `t-app`
 
@@ -144,5 +144,29 @@ Emits `scroll`. Expose: `scrollport`, `update()`, `metrics`.
 ```vue
 <t-scrollbar direction="vertical" class="fill-parent">
   <div>long content</div>
+</t-scrollbar>
+```
+
+## Virtual List — `t-virtual-list`
+
+Windowed list. Does **not** own overflow — put it inside `t-scrollbar` (or any ancestor with `overflow: auto|scroll` and a definite size).
+
+| Prop | Default |
+|------|---------|
+| `items` | — |
+| `estimate` | `48` (px along the scroll axis) |
+| `overscan` | `4` |
+| `gap` | `0` |
+| `direction` | `vertical` (`horizontal`) |
+| `measure` | `true` |
+| `itemKey` | index (`string` field or getter) |
+
+Slot `#item="{ item, index }"`. Emits `visible` `{ start, end }` (`end` exclusive). Expose: `scrollport`, `scrollToIndex(index, align?)`, `scrollToOffset(offset)`, `update()`, `range`.
+
+```vue
+<t-scrollbar>
+  <t-virtual-list :items="rows" item-key="id" :estimate="48">
+    <template #item="{ item }">{{ item.title }}</template>
+  </t-virtual-list>
 </t-scrollbar>
 ```

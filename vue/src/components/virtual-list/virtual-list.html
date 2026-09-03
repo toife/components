@@ -1,0 +1,11 @@
+<div v-bind="listAttrs" ref="root">
+  <div
+    v-for="entry in visible"
+    :key="entry.key"
+    v-bind="itemAttrs(entry)"
+    :data-index="entry.index"
+    :ref="(el) => setItemRef(el, entry.index)"
+  >
+    <slot name="item" :item="entry.item" :index="entry.index"></slot>
+  </div>
+</div>

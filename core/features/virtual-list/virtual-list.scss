@@ -1,0 +1,45 @@
+@use "@toife/sass-layer" as sass;
+
+// Windowed list: the root is a spacer whose size is the sum of item sizes, so a
+// parent scrollport (`t-scrollbar`, or any overflow box) still sees the full
+// document. Visible items are absolutely positioned along that spacer.
+
+// Class name
+$virtual-list: sass.fn-naming-prefix("virtual-list");
+$virtual-list-item: sass.fn-naming-prefix("virtual-list-item");
+
+// Geometry, written by `getVirtualListAttrs` / `getVirtualListItemAttrs`.
+$size: sass.fn-naming-dvar(("virtual-list", "size"), 0px);
+$offset: sass.fn-naming-dvar(("virtual-list", "offset"), 0px);
+
+.#{$virtual-list} {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+
+  &.vertical {
+    width: 100%;
+    height: #{$size};
+  }
+
+  &.horizontal {
+    width: #{$size};
+    height: 100%;
+  }
+
+  .#{$virtual-list-item} {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.vertical .#{$virtual-list-item} {
+    width: 100%;
+    transform: translate3d(0, #{$offset}, 0);
+  }
+
+  &.horizontal .#{$virtual-list-item} {
+    height: 100%;
+    transform: translate3d(#{$offset}, 0, 0);
+  }
+}
