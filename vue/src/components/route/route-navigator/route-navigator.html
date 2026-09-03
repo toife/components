@@ -1,7 +1,7 @@
 <div v-bind="navigatorAttrs" ref="navigatorRef">
   <div
     v-for="(item, index) in stack"
-    :key="item.name"
+    :key="item.key || item.name"
     v-bind="componentAttrs"
     :style="{zIndex: index * 2 + 100}"
     :name="item.name"

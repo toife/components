@@ -1,6 +1,6 @@
 {
   "name": "@toife/vue",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "description": "A Frontend framework for Vue",
   "type": "module",
   "sideEffects": [

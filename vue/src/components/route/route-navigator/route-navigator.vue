@@ -100,9 +100,11 @@ const changeRoute = (value: RouteStack[]) => {
     return;
   }
 
-  // Case update
+  // Case update (same depth, or an existing page was reused / brought to front)
   if (stack.value.length === data.length) {
     stack.value = data;
+    activeIndex.value = Math.max(0, data.length - 1);
+    backdropIndex.value = activeIndex.value;
     return;
   }
 

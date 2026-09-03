@@ -1,1 +1,0 @@
-.t-card-footer{padding:calc(var(--t-spacing-y) * 4) calc(var(--t-spacing-x) * 4);border-top:var(--t-border-width) solid transparent;transition:border-color var(--t-transition-duration) ease,border-radius var(--t-transition-duration) ease}.t-card-footer.divider{border-color:rgba(var(--t-border-color))}

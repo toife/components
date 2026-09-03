@@ -1,46 +1,68 @@
 import { shallowRef } from "vue";
 import { type RouteComponent, type RouteLocationMatched } from "vue-router";
-import type { RouteStack } from "@/core";
+import { getRouteStackKey, type RouteStack } from "@/core";
 
 const stack = shallowRef<RouteStack[]>([]);
 
+const activate = (
+  item: RouteStack,
+  rest: RouteLocationMatched[],
+  fullPath: string,
+): void => {
+  item.fullPath = fullPath;
+  item.stack = buildTree(rest, item.stack, fullPath);
+};
+
 /** Recursively builds a nested stack from vue-router `matched` for the navigator. */
-const buildTree = (matched: RouteLocationMatched[], current: RouteStack[]) => {
+const buildTree = (
+  matched: RouteLocationMatched[],
+  current: RouteStack[],
+  fullPath: string,
+): RouteStack[] => {
   // No deeper matched routes — drop stale leaf entries (e.g. parent navigated back).
   if (matched.length === 0) return [];
 
-  // User navigated back: drop the leaf so we merge into the parent segment
-  if (current.length > 1 && current[current.length - 2]?.name === matched[0].name) {
+  const record = matched[0];
+  const name = String(record.name);
+  const rest = matched.slice(1);
+  const key = getRouteStackKey(name, rest.length === 0, fullPath);
+
+  // One-step back: drop the top page so we merge into the previous segment.
+  if (current.length > 1 && current[current.length - 2]?.key === key) {
     current.pop();
   }
 
-  // Same route record: update nested stack only
-  if (
-    current.length > 0 &&
-    current[current.length - 1] &&
-    current[current.length - 1].name === matched[0].name
-  ) {
-    matched.shift();
-    current[current.length - 1].stack = buildTree(matched, current[current.length - 1].stack);
+  const last = current[current.length - 1];
+
+  // Same page already on top: refresh nested children only.
+  if (last?.key === key) {
+    activate(last, rest, fullPath);
+    return current;
   }
-  // Push a new segment (forward navigation)
-  else {
-    const name = String(matched[0].name);
-    const component = matched[0].components as RouteComponent;
-    matched.shift();
-    current.push({
-      name,
-      component,
-      stack: buildTree(matched, []),
-    });
+
+  // Same full URL (leaf) or layout name already in this stack: reuse, no duplicate.
+  const existingIndex = current.findIndex((item) => item.key === key);
+  if (existingIndex >= 0) {
+    const [existing] = current.splice(existingIndex, 1);
+    current.push(existing);
+    activate(existing, rest, fullPath);
+    return current;
   }
+
+  current.push({
+    name,
+    component: record.components as RouteComponent,
+    stack: buildTree(rest, [], fullPath),
+    key,
+    fullPath,
+  });
 
   return current;
 };
 
 export const useRouteWrapper = () => {
-  const updateRoutes = (matched: RouteLocationMatched[]) => {
-    stack.value = buildTree([...matched], [...stack.value]);
+  const updateRoutes = (matched: RouteLocationMatched[], fullPath = "") => {
+    stack.value = buildTree([...matched], [...stack.value], fullPath);
   };
 
   return {

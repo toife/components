@@ -17,9 +17,9 @@ const router = useRouter();
 // Lifecycle
 // ----------------------------------------------------------------------------
 watch(
-  () => route.matched,
+  () => route.fullPath,
   () => {
-    updateRoutes(route.matched);
+    updateRoutes(route.matched, route.fullPath);
   }
 );
 
@@ -28,16 +28,16 @@ onMounted(() => {
   const homeName = props.homeRouteName;
 
   if (route.name === homeName) {
-    updateRoutes(route.matched);
+    updateRoutes(route.matched, route.fullPath);
   } else {
     const homeLocation = router.resolve({ name: homeName });
     if (homeLocation.matched.length > 0) {
-      updateRoutes(homeLocation.matched);
+      updateRoutes(homeLocation.matched, homeLocation.fullPath);
     }
 
     // Apply current route to stack
     setTimeout(() => {
-      updateRoutes(route.matched);
+      updateRoutes(route.matched, route.fullPath);
     }, 50);
   }
 });
