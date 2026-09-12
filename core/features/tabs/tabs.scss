@@ -166,8 +166,8 @@ $highlight-space-y: sass.fn-naming-var("highlight", "space-y");
     &.active {
       button {
         color: rgba(#{$tabs-color-active});
-        box-shadow: #{$tabs-box-shadow-active};
-        backdrop-filter: #{$tabs-backdrop-filter-active};
+        box-shadow: none;
+        backdrop-filter: none;
       }
     }
 
