@@ -19,7 +19,7 @@ $safe-area-right: sass.fn-naming-var("safe-area", "right");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
 .#{$modal} {
-  background: rgba(#{$modal-background-color});
+  background-color: rgba(#{$modal-background-color});
   box-shadow: #{$modal-box-shadow};
   backdrop-filter: #{$modal-backdrop-filter};
   transition:

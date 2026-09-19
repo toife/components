@@ -59,7 +59,7 @@ $button-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
   border-radius: #{$border-radius};
   cursor: pointer;
   color: rgba(#{$button-color});
-  background: rgba(#{$button-background-color});
+  background-color: rgba(#{$button-background-color});
   box-shadow: #{$button-box-shadow};
   backdrop-filter: #{$button-backdrop-filter};
   border-color: rgba(#{$button-border-color});

@@ -37,7 +37,7 @@ $transition-duration: sass.fn-naming-var("transition-duration");
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
-    background: linear-gradient(
+    background-color: linear-gradient(
       90deg,
       transparent,
       rgba(#{$skeleton-background-color}, 1),

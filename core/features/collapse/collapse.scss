@@ -41,7 +41,7 @@ $collapse-backdrop-filter: sass.fn-naming-var("backdrop-filter");
   cursor: pointer;
   user-select: none;
   border: none;
-  background: none;
+  background-color: transparent;
   width: 100%;
   padding: 0;
   text-align: inherit;

@@ -77,7 +77,7 @@ $select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    background: transparent;
+    background-color: transparent;
     cursor: pointer;
     color: rgba(#{$select-color});
     background-color: rgba(#{$select-background-color});
@@ -94,21 +94,21 @@ $select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
     &:not(:disabled):not(.disabled):not(.readonly) {
       &:hover,
       &.hover {
-        background: rgba(#{$select-background-color-hover});
+        background-color: rgba(#{$select-background-color-hover});
         box-shadow: #{$select-box-shadow-hover};
         backdrop-filter: #{$select-backdrop-filter-hover};
       }
 
       &:focus,
       &.focus {
-        background: rgba(#{$select-background-color-focus});
+        background-color: rgba(#{$select-background-color-focus});
         box-shadow: #{$select-box-shadow-focus};
         backdrop-filter: #{$select-backdrop-filter-focus};
       }
 
       &:active,
       &.active {
-        background: rgba(#{$select-background-color-active});
+        background-color: rgba(#{$select-background-color-active});
         box-shadow: #{$select-box-shadow-active};
         backdrop-filter: #{$select-backdrop-filter-active};
       }

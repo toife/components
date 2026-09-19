@@ -34,7 +34,7 @@ $tag-backdrop-filter: sass.fn-naming-var("backdrop-filter");
   border-radius: #{$border-radius};
   vertical-align: middle;
   color: rgba(#{$tag-color});
-  background: rgba(#{$tag-background-color});
+  background-color: rgba(#{$tag-background-color});
   box-shadow: #{$tag-box-shadow};
   backdrop-filter: #{$tag-backdrop-filter};
   border-color: rgba(#{$tag-border-color});
