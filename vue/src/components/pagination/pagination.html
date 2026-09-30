@@ -1,0 +1,35 @@
+<nav v-bind="paginationAttrs" aria-label="pagination">
+  <Button
+    v-if="props.controls"
+    v-bind="buttonAttrs"
+    :variant="props.variant"
+    :disabled="props.disabled || currentPage <= 1"
+    aria-label="previous page"
+    @click="setPage(currentPage - 1)"
+  >
+    <slot name="prev">‹</slot>
+  </Button>
+  <template v-for="item in items" :key="item.type === 'page' ? item.page : item.key">
+    <Button
+      v-if="item.type === 'page'"
+      v-bind="{ ...buttonAttrs, ...getPaginationItemAttrs({ active: item.page === currentPage }) }"
+      :variant="item.page === currentPage ? props.activeVariant : props.variant"
+      :disabled="props.disabled"
+      :aria-current="item.page === currentPage ? 'page' : undefined"
+      @click="setPage(item.page)"
+    >
+      <slot name="page" :page="item.page" :active="item.page === currentPage">{{ item.page }}</slot>
+    </Button>
+    <span v-else v-bind="ellipsisAttrs"><slot name="ellipsis">…</slot></span>
+  </template>
+  <Button
+    v-if="props.controls"
+    v-bind="buttonAttrs"
+    :variant="props.variant"
+    :disabled="props.disabled || currentPage >= pageLength"
+    aria-label="next page"
+    @click="setPage(currentPage + 1)"
+  >
+    <slot name="next">›</slot>
+  </Button>
+</nav>

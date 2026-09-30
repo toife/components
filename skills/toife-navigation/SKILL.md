@@ -2,14 +2,14 @@
 name: toife-navigation
 description: >-
   Build Toife navigation: t-route-wrapper, t-route-navigator, t-route-provider,
-  t-route-outlet, t-tabs, t-tab, t-collapse, t-refresher, useRouteWrapper.
+  t-route-outlet, t-tabs, t-tab, t-collapse, t-refresher, t-pagination, useRouteWrapper.
   Use when adding vue-router stacks, swipe/fade transitions, tab bars, accordions,
-  or pull-to-refresh.
+  pull-to-refresh, or paging through lists.
 ---
 
 # Toife navigation
 
-Core types: `@toife/components/core/features/{route,tabs,collapse,refresher}`.
+Core types: `@toife/components/core/features/{route,tabs,collapse,refresher,pagination}`.
 
 Requires `vue-router` for route components. Swipe navigator / refresher need `@toife/gesture`.
 
@@ -95,6 +95,24 @@ Tabs are the **bar only**. Render panels with `v-if` / `v-show` beside them.
 ```
 
 Props: `duration`, `role`, `disabled`. Height-animates.
+
+## Pagination — `t-pagination`
+
+```vue
+<t-pagination v-model="page" :length="totalPages" @change="load" />
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `modelValue` | | Current page, 1-based |
+| `length` | `1` | Total pages |
+| `siblings` | `1` | Pages each side of current |
+| `boundaries` | `1` | Pages always shown at start/end |
+| `variant` / `activeVariant` | `text` / `fill` | Button variants |
+| `controls` | `true` | Prev/next buttons |
+| `size`, `role`, `shape`, `disabled`, `direction` | | Theme |
+
+Slots: `prev`, `next`, `page` (`{ page, active }`), `ellipsis`. Pure helper `getPaginationItems()` lives in core.
 
 ## Refresher — `t-refresher`
 

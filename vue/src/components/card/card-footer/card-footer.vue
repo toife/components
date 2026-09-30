@@ -7,7 +7,10 @@ import type { ProviderStateRefs } from "../../../shared/provider-state";
 
 // Component setup (props, emits, injects)
 // ----------------------------------------------------------------------------
-const cardProviderState = inject<ProviderStateRefs<CardProviderState>>(CARD_PROVIDER_STATE_KEY);
+const cardProviderState = inject<ProviderStateRefs<CardProviderState> | null>(
+  CARD_PROVIDER_STATE_KEY,
+  null
+);
 
 // Computed properties
 // ----------------------------------------------------------------------------

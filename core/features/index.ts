@@ -17,6 +17,7 @@ export * from "./image";
 export * from "./layout";
 export * from "./modal";
 export * from "./page";
+export * from "./pagination";
 export * from "./present";
 export * from "./progress";
 export * from "./radio";

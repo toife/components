@@ -1,0 +1,43 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$pagination: sass.fn-naming-prefix("pagination");
+$pagination-item: sass.fn-naming-prefix("pagination-item");
+$pagination-ellipsis: sass.fn-naming-prefix("pagination-ellipsis");
+$direction-right: sass.fn-naming-prefix("direction", "right");
+
+// Properties
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+
+.#{$pagination} {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: #{$spacing-x};
+
+  &.#{$direction-right} {
+    flex-direction: row-reverse;
+  }
+
+  .#{$pagination-item} {
+    min-width: #{$size-control-block-size};
+  }
+
+  .#{$pagination-ellipsis} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: #{$size-control-block-size};
+    height: #{$size-control-block-size};
+    font-size: #{$size-font-size};
+    user-select: none;
+  }
+
+  // State
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

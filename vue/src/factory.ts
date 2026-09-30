@@ -24,6 +24,7 @@ import {
   Image,
   Modal,
   Page,
+  Pagination,
   Present,
   Progress,
   Radio,
@@ -106,6 +107,7 @@ class Toife {
     this.app.component(prefix + "image", Image);
     this.app.component(prefix + "modal", Modal);
     this.app.component(prefix + "page", Page);
+    this.app.component(prefix + "pagination", Pagination);
     this.app.component(prefix + "present", Present);
     this.app.component(prefix + "progress", Progress);
     this.app.component(prefix + "refresher", Refresher);

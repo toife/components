@@ -32,6 +32,7 @@
 | [image.md](./image.md) | Image | `t-image` |
 | [modal.md](./modal.md) | Modal | `t-modal` |
 | [page.md](./page.md) | Page | `t-page` |
+| [pagination.md](./pagination.md) | Pagination | `t-pagination` |
 | [present.md](./present.md) | Present | `t-present` |
 | [progress.md](./progress.md) | Progress | `t-progress` |
 | [radio.md](./radio.md) | Radio | `t-radio` |
