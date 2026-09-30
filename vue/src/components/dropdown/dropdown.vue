@@ -38,10 +38,11 @@ const wrapperAttrs = computed(() => {
     size: props.size,
     open: isOpen.value,
     disabled: props.disabled,
+    placement: props.placement
   });
 });
 
-const panelAttrs = computed(() => getDropdownPanelAttrs({ placement: props.placement }));
+const panelAttrs = computed(() => getDropdownPanelAttrs({}));
 
 // Methods
 // ----------------------------------------------------------------------------

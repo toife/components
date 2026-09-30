@@ -7,6 +7,9 @@ $select-option: sass.fn-naming-prefix("select-option");
 $select-message: sass.fn-naming-prefix("select-message");
 $field: sass.fn-naming-prefix("field");
 $field-input: sass.fn-naming-prefix("field-input");
+$field-content: sass.fn-naming-prefix("field-content");
+$dropdown: sass.fn-naming-prefix("dropdown");
+$dropdown-panel: sass.fn-naming-prefix("dropdown-panel");
 
 // Property name
 $color: sass.fn-naming-var("color");
@@ -15,6 +18,7 @@ $spacing-y: sass.fn-naming-var("spacing", "y");
 $size-coefficient-x: sass.fn-naming-var("coefficient-x");
 $size-coefficient-y: sass.fn-naming-var("coefficient-y");
 $transition-duration: sass.fn-naming-var("transition-duration");
+$border-radius: sass.fn-naming-var("border-radius");
 
 $select-background-color: sass.fn-naming-var("background-color");
 $select-background-color-hover: sass.fn-naming-var("background-color", "hover");
@@ -40,6 +44,40 @@ $select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
 .#{$select} {
   &.disabled {
     cursor: not-allowed;
+  }
+
+  :deep(.#{$dropdown}){
+    .#{$dropdown-panel} {
+      margin: 0 !important;
+    }
+
+    &.open {
+      &.top-start, &.top-end {
+        .#{$dropdown-panel} {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-bottom: none;
+        }
+        
+        .#{$field-content} {
+          border-top-left-radius: 0 !important;
+          border-top-right-radius: 0 !important;
+        }
+      }
+
+      &.bottom-start, &.bottom-end {
+        .#{$dropdown-panel} {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          border-top: none;
+        }
+
+        .#{$field-content} {
+          border-bottom-left-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+      }
+    }
   }
 
   .#{$select-icon} {

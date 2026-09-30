@@ -24,6 +24,28 @@ $size-control-block-size: sass.fn-naming-var("control-block-size");
   position: relative;
   display: block;
   width: 100%;
+
+  &.bottom-start .#{$dropdown-panel} {
+    top: 100%;
+    left: 0;
+  }
+
+  &.bottom-end .#{$dropdown-panel} {
+    top: 100%;
+    right: 0;
+    left: auto;
+  }
+
+  &.top-start .#{$dropdown-panel} {
+    bottom: 100%;
+    left: 0;
+  }
+
+  &.top-end .#{$dropdown-panel} {
+    bottom: 100%;
+    right: 0;
+    left: auto;
+  }
 }
 
 .#{$dropdown-panel} {
@@ -50,26 +72,4 @@ $size-control-block-size: sass.fn-naming-var("control-block-size");
     color #{$transition-duration} ease,
     box-shadow #{$transition-duration} ease,
     backdrop-filter #{$transition-duration} ease;
-
-  &.bottom-start {
-    top: 100%;
-    left: 0;
-  }
-
-  &.bottom-end {
-    top: 100%;
-    right: 0;
-    left: auto;
-  }
-
-  &.top-start {
-    bottom: 100%;
-    left: 0;
-  }
-
-  &.top-end {
-    bottom: 100%;
-    right: 0;
-    left: auto;
-  }
 }

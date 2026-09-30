@@ -20,5 +20,5 @@ export type DropdownEvent = {
   (e: "close"): void;
 };
 
-export type DropdownAttrOptions = { role: string; shape: string; size: string; open: boolean; disabled: boolean };
-export type DropdownPanelAttrOptions = { placement: string };
+export type DropdownAttrOptions = { role: string; shape: string; size: string; open: boolean; disabled: boolean, placement: string };
+export type DropdownPanelAttrOptions = {  };

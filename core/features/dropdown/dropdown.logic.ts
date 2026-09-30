@@ -8,10 +8,11 @@ export const getDropdownAttrs = (options: DropdownAttrOptions) => ({
     cssPrefix(["shape", options.shape]),
     cssPrefix(["size", options.size]),
     cssPrefix("dropdown"),
-    { open: options.open, disabled: options.disabled },
+    options.placement,
+    { open: options.open, disabled: options.disabled }
   ],
 });
 
 export const getDropdownPanelAttrs = (options: DropdownPanelAttrOptions) => ({
-  class: [cssPrefix("dropdown-panel"), options.placement],
+  class: [cssPrefix("dropdown-panel")],
 });
