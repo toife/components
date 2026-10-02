@@ -27,6 +27,7 @@ export * from "./route";
 export * from "./scrollbar";
 export * from "./page";
 export * from "./pagination";
+export * from "./datepicker";
 export * from "./collapse";
 export * from "./form-group";
 export * from "./dropdown";

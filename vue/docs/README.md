@@ -21,6 +21,7 @@
 | [container.md](./container.md) | Container | `t-container` |
 | [decision-modal.md](./decision-modal.md) | DecisionModal | `t-decision-modal` |
 | [divider.md](./divider.md) | Divider | `t-divider` |
+| [datepicker.md](./datepicker.md) | DatePicker | `t-datepicker` |
 | [dropdown.md](./dropdown.md) | Dropdown | `t-dropdown` |
 | [field.md](./field.md) | Field | `t-field` |
 | [flex.md](./flex.md) | Flex | `t-flex` |

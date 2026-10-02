@@ -11,6 +11,7 @@ import {
   Checkbox,
   Collapse,
   Container,
+  DatePicker,
   DecisionModal,
   Divider,
   Dropdown,
@@ -94,6 +95,7 @@ class Toife {
     this.app.component(prefix + "radio-group", RadioGroup);
     this.app.component(prefix + "collapse", Collapse);
     this.app.component(prefix + "container", Container);
+    this.app.component(prefix + "datepicker", DatePicker);
     this.app.component(prefix + "decision-modal", DecisionModal);
     this.app.component(prefix + "divider", Divider);
     this.app.component(prefix + "dropdown", Dropdown);

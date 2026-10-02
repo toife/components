@@ -2,13 +2,13 @@
 name: toife-forms
 description: >-
   Build Toife form controls: t-field, t-select, t-checkbox, t-radio, t-radio-group,
-  t-switch, t-segmented-field, t-slide-range, t-form-group. Use when adding inputs,
-  validation messages, toggles, OTP, sliders, or settings forms.
+  t-switch, t-segmented-field, t-slide-range, t-form-group, t-datepicker. Use when adding inputs,
+  validation messages, toggles, OTP, sliders, or settings forms, or date/time pickers.
 ---
 
 # Toife forms
 
-Core types: `@toife/components/core/features/{field,select,checkbox,radio,switch,segmented-field,slide-range,form-group}`.
+Core types: `@toife/components/core/features/{field,select,checkbox,radio,switch,segmented-field,slide-range,form-group,datepicker}`.
 
 All of these use **`v-model`**. Theme (`role`, `shape`, `size`) falls back to `t-app`.
 
@@ -111,6 +111,26 @@ Emits `complete` when every cell is filled. Optional `pattern: string[]`.
 ```
 
 Emits `update:modelValue` and `change`. Optional `tick`.
+
+## Date picker — `t-datepicker`
+
+Calendar + time columns only (no input, no popup) — compose with `t-dropdown` / `t-field` yourself.
+
+```vue
+<t-datepicker v-model="value" type="datetime" :min="new Date()" @change="onPick" />
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `modelValue` | | `Date \| null` |
+| `type` | `date` | `date` \| `time` \| `datetime` |
+| `min` / `max` | | Out-of-range days/months/years are disabled; value is clamped |
+| `seconds` | `true` | Show the seconds column |
+| `firstDay` | `1` | 0 = Sunday, 1 = Monday |
+| `locale` | `vi-VN` | Month / weekday names via `Intl` |
+| `size`, `role`, `shape`, `disabled`, `direction` | | Theme |
+
+Emits `update:modelValue` and `change` with a new `Date` (never `null`). Slots: `prev`, `next`, `day` (`{ date, active }`).
 
 ## Form group — `t-form-group`
 

@@ -1,0 +1,187 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$datepicker: sass.fn-naming-prefix("datepicker");
+$datepicker-header: sass.fn-naming-prefix("datepicker-header");
+$datepicker-title: sass.fn-naming-prefix("datepicker-title");
+$datepicker-control: sass.fn-naming-prefix("datepicker-control");
+$datepicker-title-button: sass.fn-naming-prefix("datepicker-title-button");
+$datepicker-weekdays: sass.fn-naming-prefix("datepicker-weekdays");
+$datepicker-weekday: sass.fn-naming-prefix("datepicker-weekday");
+$datepicker-days: sass.fn-naming-prefix("datepicker-days");
+$datepicker-grid: sass.fn-naming-prefix("datepicker-grid");
+$datepicker-cell: sass.fn-naming-prefix("datepicker-cell");
+$datepicker-time: sass.fn-naming-prefix("datepicker-time");
+$datepicker-time-column: sass.fn-naming-prefix("datepicker-time-column");
+$datepicker-time-separator: sass.fn-naming-prefix("datepicker-time-separator");
+$direction-right: sass.fn-naming-prefix("direction", "right");
+
+// Property name - layer: datepicker
+$datepicker-color: sass.fn-naming-var("color");
+$datepicker-color-hover: sass.fn-naming-var("color", "hover");
+$datepicker-color-active: sass.fn-naming-var("color", "active");
+$datepicker-color-disabled: sass.fn-naming-var("color", "disabled");
+
+$datepicker-background-color: sass.fn-naming-var("background-color");
+$datepicker-background-color-hover: sass.fn-naming-var("background-color", "hover");
+$datepicker-background-color-active: sass.fn-naming-var("background-color", "active");
+$datepicker-background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+
+$datepicker-border-color-active: sass.fn-naming-var("border-color", "active");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-line-height: sass.fn-naming-var("line-height");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$transition-duration: sass.fn-naming-var("transition-duration");
+
+.#{$datepicker} {
+  display: inline-flex;
+  flex-direction: column;
+  gap: calc(#{$spacing-y} * 2);
+  min-width: calc(#{$size-control-block-size} * 7 + #{$spacing-x} * 6);
+  color: rgba(#{$datepicker-color});
+  font-size: #{$size-font-size};
+  line-height: #{$size-line-height};
+  user-select: none;
+
+  &.#{$direction-right} {
+    direction: rtl;
+  }
+
+  // Native buttons: reset + shared look
+  button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 #{$spacing-x};
+    height: #{$size-control-block-size};
+    border-style: solid;
+    border-width: #{$border-width};
+    border-radius: #{$border-radius};
+    border-color: transparent;
+    background-color: rgba(#{$datepicker-background-color});
+    color: rgba(#{$datepicker-color});
+    font: inherit;
+    cursor: pointer;
+    transition:
+      color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    &:hover {
+      border-color: transparent;
+      background-color: rgba(#{$datepicker-background-color-hover});
+      color: rgba(#{$datepicker-color-hover});
+    }
+
+    &.active {
+      border-color: rgba(#{$datepicker-border-color-active});
+      background-color: rgba(#{$datepicker-background-color-active});
+      color: rgba(#{$datepicker-color-active});
+    }
+
+    &:disabled {
+      border-color: transparent;
+      background-color: rgba(#{$datepicker-background-color-disabled});
+      color: rgba(#{$datepicker-color-disabled});
+      cursor: not-allowed;
+    }
+  }
+
+  .#{$datepicker-header} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: #{$spacing-x};
+  }
+
+  .#{$datepicker-control} {
+    min-width: #{$size-control-block-size};
+  }
+
+  .#{$datepicker-title} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: #{$spacing-x};
+    font-weight: 600;
+  }
+
+  .#{$datepicker-weekdays},
+  .#{$datepicker-days} {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: #{$spacing-x};
+  }
+
+  .#{$datepicker-weekday} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: #{$size-control-block-size};
+    opacity: 0.6;
+  }
+
+  .#{$datepicker-grid} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: #{$spacing-x};
+  }
+
+  .#{$datepicker-cell} {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0;
+
+    &.today:not(.active) {
+      border-color: rgba(#{$datepicker-border-color-active});
+    }
+
+    &.outside:not(.active) {
+      opacity: 0.4;
+    }
+  }
+
+  .#{$datepicker-time} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: #{$spacing-x};
+  }
+
+  .#{$datepicker-time-column} {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: #{$spacing-x};
+    max-height: calc(#{$size-control-block-size} * 5 + #{$spacing-x} * 4);
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+
+  .#{$datepicker-time-separator} {
+    opacity: 0.6;
+  }
+
+  // State
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

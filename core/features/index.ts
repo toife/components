@@ -7,6 +7,7 @@ export * from "./card";
 export * from "./checkbox";
 export * from "./collapse";
 export * from "./container";
+export * from "./datepicker";
 export * from "./decision-modal";
 export * from "./divider";
 export * from "./dropdown";

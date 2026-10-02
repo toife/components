@@ -1,0 +1,92 @@
+<div v-bind="datepickerAttrs">
+  <div v-if="showCalendar" v-bind="calendarAttrs">
+    <div v-bind="headerAttrs">
+      <button
+        v-bind="controlAttrs"
+        :disabled="props.disabled || prevDisabled"
+        aria-label="previous"
+        @click="step(-1)"
+      >
+        <slot name="prev">‹</slot>
+      </button>
+      <div v-bind="titleAttrs">
+        <button v-if="view === 'day'" v-bind="titleButtonAttrs" @click="view = 'month'">
+          {{ monthLabel }}
+        </button>
+        <button v-if="view !== 'year'" v-bind="titleButtonAttrs" @click="view = 'year'">
+          {{ viewYear }}
+        </button>
+        <span v-else>{{ yearPage[0] }} – {{ yearPage[yearPage.length - 1] }}</span>
+      </div>
+      <button
+        v-bind="controlAttrs"
+        :disabled="props.disabled || nextDisabled"
+        aria-label="next"
+        @click="step(1)"
+      >
+        <slot name="next">›</slot>
+      </button>
+    </div>
+
+    <template v-if="view === 'day'">
+      <div v-bind="weekdaysAttrs">
+        <span v-for="(name, i) in weekdays" :key="i" v-bind="weekdayAttrs">{{ name }}</span>
+      </div>
+      <div v-bind="daysAttrs">
+        <button
+          v-for="day in days"
+          :key="day.getTime()"
+          v-bind="getDatePickerCellAttrs({
+            active: isSameDay(day, currentValue),
+            today: isSameDay(day, today),
+            outside: day.getMonth() !== viewMonth,
+          })"
+          type="button"
+          :disabled="props.disabled || isDatePickerDayDisabled(day, props.min, props.max)"
+          :aria-current="isSameDay(day, currentValue) ? 'date' : undefined"
+          @click="selectDay(day)"
+        >
+          <slot name="day" :date="day" :active="isSameDay(day, currentValue)">{{ day.getDate() }}</slot>
+        </button>
+      </div>
+    </template>
+
+    <div v-else-if="view === 'month'" v-bind="gridAttrs">
+      <button
+        v-for="(name, month) in months"
+        :key="month"
+        v-bind="getDatePickerCellAttrs({ active: month === viewMonth })"
+        type="button"
+        :disabled="props.disabled || isDatePickerMonthDisabled(viewYear, month, props.min, props.max)"
+        @click="selectMonth(month)"
+      >{{ name }}</button>
+    </div>
+
+    <div v-else v-bind="gridAttrs">
+      <button
+        v-for="year in yearPage"
+        :key="year"
+        v-bind="getDatePickerCellAttrs({ active: year === viewYear })"
+        type="button"
+        :disabled="props.disabled || isDatePickerYearDisabled(year, props.min, props.max)"
+        @click="selectYear(year)"
+      >{{ year }}</button>
+    </div>
+  </div>
+
+  <div v-if="showTime" ref="timeRef" v-bind="timeAttrs">
+    <template v-for="(unit, index) in timeUnits" :key="unit">
+      <span v-if="index > 0" v-bind="timeSeparatorAttrs">:</span>
+      <div v-bind="timeColumnAttrs" :data-unit="unit">
+        <button
+          v-for="n in getDatePickerTimeOptions(unit)"
+          :key="n"
+          v-bind="getDatePickerCellAttrs({ active: n === timeParts[unit] })"
+          type="button"
+          :disabled="props.disabled"
+          @click="selectTime(unit, n)"
+        >{{ padDatePickerTime(n) }}</button>
+      </div>
+    </template>
+  </div>
+</div>
