@@ -89,8 +89,15 @@ const isGestureEnabled = computed(() => {
 
 // Methods
 // ----------------------------------------------------------------------------
+// Every change bumps this: the delayed steps of an older change (finishing a
+// "back" animation, activating a "next" page) must not run once a newer change
+// arrived, or they overwrite the stack / active page with stale data and the
+// navigator ends up showing no page at all.
+let changeId = 0;
+
 const changeRoute = (value: RouteStack[]) => {
   const data = clone(value);
+  const id = ++changeId;
 
   // Case init
   if (stack.value.length === 0) {
@@ -122,6 +129,7 @@ const changeRoute = (value: RouteStack[]) => {
     emit("transform", transform);
 
     setTimeout(() => {
+      if (id !== changeId) return;
       stack.value = data;
     }, 400);
     return;
@@ -132,6 +140,7 @@ const changeRoute = (value: RouteStack[]) => {
     stack.value = data;
 
     setTimeout(() => {
+      if (id !== changeId) return;
       activeIndex.value = Math.max(0, data.length - 1);
       backdropIndex.value = activeIndex.value;
     }, 50);
