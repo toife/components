@@ -56,6 +56,8 @@ const transform = reactive<RouteNavigatorTransformState>({
 const stack = ref<RouteStack[]>([]);
 const activeIndex = ref(0);
 const backdropIndex = ref(0);
+// Indexes whose DOM is kept mounted when inactive pages are unmounted (see `isUnmountInactive`).
+const mountedIndexes = ref<number[]>([]);
 
 // Computed properties
 // ----------------------------------------------------------------------------
@@ -83,6 +85,13 @@ const prevPage = computed(() => {
   return null;
 });
 
+// Swipe needs the previous page in the DOM to reveal it while dragging, so only
+// the other variants drop inactive pages when keepalive is off.
+const isUnmountInactive = computed(() => !props.keepalive && props.variant !== "swipe");
+
+const isPageMounted = (index: number) =>
+  !isUnmountInactive.value || mountedIndexes.value.includes(index);
+
 const isGestureEnabled = computed(() => {
   return props.variant === "swipe" && props.gesture && prevPage.value;
 });
@@ -95,6 +104,9 @@ const isGestureEnabled = computed(() => {
 // navigator ends up showing no page at all.
 let changeId = 0;
 
+// Match the CSS transition so the leaving page is unmounted only after it finished animating.
+const TRANSITION_DURATION_MS = 400;
+
 const changeRoute = (value: RouteStack[]) => {
   const data = clone(value);
   const id = ++changeId;
@@ -104,6 +116,7 @@ const changeRoute = (value: RouteStack[]) => {
     stack.value = data;
     activeIndex.value = Math.max(0, data.length - 1);
     backdropIndex.value = activeIndex.value;
+    mountedIndexes.value = [activeIndex.value];
     return;
   }
 
@@ -112,6 +125,7 @@ const changeRoute = (value: RouteStack[]) => {
     stack.value = data;
     activeIndex.value = Math.max(0, data.length - 1);
     backdropIndex.value = activeIndex.value;
+    mountedIndexes.value = [activeIndex.value];
     return;
   }
 
@@ -124,25 +138,35 @@ const changeRoute = (value: RouteStack[]) => {
     transform.prepare = 100;
     transform.backdrop = 0;
 
+    const leavingIndex = activeIndex.value;
     activeIndex.value = Math.max(0, data.length - 1);
     backdropIndex.value = activeIndex.value;
+    mountedIndexes.value = [activeIndex.value, leavingIndex];
     emit("transform", transform);
 
     setTimeout(() => {
       if (id !== changeId) return;
       stack.value = data;
-    }, 400);
+      mountedIndexes.value = [activeIndex.value];
+    }, TRANSITION_DURATION_MS);
     return;
   }
 
   // Case Next
   if (data.length > stack.value.length) {
+    const nextIndex = Math.max(0, data.length - 1);
     stack.value = data;
+    mountedIndexes.value = [activeIndex.value, nextIndex];
 
     setTimeout(() => {
       if (id !== changeId) return;
-      activeIndex.value = Math.max(0, data.length - 1);
+      activeIndex.value = nextIndex;
       backdropIndex.value = activeIndex.value;
+
+      setTimeout(() => {
+        if (id !== changeId) return;
+        mountedIndexes.value = [activeIndex.value];
+      }, TRANSITION_DURATION_MS);
     }, 50);
 
     return;
