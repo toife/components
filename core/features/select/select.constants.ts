@@ -11,5 +11,6 @@ export const SELECT_DEFAULT_PROPS = {
   variant: "outline",
   placeholder: "",
   direction: undefined,
+  placement: undefined,
   options: () => [] as Array<SelectOption>,
 } as const;

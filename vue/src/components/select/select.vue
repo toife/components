@@ -56,6 +56,7 @@ const dropdownAttrs = computed(() => {
     direction: direction.value,
     shape: shape.value,
     disabled: props.disabled,
+    placement: props.placement,
   };
 });
 

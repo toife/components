@@ -1,5 +1,6 @@
 import type { FieldSize, FieldVariant } from "../field";
 import type { AppDirection } from "../app/app.type";
+import type { DropdownPlacement } from "../dropdown/dropdown.type";
 
 export type SelectVariant = FieldVariant;
 export type SelectSize = FieldSize;
@@ -19,6 +20,7 @@ export type SelectProps = {
   shape?: string;
   size?: FieldSize;
   direction?: AppDirection;
+  placement?: DropdownPlacement;
 
   // Input
   id?: string;

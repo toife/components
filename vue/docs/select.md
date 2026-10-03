@@ -41,6 +41,7 @@ const cities = [
 | `size` | `FieldSize` | — |  |
 | `shadow` | `boolean` | — |  |
 | `direction` | `AppDirection` | — |  |
+| `placement` | `DropdownPlacement` | `bottom-start` | Vị trí dropdown, truyền xuống `Dropdown` |
 | `id` | `string` | — |  |
 | `value` | `string` | — |  |
 | `placeholder` | `string` | — |  |
