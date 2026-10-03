@@ -1,7 +1,7 @@
 <style lang="scss" src="@/core/features/present/present.scss" scoped></style>
 <template src="./present.html"></template>
 <script lang="ts" setup>
-import { unref, computed, inject, nextTick, onMounted, reactive, ref, watch } from "vue";
+import { unref, computed, inject, nextTick, onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { usePresent } from "./present.composable";
 import {
   PRESENT_DEFAULT_PROPS,
@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<PresentProps>(), {
 });
 const emit = defineEmits(["close"]) as unknown as PresentEvent;
 const presentIndex = usePresent();
+const presentId = Symbol("present");
 const appState = inject<ProviderStateRefs<AppProviderState> | null>(APP_PROVIDER_STATE_KEY, null);
 
 // Reactive state
@@ -180,9 +181,23 @@ const close = () => {
   });
 };
 
+// Only the topmost visible present reacts to Escape
+const onKeydown = (e: KeyboardEvent) => {
+  if (e.key !== "Escape" || e.defaultPrevented) return;
+  if (!props.visible || !presentIndex.isTop(presentId)) return;
+  e.preventDefault();
+  emit("close", "escape");
+};
+
 // Lifecycle
 // ----------------------------------------------------------------------------
 onMounted(() => {
+  document.addEventListener("keydown", onKeydown);
+  if (props.visible) {
+    createIndex();
+    presentIndex.pushStack(presentId);
+  }
+
   syncTeleportReady();
   if (!isTeleportReady.value) {
     nextTick(() => {
@@ -193,6 +208,11 @@ onMounted(() => {
 
   if (props.visible) open();
   else close();
+});
+
+onUnmounted(() => {
+  document.removeEventListener("keydown", onKeydown);
+  presentIndex.removeStack(presentId);
 });
 
 watch(
@@ -207,12 +227,14 @@ watch(
   () => {
     if (props.visible) {
       createIndex();
+      presentIndex.pushStack(presentId);
       isShow.value = true;
 
       setTimeout(() => {
         open();
       }, 100);
     } else {
+      presentIndex.removeStack(presentId);
       close();
 
       setTimeout(() => {
