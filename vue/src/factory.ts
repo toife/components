@@ -42,6 +42,7 @@ import {
   Skeleton,
   Switch,
   Tag,
+  TagField,
   Tab,
   Tabs,
   Tooltip,
@@ -124,6 +125,7 @@ class Toife {
     this.app.component(prefix + "skeleton", Skeleton);
     this.app.component(prefix + "switch", Switch);
     this.app.component(prefix + "tag", Tag);
+    this.app.component(prefix + "tag-field", TagField);
     this.app.component(prefix + "tab", Tab);
     this.app.component(prefix + "tabs", Tabs);
     this.app.component(prefix + "tooltip", Tooltip);

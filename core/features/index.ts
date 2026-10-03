@@ -32,6 +32,7 @@ export * from "./slide-range";
 export * from "./switch";
 export * from "./tabs";
 export * from "./tag";
+export * from "./tag-field";
 export * from "./toast";
 export * from "./toolbar";
 export * from "./tooltip";

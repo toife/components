@@ -106,7 +106,7 @@ Page chrome pattern used in Lamtoi:
 
 | Pattern | Components |
 |---------|------------|
-| `v-model` | Field, Select, Checkbox, Switch, RadioGroup, Tabs, Collapse, Dropdown, SlideRange, SegmentedField |
+| `v-model` | Field, TagField, Select, Checkbox, Switch, RadioGroup, Tabs, Collapse, Dropdown, SlideRange, SegmentedField |
 | `:visible` + `@close` | Modal, Present, Action, DecisionModal — **never** `v-model` |
 | Native `@click` | Button (no custom emit) |
 | Composable `.open()` | `useAction`, `useDecisionModal`, `useToast` (preferred over declaring the tag) |

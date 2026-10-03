@@ -98,6 +98,7 @@ The default prefix is `t-`. The **Tag** column is `prefix` + name (e.g. `t-butto
 | `t-segmented-field` | SegmentedField |
 | `t-skeleton` | Skeleton |
 | `t-switch` | Switch |
+| `t-tag-field` | TagField |
 | `t-tabs` | Tabs |
 | `t-toast` | Toast |
 | `t-toast-content` | ToastContent |

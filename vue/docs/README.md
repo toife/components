@@ -49,6 +49,7 @@
 | [slide-range.md](./slide-range.md) | SlideRange | `t-slide-range` |
 | [skeleton.md](./skeleton.md) | Skeleton | `t-skeleton` |
 | [switch.md](./switch.md) | Switch | `t-switch` |
+| [tag-field.md](./tag-field.md) | TagField | `t-tag-field` |
 | [tab.md](./tab.md) | Tab | `t-tab` |
 | [tabs.md](./tabs.md) | Tabs | `t-tabs` |
 | [toast.md](./toast.md) | Toast | `t-toast` |

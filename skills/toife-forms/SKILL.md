@@ -2,13 +2,13 @@
 name: toife-forms
 description: >-
   Build Toife form controls: t-field, t-select, t-checkbox, t-radio, t-radio-group,
-  t-switch, t-segmented-field, t-slide-range, t-form-group, t-datepicker. Use when adding inputs,
+  t-switch, t-segmented-field, t-tag-field, t-slide-range, t-form-group, t-datepicker. Use when adding inputs,
   validation messages, toggles, OTP, sliders, or settings forms, or date/time pickers.
 ---
 
 # Toife forms
 
-Core types: `@toife/components/core/features/{field,select,checkbox,radio,switch,segmented-field,slide-range,form-group,datepicker}`.
+Core types: `@toife/components/core/features/{field,tag-field,select,checkbox,radio,switch,segmented-field,slide-range,form-group,datepicker}`.
 
 All of these use **`v-model`**. Theme (`role`, `shape`, `size`) falls back to `t-app`.
 
@@ -38,6 +38,26 @@ Text / textarea.
 | `message` | | Error / status under the field |
 
 Emits: `update:modelValue`, `focus`, `blur`, `input`, `beforeinput`.
+
+## Tag field — `t-tag-field`
+
+Multi-tag input, standalone: it draws its own box, chips and a plain `<input>` (no `t-field` / `t-tag`) and has its own theme layer `tag-field`. `v-model` is `string[]`.
+
+```vue
+<t-tag-field v-model="tags" placeholder="Type a tag" :max="10" :suggestions="suggestions" @input="load" />
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `modelValue` | `[]` | `string[]` |
+| `variant`, `size`, `role`, `shape`, `placeholder`, `message`, `disabled`, `readonly` | | `variant` = `outline` \| `fill` \| `underline`; colors come from the `tag-field` layer |
+| `max` | | Max tags; the input hides when reached |
+| `separators` | `["Enter", ","]` | `KeyboardEvent.key` values; pasted text splits on them |
+| `allowDuplicates` | `false` | Case-insensitive |
+| `addOnBlur` | `false` | Off on purpose: clicking a suggestion would add the half-typed text |
+| `suggestions` | `[]` | Shown under the field; click adds |
+
+Emits: `update:modelValue`, `add`, `remove`, `input` (typed text), `focus`, `blur`. Slot `tag` (`{ tag, index, remove }`) replaces a chip. Enter that commits an IME candidate does not add a tag; Backspace on empty input removes the last tag.
 
 ## Select — `t-select`
 

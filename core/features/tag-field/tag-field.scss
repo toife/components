@@ -1,0 +1,244 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$tag-field: sass.fn-naming-prefix("tag-field");
+$tag-field-content: sass.fn-naming-prefix("tag-field-content");
+$tag-field-input: sass.fn-naming-prefix("tag-field-input");
+$tag-field-chip: sass.fn-naming-prefix("tag-field-chip");
+$tag-field-text: sass.fn-naming-prefix("tag-field-text");
+$tag-field-remove: sass.fn-naming-prefix("tag-field-remove");
+$tag-field-message: sass.fn-naming-prefix("tag-field-message");
+$tag-field-suggestions: sass.fn-naming-prefix("tag-field-suggestions");
+$tag-field-suggestion: sass.fn-naming-prefix("tag-field-suggestion");
+
+// Property name - layer: tag-field (box)
+$border-color: sass.fn-naming-var("border-color");
+$background-color: sass.fn-naming-var("background-color");
+$color: sass.fn-naming-var("color");
+$placeholder-color: sass.fn-naming-var("placeholder-color");
+$box-shadow: sass.fn-naming-var("box-shadow");
+$backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
+// A state token that the role does not define falls back to the base one.
+@function state($name, $state, $base) {
+  @return sass.fn-naming-dvar(($name, $state), $base);
+}
+
+// Property name - layer: tag-field (chips)
+$chip-color: sass.fn-naming-var("chip-color");
+$chip-color-hover: sass.fn-naming-dvar(("chip-color", "hover"), $chip-color);
+$chip-color-active: sass.fn-naming-dvar(("chip-color", "active"), $chip-color-hover);
+$chip-background-color: sass.fn-naming-var("chip-background-color");
+$chip-border-color: sass.fn-naming-var("chip-border-color");
+$suggestion-color: sass.fn-naming-var("suggestion-color");
+$suggestion-border-color: sass.fn-naming-var("suggestion-border-color");
+$help-color: sass.fn-naming-dvar(("help-color"), $color);
+
+// Property name - size, shape, spacing
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$direction-text-align: sass.fn-naming-var("text-align");
+
+$gap-x: calc(#{$spacing-x} * #{$size-coefficient-x} * 0.5);
+$gap-y: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.5);
+
+.#{$tag-field} {
+  width: 100%;
+
+  // The box: border, background and the row the chips and the input live in.
+  .#{$tag-field-content} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-start;
+    gap: #{$gap-y} #{$gap-x};
+    box-sizing: border-box;
+    min-height: #{$size-control-block-size};
+    padding: #{$gap-y} #{$gap-x};
+    position: relative;
+    cursor: text;
+    color: rgba(#{$color});
+    border-style: solid;
+    border-width: #{$border-width};
+    border-radius: #{$border-radius};
+    border-color: rgba(#{$border-color});
+    background-color: rgba(#{$background-color});
+    box-shadow: #{$box-shadow};
+    backdrop-filter: #{$backdrop-filter};
+    transition:
+      box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    &:hover {
+      border-color: rgba(#{state("border-color", "hover", $border-color)});
+      background-color: rgba(#{state("background-color", "hover", $background-color)});
+      box-shadow: #{state("box-shadow", "hover", $box-shadow)};
+      backdrop-filter: #{state("backdrop-filter", "hover", $backdrop-filter)};
+    }
+  }
+
+  &.focus .#{$tag-field-content} {
+    border-color: rgba(#{state("border-color", "focus", $border-color)});
+    background-color: rgba(#{state("background-color", "focus", $background-color)});
+    box-shadow: #{state("box-shadow", "focus", $box-shadow)};
+    backdrop-filter: #{state("backdrop-filter", "focus", $backdrop-filter)};
+  }
+
+  // A chip
+  .#{$tag-field-chip} {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(#{$spacing-x} * #{$size-coefficient-x} * 0.35);
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.35)
+      calc(#{$spacing-x} * #{$size-coefficient-x} * 0.6);
+    font-size: calc(#{$size-font-size} * 0.85);
+    line-height: #{$size-line-height};
+    color: rgba(#{$chip-color});
+    background-color: rgba(#{$chip-background-color});
+    border-style: solid;
+    border-width: #{$border-width};
+    border-color: rgba(#{$chip-border-color});
+    border-radius: #{$border-radius};
+  }
+
+  .#{$tag-field-text} {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .#{$tag-field-remove} {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    color: rgba(#{$chip-color});
+    transition: color #{$transition-duration} ease;
+
+    &:hover {
+      color: rgba(#{$chip-color-hover});
+    }
+
+    &:active {
+      color: rgba(#{$chip-color-active});
+    }
+  }
+
+  // The text being typed: a plain <input>, no chrome of its own.
+  .#{$tag-field-input} {
+    flex: 1 1 6rem;
+    min-width: 6rem;
+    box-sizing: border-box;
+    margin: 0;
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.25)
+      calc(#{$spacing-x} * #{$size-coefficient-x} * 0.25);
+    border: none;
+    background-color: transparent;
+    color: rgba(#{$color});
+    caret-color: rgba(#{$color});
+    text-align: #{$direction-text-align};
+    font-size: #{$size-font-size};
+    line-height: #{$size-line-height};
+    -webkit-user-select: text;
+    user-select: text;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      border: none;
+    }
+
+    &::placeholder {
+      color: rgba(#{$placeholder-color});
+    }
+  }
+
+  .#{$tag-field-message} {
+    margin-top: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.25);
+    color: rgba(#{$help-color});
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-align: #{$direction-text-align};
+  }
+
+  // Tags offered under the box
+  .#{$tag-field-suggestions} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: #{$gap-y} #{$gap-x};
+    margin-top: #{$gap-y};
+  }
+
+  .#{$tag-field-suggestion} {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.35)
+      calc(#{$spacing-x} * #{$size-coefficient-x} * 0.6);
+    font-size: calc(#{$size-font-size} * 0.85);
+    line-height: #{$size-line-height};
+    color: rgba(#{$suggestion-color});
+    border-style: solid;
+    border-width: #{$border-width};
+    border-color: rgba(#{$suggestion-border-color});
+    border-radius: #{$border-radius};
+
+    &:focus-visible {
+      outline: 2px solid rgba(#{$suggestion-border-color});
+      outline-offset: 1px;
+    }
+  }
+
+  &.full .#{$tag-field-input} {
+    display: none;
+  }
+
+  &.readonly .#{$tag-field-content},
+  &.disabled .#{$tag-field-content} {
+    cursor: default;
+  }
+
+  &.readonly,
+  &.disabled {
+    .#{$tag-field-remove},
+    .#{$tag-field-suggestions} {
+      display: none;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .#{$tag-field-input} {
+      cursor: not-allowed;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .#{$tag-field-content} {
+      border-color: rgba(#{state("border-color", "disabled", $border-color)});
+      background-color: rgba(#{state("background-color", "disabled", $background-color)});
+      box-shadow: #{state("box-shadow", "disabled", $box-shadow)};
+      backdrop-filter: #{state("backdrop-filter", "disabled", $backdrop-filter)};
+    }
+  }
+}

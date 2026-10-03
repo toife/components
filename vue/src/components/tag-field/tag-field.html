@@ -1,0 +1,28 @@
+<div v-bind="tagFieldAttrs">
+  <div v-bind="contentAttrs" @click="onClick">
+    <slot name="start-input"></slot>
+    <template v-for="(tag, index) in modelValue" :key="tag">
+      <slot name="tag" :tag="tag" :index="index" :remove="() => remove(tag)">
+        <span v-bind="chipAttrs">
+          <span v-bind="textAttrs">{{ tag }}</span>
+          <button v-if="!disabled && !readonly" v-bind="removeAttrs" type="button" tabindex="-1" aria-label="Remove" @click.stop="remove(tag)">×</button>
+        </span>
+      </slot>
+    </template>
+    <input
+      ref="input"
+      v-bind="inputAttrs"
+      v-model="text"
+      @keydown="onKeydown"
+      @paste="onPaste"
+      @focus="onFocus"
+      @blur="onBlur"
+    />
+    <slot name="end-input"></slot>
+  </div>
+  <div v-if="message" v-bind="messageAttrs">{{ message }}</div>
+  <div v-if="available.length && !disabled && !readonly && !full" v-bind="suggestionsAttrs">
+    <button v-for="tag in available" :key="tag" v-bind="suggestionAttrs" type="button" @click="add(tag)">{{ tag }}</button>
+  </div>
+  <slot></slot>
+</div>
