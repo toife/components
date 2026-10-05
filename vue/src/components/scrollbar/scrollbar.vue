@@ -124,7 +124,9 @@ const scrollbarAttrs = computed(() =>
   })
 );
 
-const contentAttrs = getScrollbarContentAttrs();
+const contentAttrs = computed(() =>
+  getScrollbarContentAttrs({ x: hasHorizontal.value, y: hasVertical.value })
+);
 const thumbSelector = getScrollbarThumbSelector();
 
 // Methods
@@ -178,16 +180,33 @@ const onScroll = (event: Event) => {
   emit("scroll", event);
 };
 
-/** The tracks sit outside the scrollport, so wheeling over them must forward. */
+/** Can `element` still move by `delta` along one axis, or is it pinned at that edge? */
+const canScrollBy = (position: number, max: number, delta: number) =>
+  (delta < 0 && position > 0) || (delta > 0 && position < max - 1);
+
+/**
+ * The tracks sit outside the scrollport, so wheeling over them must forward.
+ * Only swallow the event when the port actually moves: otherwise (axis not
+ * overflowing, or already at the edge) let it chain to the ancestor, or the
+ * wheel goes dead whenever the pointer rests on a track.
+ */
 const onWheel = (event: WheelEvent) => {
-  if (!content.value) return;
-  const scale = getScrollbarWheelScale(event.deltaMode, content.value.clientHeight);
+  const el = content.value;
+  if (!el) return;
+  const scale = getScrollbarWheelScale(event.deltaMode, el.clientHeight);
+  const top = event.deltaY * scale;
+  const left = event.deltaX * scale;
+
+  const movesY =
+    props.direction !== "horizontal" &&
+    canScrollBy(el.scrollTop, el.scrollHeight - el.clientHeight, top);
+  const movesX =
+    props.direction !== "vertical" &&
+    canScrollBy(el.scrollLeft, el.scrollWidth - el.clientWidth, left);
+  if (!movesY && !movesX) return;
+
   event.preventDefault();
-  content.value.scrollBy({
-    top: event.deltaY * scale,
-    left: event.deltaX * scale,
-    behavior: "instant",
-  });
+  el.scrollBy({ top: movesY ? top : 0, left: movesX ? left : 0, behavior: "instant" });
 };
 
 /** Click on the empty part of the track: glide the thumb to where it landed. */

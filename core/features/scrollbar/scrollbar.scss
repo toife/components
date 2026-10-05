@@ -49,9 +49,18 @@ $thumb-color-active: sass.fn-naming-dvar(("scrollbar", "thumb-color-active"), $c
   .#{$scrollbar-content} {
     width: 100%;
     height: 100%;
-    overflow: auto;
+    // Opt in per axis (`scroll-x` / `scroll-y`) once it truly overflows.
+    overflow: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+
+    &.scroll-x {
+      overflow-x: auto;
+    }
+
+    &.scroll-y {
+      overflow-y: auto;
+    }
 
     &::-webkit-scrollbar {
       width: 0;

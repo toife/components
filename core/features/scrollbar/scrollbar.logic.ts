@@ -32,8 +32,13 @@ export const getScrollbarAttrs = (options: ScrollbarAttrOptions) => ({
   },
 });
 
-export const getScrollbarContentAttrs = () => ({
-  class: [cssPrefix("scrollbar-content")],
+/**
+ * An axis only scrolls natively while it really overflows. Sub-pixel overflow
+ * would otherwise keep the wheel latched on the port with nothing to scroll,
+ * instead of chaining to the ancestor.
+ */
+export const getScrollbarContentAttrs = (options: { x: boolean; y: boolean }) => ({
+  class: [cssPrefix("scrollbar-content"), { "scroll-x": options.x, "scroll-y": options.y }],
 });
 
 export const getScrollbarTrackAttrs = (options: ScrollbarTrackAttrOptions) => ({
