@@ -61,9 +61,11 @@ const dropdownAttrs = computed(() => {
 });
 
 const fieldAttrs = computed(() => {
-  const propsValue = props.modelValue || props.value;
+  // `""` is a legitimate option value ("All"), so only null/undefined mean "nothing selected".
+  const propsValue = props.modelValue ?? props.value;
   let val: string[] = [];
-  if (propsValue) val = typeof propsValue === "string" ? [propsValue] : (propsValue as string[]);
+  if (propsValue != null)
+    val = typeof propsValue === "string" ? [propsValue] : (propsValue as string[]);
   const values: string[] = props.options
     .filter((option): option is SelectOption => (val || []).includes(option.value))
     .map((option) => option.label ?? option.value);
