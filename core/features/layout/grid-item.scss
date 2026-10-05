@@ -9,7 +9,6 @@ $grid-item-justify: sass.fn-naming-var("justify");
 $grid-item-align: sass.fn-naming-var("align");
 
 .#{$grid-item} {
-  display: grid;
   box-sizing: border-box;
   min-width: 0;
   grid-column: #{$grid-item-column};
