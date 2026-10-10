@@ -57,9 +57,16 @@ Emits `transform`: `{ back, prepare, active, backdrop, duration }`.
 
 Provider takes required `stack: RouteStack[]`. Wrapper already builds this — do not declare Provider by hand unless customizing.
 
-`RouteStack`: `{ name, component, stack: RouteStack[] }`.
+`RouteStack`: `{ name, component, stack: RouteStack[] }`. `component` is the vue-router `components` map (`{ default, actions? }`).
 
-Outlet is internal to Navigator. Rarely used directly.
+`t-route-outlet` renders one view. Without `name`, it renders the `component` prop (`default` when that value is a map) — this is what the navigator uses. With `name`, it must sit under a Provider and renders `components[name]` of the **active child** (last stack entry). Several outlets can sit beside a nested navigator: the navigator shows `default`, each outlet shows another named view, and the layout stays mounted.
+
+```vue
+<t-route-outlet name="actions" />
+<t-route-navigator name="section-navigator" variant="fade" />
+```
+
+Child route: `components: { default: Page, actions: PageActions }`. `actions` and `default` are separate components.
 
 ## Tabs — `t-tabs` + `t-tab`
 

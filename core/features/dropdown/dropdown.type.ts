@@ -1,6 +1,10 @@
 import type { AppDirection } from "../app/app.type";
 
-export type DropdownPlacement = "bottom-start" | "bottom-end" | "top-start" | "top-end";
+export type DropdownPlacement =
+  | "bottom-start"
+  | "bottom-end"
+  | "top-start"
+  | "top-end";
 
 export type DropdownSize = string;
 
@@ -20,5 +24,12 @@ export type DropdownEvent = {
   (e: "close"): void;
 };
 
-export type DropdownAttrOptions = { role: string; shape: string; size: string; open: boolean; disabled: boolean, placement: string };
-export type DropdownPanelAttrOptions = {  };
+export type DropdownAttrOptions = {
+  role: string;
+  shape: string;
+  size: string;
+  open: boolean;
+  disabled: boolean;
+  placement: string;
+};
+export type DropdownPanelAttrOptions = Record<string, never>;

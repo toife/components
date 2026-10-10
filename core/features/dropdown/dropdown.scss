@@ -16,6 +16,8 @@ $spacing-x: sass.fn-naming-var("spacing", "x");
 $spacing-y: sass.fn-naming-var("spacing", "y");
 $size-font-size: sass.fn-naming-var("font-size");
 $size-line-height: sass.fn-naming-var("line-height");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$viewport-width: sass.fn-naming-var("viewport", "width");
 $transition-duration: sass.fn-naming-var("transition-duration");
 
 $size-control-block-size: sass.fn-naming-var("control-block-size");
@@ -24,34 +26,18 @@ $size-control-block-size: sass.fn-naming-var("control-block-size");
   position: relative;
   display: block;
   width: 100%;
-
-  &.bottom-start .#{$dropdown-panel} {
-    top: 100%;
-    left: 0;
-  }
-
-  &.bottom-end .#{$dropdown-panel} {
-    top: 100%;
-    right: 0;
-    left: auto;
-  }
-
-  &.top-start .#{$dropdown-panel} {
-    bottom: 100%;
-    left: 0;
-  }
-
-  &.top-end .#{$dropdown-panel} {
-    bottom: 100%;
-    right: 0;
-    left: auto;
-  }
 }
 
+// The popover top layer escapes overflow. Fixed coordinates keep the panel
+// over the trigger instead of stretching it to the viewport.
 .#{$dropdown-panel} {
-  position: absolute;
+  position: fixed;
   z-index: 20;
-  min-width: 100%;
+  inset: auto;
+  width: max-content;
+  max-width: calc(#{$viewport-width} - #{$size-coefficient-x} * #{$spacing-x} * 2);
+  height: auto;
+  padding: 0;
   box-sizing: border-box;
   border-radius: #{$border-radius};
   border-width: #{$border-width};

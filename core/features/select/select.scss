@@ -19,11 +19,16 @@ $size-coefficient-x: sass.fn-naming-var("coefficient-x");
 $size-coefficient-y: sass.fn-naming-var("coefficient-y");
 $transition-duration: sass.fn-naming-var("transition-duration");
 $border-radius: sass.fn-naming-var("border-radius");
+$app-color: sass.fn-naming-var("app-color");
+$direction-text-align: sass.fn-naming-var("text-align");
 
 $select-background-color: sass.fn-naming-var("background-color");
 $select-background-color-hover: sass.fn-naming-var("background-color", "hover");
 $select-background-color-focus: sass.fn-naming-var("background-color", "focus");
-$select-background-color-active: sass.fn-naming-var("background-color", "active");
+$select-background-color-active: sass.fn-naming-var(
+  "background-color",
+  "active"
+);
 $select-color: sass.fn-naming-var("color");
 $select-color-disabled: sass.fn-naming-var("color", "disabled");
 $select-border-color: sass.fn-naming-var("border-color");
@@ -39,33 +44,38 @@ $select-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 $select-backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
 $select-backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
 $select-backdrop-filter-active: sass.fn-naming-var("backdrop-filter", "active");
-$select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+$select-backdrop-filter-disabled: sass.fn-naming-var(
+  "backdrop-filter",
+  "disabled"
+);
 
 .#{$select} {
   &.disabled {
     cursor: not-allowed;
   }
 
-  :deep(.#{$dropdown}){
+  :deep(.#{$dropdown}) {
     .#{$dropdown-panel} {
       margin: 0 !important;
     }
 
     &.open {
-      &.top-start, &.top-end {
+      &.top-start,
+      &.top-end {
         .#{$dropdown-panel} {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
           border-bottom: none;
         }
-        
+
         .#{$field-content} {
           border-top-left-radius: 0 !important;
           border-top-right-radius: 0 !important;
         }
       }
 
-      &.bottom-start, &.bottom-end {
+      &.bottom-start,
+      &.bottom-end {
         .#{$dropdown-panel} {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
@@ -91,10 +101,10 @@ $select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 0.1rem;
-    border-right: 2px solid rgba(var(--t-app-color));
-    border-bottom: 2px solid rgba(var(--t-app-color));
-    margin: calc(var(--t-spacing-y) * var(--t-coefficient-y))
-      calc(var(--t-spacing-x) * var(--t-coefficient-x));
+    border-right: 2px solid rgba(#{$app-color});
+    border-bottom: 2px solid rgba(#{$app-color});
+    margin: calc(#{$spacing-y} * #{$size-coefficient-y})
+      calc(#{$spacing-x} * #{$size-coefficient-x});
     transition: transform #{$transition-duration} ease;
     transform-origin: center;
 
@@ -110,8 +120,9 @@ $select-backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disable
   .#{$select-option} {
     display: block;
     width: 100%;
-    padding: calc(var(--t-spacing-y)) calc(var(--t-spacing-x) * var(--t-coefficient-x));
-    text-align: var(--t-text-align);
+    padding: calc(#{$spacing-y})
+      calc(#{$spacing-x} * #{$size-coefficient-x});
+    text-align: #{$direction-text-align};
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
