@@ -1,16 +1,6 @@
 <div v-bind="calloutAttrs">
   <div v-bind="bodyAttrs"><slot></slot></div>
-  <Button
-    v-if="props.closable"
-    v-bind="closeAttrs"
-    variant="text"
-    size="small"
-    type="button"
-    :role="resolvedRole"
-    :shape="resolvedShape"
-    aria-label="Close"
-    @click="onClose"
-  >
+  <button v-if="props.closable" v-bind="closeAttrs" type="button" aria-label="Close" @click="onClose">
     <slot name="close">×</slot>
-  </Button>
+  </button>
 </div>

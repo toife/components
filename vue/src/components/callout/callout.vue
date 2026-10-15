@@ -2,7 +2,6 @@
 <template src="./callout.html"></template>
 <script lang="ts" setup>
 import { unref, computed, inject } from "vue";
-import { Button } from "../button";
 import {
   CALLOUT_DEFAULT_PROPS,
   APP_PROVIDER_STATE_KEY,
