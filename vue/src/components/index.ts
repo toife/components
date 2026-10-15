@@ -12,6 +12,7 @@ export * from "./tabs";
 export * from "./switch";
 export * from "./checkbox";
 export * from "./radio";
+export * from "./callout";
 export * from "./card";
 export * from "./toast";
 export * from "./avatar";

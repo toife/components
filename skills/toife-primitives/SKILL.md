@@ -1,14 +1,14 @@
 ---
 name: toife-primitives
 description: >-
-  Use Toife primitive components: t-button, t-avatar, t-image, t-tag, t-skeleton,
-  t-progress, t-gesture-indicator. Use when adding CTAs, avatars, status chips,
-  placeholders, progress bars, images, or sheet drag handles.
+  Use Toife primitive components: t-button, t-avatar, t-image, t-tag, t-callout,
+  t-skeleton, t-progress, t-gesture-indicator. Use when adding CTAs, avatars,
+  status chips, callouts, placeholders, progress bars, images, or sheet drag handles.
 ---
 
 # Toife primitives
 
-Core types: `@toife/components/core/features/{button,avatar,image,tag,skeleton,progress,gesture-indicator}`.
+Core types: `@toife/components/core/features/{button,avatar,image,tag,callout,skeleton,progress,gesture-indicator}`.
 
 Theme (`role`, `shape`, `size`) falls back to `t-app` except `t-image`.
 
@@ -68,6 +68,26 @@ Lamtoi status map: `active → success`, `upcoming → warning`, else `primary`.
 | `variant` | `fill` (`outline` \| `text`) |
 | `size` | `standard` |
 | `role`, `shape` | Theme |
+
+## Callout — `t-callout`
+
+Short notice. Same roles as Button / Tag.
+
+```vue
+<t-callout role="success">Saved.</t-callout>
+<t-callout role="warning" variant="outline" closable @close="dismiss">Expires in 3 days.</t-callout>
+<t-callout role="info" direction="right" closable @close="dismiss">Mirrored notice.</t-callout>
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `variant` | `accent` | `accent` side border (left when direction is left, right when direction is right). `outline` border on all four sides |
+| `closable` | `false` | Close button. Position follows `direction`. Emits `close`; parent removes the callout |
+| `direction` | App | `left` \| `right`. Flips text and the close button |
+| `size` | `standard` | |
+| `role`, `shape` | Theme | |
+
+Slot `close` replaces the default `×`.
 
 ## Skeleton — `t-skeleton`
 

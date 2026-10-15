@@ -8,6 +8,7 @@ import {
   CardBody,
   CardHeader,
   CardFooter,
+  Callout,
   Checkbox,
   Collapse,
   Container,
@@ -91,6 +92,7 @@ class Toife {
     this.app.component(prefix + "card-body", CardBody);
     this.app.component(prefix + "card-header", CardHeader);
     this.app.component(prefix + "card-footer", CardFooter);
+    this.app.component(prefix + "callout", Callout);
     this.app.component(prefix + "checkbox", Checkbox);
     this.app.component(prefix + "radio", Radio);
     this.app.component(prefix + "radio-group", RadioGroup);

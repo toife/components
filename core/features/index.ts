@@ -3,6 +3,7 @@ export * from "./app";
 export * from "./avatar";
 export * from "./button";
 export * from "./cable";
+export * from "./callout";
 export * from "./card";
 export * from "./checkbox";
 export * from "./collapse";

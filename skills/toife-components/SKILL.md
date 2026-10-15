@@ -20,7 +20,7 @@ Types, defaults, attr builders, and SCSS live in `@toife/components/core`. Vue (
 | Forms and controls | `toife-forms` |
 | Modal, toast, action, dropdown | `toife-overlays` |
 | Router stack, tabs, refresh | `toife-navigation` |
-| Button, avatar, tag, image, progress | `toife-primitives` |
+| Button, avatar, tag, callout, image, progress | `toife-primitives` |
 
 Read the matching skill **before** writing markup.
 

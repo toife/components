@@ -1,0 +1,84 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$callout: sass.fn-naming-prefix("callout");
+$callout-accent: sass.fn-naming-prefix("callout", "accent");
+$callout-outline: sass.fn-naming-prefix("callout", "outline");
+$callout-body: sass.fn-naming-prefix("callout", "body");
+$callout-close: sass.fn-naming-prefix("callout", "close");
+$direction-right: sass.fn-naming-prefix("direction", "right");
+
+// Properties
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+
+$callout-color: sass.fn-naming-var("color");
+$callout-background-color: sass.fn-naming-var("background-color");
+$callout-border-color: sass.fn-naming-var("border-color");
+$callout-box-shadow: sass.fn-naming-var("box-shadow");
+$callout-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
+$direction-text-align: sass.fn-naming-var("text-align");
+
+.#{$callout} {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  border-style: solid;
+  border-width: 0;
+  border-radius: #{$border-radius};
+  color: rgba(#{$callout-color});
+  background-color: rgba(#{$callout-background-color});
+  border-color: rgba(#{$callout-border-color});
+  box-shadow: #{$callout-box-shadow};
+  backdrop-filter: #{$callout-backdrop-filter};
+  font-size: #{$size-font-size};
+  line-height: #{$size-line-height};
+  gap: calc(#{$spacing-x} * #{$size-coefficient-x} * 0.5);
+  padding: calc(#{$spacing-y} * #{$size-coefficient-y})
+    calc(#{$spacing-x} * #{$size-coefficient-x});
+  transition:
+    color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
+
+  &.#{$callout-accent} {
+    border-left-width: calc(#{$border-width} * 4);
+
+    &.#{$direction-right} {
+      border-left-width: 0;
+      border-right-width: calc(#{$border-width} * 4);
+    }
+  }
+
+  &.#{$callout-outline} {
+    border-width: #{$border-width};
+  }
+
+  &.#{$direction-right} {
+    flex-direction: row-reverse;
+  }
+
+  .#{$callout-body} {
+    flex: 1;
+    min-width: 0;
+    text-align: #{$direction-text-align};
+  }
+
+  .#{$callout-close} {
+    flex: none;
+  }
+}

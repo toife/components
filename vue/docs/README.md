@@ -13,6 +13,7 @@
 | [button.md](./button.md) | Button | `t-button` |
 | [cable.md](./cable.md) | Cable | `t-cable` |
 | [card.md](./card.md) | Card | `t-card` |
+| [callout.md](./callout.md) | Callout | `t-callout` |
 | [card-header.md](./card-header.md) | CardHeader | `t-card-header` |
 | [card-body.md](./card-body.md) | CardBody | `t-card-body` |
 | [card-footer.md](./card-footer.md) | CardFooter | `t-card-footer` |
