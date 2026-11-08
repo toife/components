@@ -3,6 +3,8 @@ import {
   RouteNavigatorAttrOptions,
   RouteNavigatorBackdropAttrOptions,
   RouteNavigatorComponentAttrOptions,
+  RouteNavigatorGesture,
+  RouteNavigatorProps,
 } from "./route-navigator.type";
 
 export const getRouteNavigatorTransitionDuration = (
@@ -11,6 +13,36 @@ export const getRouteNavigatorTransitionDuration = (
   if (options.variant === "none") return "0s";
   if (options.transform.duration !== undefined) return options.transform.duration;
   return options.transform.active > 0 ? "0s" : undefined;
+};
+
+/**
+ * Progress (%) along the swipe-back axis. Reverse past the start clamps to 0
+ * so the active page does not bounce the opposite way.
+ */
+export const getRouteNavigatorSwipePercent = (
+  data: RouteNavigatorGesture,
+  direction: RouteNavigatorProps["direction"],
+  size: number
+): number => {
+  if (size <= 0) return 0;
+
+  let delta = 0;
+  switch (direction) {
+    case "right":
+      delta = data.deltaX;
+      break;
+    case "left":
+      delta = -data.deltaX;
+      break;
+    case "down":
+      delta = data.deltaY;
+      break;
+    case "up":
+      delta = -data.deltaY;
+      break;
+  }
+
+  return (Math.max(0, delta) / size) * 100;
 };
 
 export const getRouteNavigatorAttrs = (options: RouteNavigatorAttrOptions) => ({

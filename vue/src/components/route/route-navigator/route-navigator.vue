@@ -18,6 +18,7 @@ import {
   getRouteNavigatorAttrs,
   getRouteNavigatorBackdropAttrs,
   getRouteNavigatorComponentAttrs,
+  getRouteNavigatorSwipePercent,
   type RouteNavigatorEvent,
   type RouteNavigatorGesture,
   type RouteNavigatorProps,
@@ -205,13 +206,7 @@ const resetTransform = () => {
 
 const move = (data: RouteNavigatorGesture) => {
   const width = navigatorRef.value?.offsetWidth ?? 0;
-  let activePercent = 0;
-
-  if (props.direction == "left" || props.direction == "right") {
-    activePercent = (Math.abs(data.deltaX) / width) * 100;
-  } else {
-    activePercent = (Math.abs(data.deltaY) / width) * 100;
-  }
+  const activePercent = getRouteNavigatorSwipePercent(data, props.direction, width);
 
   transform.back = ((100 - activePercent) * BACK_LAYER_PEEK_PCT) / 100;
   transform.active = activePercent;
@@ -223,13 +218,7 @@ const move = (data: RouteNavigatorGesture) => {
 
 const up = (data: RouteNavigatorGesture) => {
   const width = navigatorRef.value?.offsetWidth ?? 0;
-  let percent = 0;
-
-  if (props.direction == "left" || props.direction == "right") {
-    percent = (Math.abs(data.deltaX) / width) * 100;
-  } else {
-    percent = (Math.abs(data.deltaY) / width) * 100;
-  }
+  const percent = getRouteNavigatorSwipePercent(data, props.direction, width);
 
   if (percent >= 60) {
     commitGestureBack();
