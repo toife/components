@@ -37,6 +37,7 @@ export type TabsProviderState = {
 export type TabsAttrOptions = {
   role: string;
   shape: string;
+  size: TabsSize;
   placement: TabsPlacement;
   variant: TabsVariant;
   transition: boolean;

@@ -77,6 +77,7 @@ const tabsAttrs = computed(() => {
     ...getTabsAttrs({
       role: role.value,
       shape: shape.value,
+      size: size.value,
       placement: props.placement,
       variant: props.variant,
       transition: isFirstRender.value ? false : props.transition,

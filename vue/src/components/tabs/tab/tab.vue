@@ -6,7 +6,6 @@ import {
   TAB_DEFAULT_PROPS,
   TABS_PROVIDER_STATE_KEY,
   getTabAttrs,
-  getTabButtonAttrs,
   type TabProps,
   type TabsProviderState,
 } from "@/core";
@@ -20,11 +19,8 @@ const tabsState = inject<ProviderStateRefs<TabsProviderState>>(TABS_PROVIDER_STA
 
 // Computed properties
 // ----------------------------------------------------------------------------
-const shape = computed(() => unref(tabsState?.shape) || "");
-const size = computed(() => unref(tabsState?.size) || "standard");
 const isActive = computed(() => unref(tabsState?.activeValue) === props.value);
 const tabAttrs = computed(() => getTabAttrs({ active: isActive.value }));
-const buttonAttrs = computed(() => getTabButtonAttrs({ shape: shape.value, size: size.value }));
 // Methods
 // ----------------------------------------------------------------------------
 const handleClick = () => {

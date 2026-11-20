@@ -11,6 +11,7 @@ export const getTabsAttrs = (options: TabsAttrOptions) => ({
     cssPrefix(["layer", "tabs"]),
     cssPrefix(["role", options.role + "-" + options.variant]),
     cssPrefix(["shape", options.shape]),
+    cssPrefix(["size", options.size || "standard"]),
     cssPrefix("tabs"),
     options.placement,
     options.variant,

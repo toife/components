@@ -5,4 +5,3 @@ export type TabProps = {
 };
 
 export type TabAttrOptions = { active: boolean };
-export type TabButtonAttrOptions = { shape: string; size: string };
