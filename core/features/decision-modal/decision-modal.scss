@@ -38,7 +38,6 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   max-width: #{$max-width};
   overflow: hidden;
   position: relative;
-  margin: calc(#{$margin-x} * 4) calc(#{$margin-y} * 2);
   border-radius: #{$border-radius};
   transition:
     box-shadow #{$transition-duration} ease,
