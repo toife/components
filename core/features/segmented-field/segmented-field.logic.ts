@@ -17,10 +17,10 @@ export const getSegmentedFieldContentAttrs = () => ({
   class: [cssPrefix("segmented-field-content")],
 });
 
-/** One cell. Uses the field layer so the box follows the same role colors as a text field. */
+/** One cell. Uses this component's layer, not the field wrapper's layer. */
 export const getSegmentedFieldInputAttrs = (options: SegmentedFieldAttrOptions) => ({
   class: [
-    cssPrefix(["layer", "field"]),
+    cssPrefix(["layer", "segmented-field"]),
     cssPrefix(["role", options.role + "-" + options.variant]),
     cssPrefix(["shape", options.shape]),
     cssPrefix(["size", options.size]),

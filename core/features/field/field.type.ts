@@ -9,3 +9,10 @@ export type FieldProps = {
   message?: string;
   hint?: string;
 };
+
+/** Attributes from a control that uses this wrapper, merged onto the field root. */
+export type FieldAttrOptions = {
+  class?: unknown;
+  style?: unknown;
+  [key: string]: unknown;
+};

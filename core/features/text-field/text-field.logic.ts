@@ -3,7 +3,7 @@ import { TextFieldAttrOptions } from "./text-field.type";
 
 export const getTextFieldAttrs = (options: TextFieldAttrOptions) => ({
   class: [
-    cssPrefix(["layer", "field"]),
+    cssPrefix(["layer", "text-field"]),
     cssPrefix(["role", options.role + "-" + options.variant]),
     cssPrefix(["shape", options.shape]),
     cssPrefix("text-field"),

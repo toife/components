@@ -16,11 +16,11 @@ Shared field chrome: `variant` = `outline` \| `fill` \| `underline`; `size` ofte
 
 ## Field — `t-field`
 
-Wrapper for the parts outside the input box: `message` and `hint`. `t-text-field`, `t-tag-field`, and `t-segmented-field` render this around their box. Theme variables (`help-color`, falling back to `color`) come from the layer class those controls put on the wrapper.
+Wrapper for the parts outside the input box: `message` and `hint`. Its own theme layer is `field` (`t-layer-field`). `t-text-field`, `t-tag-field`, `t-segmented-field`, and `t-select` keep their own layers (`text-field`, `tag-field`, `segmented-field`, `select`) and pass those attributes into this wrapper, which merges them onto the same root.
 
 ## Text field — `t-text-field`
 
-Text / textarea. The box is this component; message and hint are the `t-field` wrapper.
+Text / textarea. The box is this component and uses the `text-field` theme layer. Message and hint are the `t-field` wrapper.
 
 ```vue
 <t-text-field
@@ -118,7 +118,7 @@ A lone `t-radio` does nothing useful.
 
 ## Segmented field — `t-segmented-field`
 
-OTP / PIN. Each cell is a native input owned by this component (not `t-text-field`). `message` and `hint` still go through `t-field`. `v-model` is **`string[]`** (one entry per cell).
+OTP / PIN. Each cell is a native input on the `segmented-field` layer (not `t-text-field`). `message` and `hint` still go through `t-field`. `v-model` is **`string[]`** (one entry per cell).
 
 ```vue
 <t-segmented-field
