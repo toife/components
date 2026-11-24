@@ -7,7 +7,7 @@ $field-help: sass.fn-naming-prefix("field-help");
 
 // Select sets message-color. Text and tag fields set help-color. Segmented field only sets color.
 $help-color: sass.fn-naming-dvar(("help-color"), sass.fn-naming-var("color"));
-$support-color: sass.fn-naming-dvar(("message-color"), $help-color);
+$message-color: sass.fn-naming-dvar(("message-color"), sass.fn-naming-var("color"));
 
 $spacing-y: sass.fn-naming-var("spacing", "y");
 $size-coefficient-y: sass.fn-naming-var("coefficient-y");
@@ -20,7 +20,6 @@ $transition-duration: sass.fn-naming-var("transition-duration");
   .#{$field-message},
   .#{$field-help} {
     margin-top: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.25);
-    color: rgba(#{$support-color});
     font-size: 0.9em;
     line-height: 1.5;
     text-align: #{$direction-text-align};
@@ -31,5 +30,13 @@ $transition-duration: sass.fn-naming-var("transition-duration");
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
       border-radius #{$transition-duration} ease;
+  }
+
+  .#{$field-message} {
+    color: rgba(#{$message-color});
+  }
+
+  .#{$field-help} {
+    color: rgba(#{$help-color});
   }
 }
