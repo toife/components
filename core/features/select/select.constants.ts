@@ -8,7 +8,7 @@ export const SELECT_DEFAULT_PROPS = {
   size: "standard",
   disabled: false,
   message: "",
-  hint: "",
+  help: "",
   variant: "outline",
   placeholder: "",
   direction: undefined,

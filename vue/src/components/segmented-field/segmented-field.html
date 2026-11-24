@@ -1,4 +1,4 @@
-<Field :message="message" :hint="hint" v-bind="wrapperAttrs">
+<Field :message="message" :help="help" v-bind="wrapperAttrs">
   <div v-bind="contentAttrs" @pointerup="onFieldClick">
     <input
       v-for="(_, index) in props.length"

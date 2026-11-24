@@ -16,11 +16,11 @@ Shared field chrome: `variant` = `outline` \| `fill` \| `underline`; `size` ofte
 
 ## Field — `t-field`
 
-Wrapper for the parts outside the input box: `message` and `hint`. Its own theme layer is `field` (`t-layer-field`). `t-text-field`, `t-tag-field`, `t-segmented-field`, and `t-select` keep their own layers (`text-field`, `tag-field`, `segmented-field`, `select`) and pass those attributes into this wrapper, which merges them onto the same root.
+Wrapper for the parts outside the input box: `message` and `help`. Its own theme layer is `field` (`t-layer-field`). `t-text-field`, `t-tag-field`, `t-segmented-field`, and `t-select` keep their own layers (`text-field`, `tag-field`, `segmented-field`, `select`) and pass those attributes into this wrapper, which merges them onto the same root.
 
 ## Text field — `t-text-field`
 
-Text / textarea. The box is this component and uses the `text-field` theme layer. Message and hint are the `t-field` wrapper.
+Text / textarea. The box is this component and uses the `text-field` theme layer. Message and help are the `t-field` wrapper.
 
 ```vue
 <t-text-field
@@ -29,7 +29,7 @@ Text / textarea. The box is this component and uses the `text-field` theme layer
   size="large"
   placeholder="you@example.com"
   :message="errors.email"
-  hint="Work email"
+  help="Work email"
 />
 ```
 
@@ -41,13 +41,13 @@ Text / textarea. The box is this component and uses the `text-field` theme layer
 | `line` / `maxLine` | `1` | Use with `type="paragraph"` |
 | `placeholder`, `disabled`, `readonly`, `name`, `id`, `maxLength` | | |
 | `message` | | Status under the box |
-| `hint` | | Second line under the box |
+| `help` | | Second line under the box |
 
 Emits: `update:modelValue`, `focus`, `blur`, `input`, `beforeinput`.
 
 ## Tag field — `t-tag-field`
 
-Multi-tag input. It draws its own box, chips and a plain `<input>` (no `t-text-field` / `t-tag`), and passes `message` / `hint` to the `t-field` wrapper. Theme layer is `tag-field`. `v-model` is `string[]`.
+Multi-tag input. It draws its own box, chips and a plain `<input>` (no `t-text-field` / `t-tag`), and passes `message` / `help` to the `t-field` wrapper. Theme layer is `tag-field`. `v-model` is `string[]`.
 
 ```vue
 <t-tag-field v-model="tags" placeholder="Type a tag" :max="10" :suggestions="suggestions" @input="load" />
@@ -56,7 +56,7 @@ Multi-tag input. It draws its own box, chips and a plain `<input>` (no `t-text-f
 | Prop | Default | Notes |
 |------|---------|-------|
 | `modelValue` | `[]` | `string[]` |
-| `variant`, `size`, `role`, `shape`, `placeholder`, `message`, `hint`, `disabled`, `readonly` | | `variant` = `outline` \| `fill` \| `underline`; colors come from the `tag-field` layer |
+| `variant`, `size`, `role`, `shape`, `placeholder`, `message`, `help`, `disabled`, `readonly` | | `variant` = `outline` \| `fill` \| `underline`; colors come from the `tag-field` layer |
 | `max` | | Max tags; the input hides when reached |
 | `separators` | `["Enter", ","]` | `KeyboardEvent.key` values; pasted text splits on them |
 | `allowDuplicates` | `false` | Case-insensitive |
@@ -67,7 +67,7 @@ Emits: `update:modelValue`, `add`, `remove`, `input` (typed text), `focus`, `blu
 
 ## Select — `t-select`
 
-Closed box is `t-text-field`. `message` and `hint` go through the `t-field` wrapper and use the select layer's `message-color`. **`options` required**.
+Closed box is `t-text-field`. `message` and `help` go through the `t-field` wrapper and use the select layer's `message-color`. **`options` required**.
 
 ```vue
 <t-select
@@ -118,7 +118,7 @@ A lone `t-radio` does nothing useful.
 
 ## Segmented field — `t-segmented-field`
 
-OTP / PIN. Each cell is a native input on the `segmented-field` layer (not `t-text-field`). `message` and `hint` still go through `t-field`. `v-model` is **`string[]`** (one entry per cell).
+OTP / PIN. Each cell is a native input on the `segmented-field` layer (not `t-text-field`). `message` and `help` still go through `t-field`. `v-model` is **`string[]`** (one entry per cell).
 
 ```vue
 <t-segmented-field

@@ -5,7 +5,7 @@ import { computed, useAttrs } from "vue";
 import {
   FIELD_DEFAULT_PROPS,
   getFieldAttrs,
-  getFieldHintAttrs,
+  getFieldHelpAttrs,
   getFieldMessageAttrs,
   type FieldProps,
 } from "@/core";
@@ -23,5 +23,5 @@ const attrs = useAttrs();
 // ----------------------------------------------------------------------------
 const fieldAttrs = computed(() => getFieldAttrs({ ...attrs }));
 const messageAttrs = computed(() => getFieldMessageAttrs());
-const hintAttrs = computed(() => getFieldHintAttrs());
+const helpAttrs = computed(() => getFieldHelpAttrs());
 </script>

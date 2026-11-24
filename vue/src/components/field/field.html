@@ -1,6 +1,6 @@
 <div v-bind="fieldAttrs">
   <slot></slot>
   <div v-if="message" v-bind="messageAttrs">{{ message }}</div>
-  <div v-if="hint" v-bind="hintAttrs">{{ hint }}</div>
+  <div v-if="help" v-bind="helpAttrs">{{ help }}</div>
   <slot name="after"></slot>
 </div>

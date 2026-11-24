@@ -27,7 +27,7 @@ export type TagFieldProps = {
 
   // Support — rendered by Field, outside the box
   message?: string;
-  hint?: string;
+  help?: string;
 
   // Behavior
   /** Maximum number of tags; once reached the text input is hidden. */

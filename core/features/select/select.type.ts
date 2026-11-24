@@ -34,7 +34,7 @@ export type SelectProps = {
 
   // Support — rendered by Field, outside the closed box
   message?: string;
-  hint?: string;
+  help?: string;
 
   // Data
   options: Array<SelectOption>;

@@ -10,7 +10,7 @@ export const TEXT_FIELD_DEFAULT_PROPS = {
   disabled: false,
   readonly: false,
   message: "",
-  hint: "",
+  help: "",
   variant: "outline",
   placeholder: "",
   direction: undefined,

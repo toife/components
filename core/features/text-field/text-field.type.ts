@@ -30,7 +30,7 @@ export type TextFieldProps = {
 
   // Support — rendered by Field, outside the box
   message?: string;
-  hint?: string;
+  help?: string;
 };
 
 export type TextFieldEvent = {

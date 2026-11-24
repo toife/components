@@ -1,4 +1,4 @@
-<Field :message="message" :hint="hint" v-bind="tagFieldAttrs">
+<Field :message="message" :help="help" v-bind="tagFieldAttrs">
   <div v-bind="contentAttrs" @click="onClick">
     <slot name="start-input"></slot>
     <template v-for="(tag, index) in modelValue" :key="tag">

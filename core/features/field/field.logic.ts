@@ -19,6 +19,6 @@ export const getFieldMessageAttrs = () => ({
   class: [cssPrefix("field-message")],
 });
 
-export const getFieldHintAttrs = () => ({
-  class: [cssPrefix("field-hint")],
+export const getFieldHelpAttrs = () => ({
+  class: [cssPrefix("field-help")],
 });

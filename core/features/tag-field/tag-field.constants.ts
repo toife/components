@@ -12,7 +12,7 @@ export const TAG_FIELD_DEFAULT_PROPS = {
   readonly: false,
   placeholder: "",
   message: "",
-  hint: "",
+  help: "",
   max: undefined,
   separators: () => ["Enter", ","],
   allowDuplicates: false,
