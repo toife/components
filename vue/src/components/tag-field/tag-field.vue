@@ -2,6 +2,7 @@
 <template src="./tag-field.html"></template>
 <script lang="ts" setup>
 import { computed, inject, ref, unref, watch } from "vue";
+import { Field } from "../field";
 import {
   APP_PROVIDER_STATE_KEY,
   TAG_FIELD_DEFAULT_PROPS,
@@ -9,7 +10,6 @@ import {
   getTagFieldContentAttrs,
   getTagFieldInputAttrs,
   getTagFieldChipAttrs,
-  getTagFieldMessageAttrs,
   getTagFieldRemoveAttrs,
   getTagFieldSuggestionAttrs,
   getTagFieldSuggestionsAttrs,
@@ -62,7 +62,6 @@ const contentAttrs = computed(() => getTagFieldContentAttrs());
 const chipAttrs = computed(() => getTagFieldChipAttrs());
 const textAttrs = computed(() => getTagFieldTextAttrs());
 const removeAttrs = computed(() => getTagFieldRemoveAttrs());
-const messageAttrs = computed(() => getTagFieldMessageAttrs());
 const suggestionsAttrs = computed(() => getTagFieldSuggestionsAttrs());
 const suggestionAttrs = computed(() => getTagFieldSuggestionAttrs());
 const inputAttrs = computed(() => ({

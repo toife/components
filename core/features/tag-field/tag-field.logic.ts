@@ -23,7 +23,6 @@ export const getTagFieldChipAttrs = () => ({ class: [cssPrefix("tag-field-chip")
 export const getTagFieldTextAttrs = () => ({ class: [cssPrefix("tag-field-text")] });
 export const getTagFieldRemoveAttrs = () => ({ class: [cssPrefix("tag-field-remove")] });
 export const getTagFieldInputAttrs = () => ({ class: [cssPrefix("tag-field-input")] });
-export const getTagFieldMessageAttrs = () => ({ class: [cssPrefix("tag-field-message")] });
 export const getTagFieldSuggestionsAttrs = () => ({ class: [cssPrefix("tag-field-suggestions")] });
 export const getTagFieldSuggestionAttrs = () => ({ class: [cssPrefix("tag-field-suggestion")] });
 

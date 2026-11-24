@@ -32,8 +32,9 @@ export type SelectProps = {
   line?: number | string;
   maxLine?: number | string;
 
-  // Support
+  // Support — rendered by Field, outside the closed box
   message?: string;
+  hint?: string;
 
   // Data
   options: Array<SelectOption>;

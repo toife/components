@@ -1,14 +1,14 @@
 ---
 name: toife-primitives
 description: >-
-  Use Toife primitive components: t-button, t-avatar, t-image, t-tag, t-callout,
+  Use Toife primitive components: t-button, t-avatar, t-badge, t-image, t-tag, t-callout,
   t-skeleton, t-progress, t-gesture-indicator. Use when adding CTAs, avatars,
-  status chips, callouts, placeholders, progress bars, images, or sheet drag handles.
+  counts, status chips, callouts, placeholders, progress bars, images, or sheet drag handles.
 ---
 
 # Toife primitives
 
-Core types: `@toife/components/core/features/{button,avatar,image,tag,callout,skeleton,progress,gesture-indicator}`.
+Core types: `@toife/components/core/features/{button,avatar,badge,image,tag,callout,skeleton,progress,gesture-indicator}`.
 
 Theme (`role`, `shape`, `size`) falls back to `t-app` except `t-image`.
 
@@ -51,6 +51,22 @@ Props: `src`, `size` (string or number), `shape`, `role`, `divider`. Default slo
 ```
 
 Does **not** inject App. `defaultSrc` is the error/empty fallback.
+
+## Badge — `t-badge`
+
+Compact count or status dot. Theme layer `badge` has roles only (no fill/outline/text).
+
+```vue
+<t-badge role="danger">{{ count }}</t-badge>
+<t-badge role="success" size="standard">new</t-badge>
+<t-badge role="info" dot />
+```
+
+| Prop | Default | Notes |
+|------|---------|-------|
+| `size` | `small` | `small` \| `standard` \| `large` |
+| `dot` | `false` | Hides the slot and draws a circle |
+| `role`, `shape` | Theme | `mode`, `reverse`, `primary`, `success`, `info`, `warning`, `danger` |
 
 ## Tag — `t-tag`
 

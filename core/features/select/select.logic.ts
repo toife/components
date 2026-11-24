@@ -14,4 +14,3 @@ export const getSelectAttrs = (options: SelectAttrOptions) => ({
 
 export const getSelectIconAttrs = () => ({ class: [cssPrefix("select-icon")] });
 export const getSelectOptionAttrs = () => ({ class: [cssPrefix("select-option")] });
-export const getSelectMessageAttrs = () => ({ class: [cssPrefix("select-message")] });

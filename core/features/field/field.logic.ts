@@ -1,27 +1,13 @@
-import { cssPrefix, cssProperty } from "../../utils";
-import { FieldAttrOptions } from "./field.type";
+import { cssPrefix } from "../../utils";
 
-export const getFieldAttrs = (options: FieldAttrOptions) => ({
-  class: [
-    cssPrefix(["layer", "field"]),
-    cssPrefix(["role", options.role + "-" + options.variant]),
-    cssPrefix(["shape", options.shape]),
-    cssPrefix("field"),
-    cssPrefix(["size", options.size]),
-    cssPrefix(["direction", options.direction]),
-    options.type,
-    {
-      disabled: options.disabled,
-      focus: options.focus,
-      readonly: options.readonly,
-    },
-  ],
-  style: {
-    [cssProperty("line")]: options.line,
-    [cssProperty("max-line")]: options.maxLine || options.line,
-  },
+export const getFieldAttrs = () => ({
+  class: [cssPrefix("field")],
 });
 
-export const getFieldContentAttrs = () => ({ class: [cssPrefix("field-content")] });
-export const getFieldInputAttrs = () => ({ class: [cssPrefix("field-input")] });
-export const getFieldMessageAttrs = () => ({ class: [cssPrefix("field-message")] });
+export const getFieldMessageAttrs = () => ({
+  class: [cssPrefix("field-message")],
+});
+
+export const getFieldHintAttrs = () => ({
+  class: [cssPrefix("field-hint")],
+});

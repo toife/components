@@ -32,7 +32,7 @@ Registered tags are always **`t-` + kebab name**. Never `toife-`, `tf-`, or anot
 |-------|--------|
 | `<toife-button>` | `<t-button>` |
 | `<toife-app>` | `<t-app>` |
-| `<tf-field>` | `<t-field>` |
+| `<tf-field>` | `<t-text-field>` |
 
 Custom subscribe uses the same prefix: `toife.subscribe("back-header", Comp)` → `<t-back-header>`.
 

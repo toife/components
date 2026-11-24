@@ -1,0 +1,68 @@
+@use "@toife/sass-layer" as sass;
+
+// Class
+$badge: sass.fn-naming-prefix("badge");
+$badge-dot: sass.fn-naming-prefix("badge", "dot");
+
+// Properties
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+$transition-duration: sass.fn-naming-var("transition-duration");
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-line-height: sass.fn-naming-var("line-height");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-control-mark-size: sass.fn-naming-var("control-mark-size");
+
+$badge-color: sass.fn-naming-var("color");
+$badge-background-color: sass.fn-naming-var("background-color");
+$badge-border-color: sass.fn-naming-var("border-color");
+
+$badge-box-shadow: sass.fn-naming-var("box-shadow");
+
+$badge-backdrop-filter: sass.fn-naming-var("backdrop-filter");
+
+.#{$badge} {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: #{$border-width};
+  white-space: nowrap;
+  border-radius: #{$border-radius};
+  vertical-align: middle;
+  color: rgba(#{$badge-color});
+  background-color: rgba(#{$badge-background-color});
+  box-shadow: #{$badge-box-shadow};
+  backdrop-filter: #{$badge-backdrop-filter};
+  border-color: rgba(#{$badge-border-color});
+  transition:
+    color #{$transition-duration} ease,
+    background-color #{$transition-duration} ease,
+    border-color #{$transition-duration} ease,
+    border-radius #{$transition-duration} ease,
+    box-shadow #{$transition-duration} ease,
+    backdrop-filter #{$transition-duration} ease;
+
+  min-width: calc(#{$size-font-size} * #{$size-line-height} + #{$spacing-y} * #{$size-coefficient-y} * 0.5);
+  padding: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.25)
+    calc(#{$spacing-x} * #{$size-coefficient-x} * 0.45);
+  font-size: #{$size-font-size};
+  line-height: #{$size-line-height};
+
+  &.#{$badge-dot} {
+    width: #{$size-control-mark-size};
+    height: #{$size-control-mark-size};
+    min-width: #{$size-control-mark-size};
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+    line-height: 0;
+  }
+}

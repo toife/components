@@ -3,13 +3,13 @@
 <script lang="ts" setup>
 import { unref, computed, inject, ref } from "vue";
 import { Field } from "../field";
+import { TextField } from "../text-field";
 import { Dropdown } from "../dropdown";
 import {
   SELECT_DEFAULT_PROPS,
   APP_PROVIDER_STATE_KEY,
   getSelectAttrs,
   getSelectIconAttrs,
-  getSelectMessageAttrs,
   getSelectOptionAttrs,
   type AppProviderState,
   type SelectEvent,
@@ -85,7 +85,6 @@ const fieldAttrs = computed(() => {
 
 const selectIconAttrs = computed(() => getSelectIconAttrs());
 const selectOptionAttrs = computed(() => getSelectOptionAttrs());
-const selectMessageAttrs = computed(() => getSelectMessageAttrs());
 
 // Methods
 // ----------------------------------------------------------------------------

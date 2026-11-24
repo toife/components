@@ -25,8 +25,9 @@ export type TagFieldProps = {
   maxLength?: number | string;
   tabindex?: number | string;
 
-  // Support
+  // Support — rendered by Field, outside the box
   message?: string;
+  hint?: string;
 
   // Behavior
   /** Maximum number of tags; once reached the text input is hidden. */

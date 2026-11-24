@@ -7,7 +7,7 @@ import {
   SEGMENTED_FIELD_DEFAULT_PROPS,
   APP_PROVIDER_STATE_KEY,
   getSegmentedFieldContentAttrs,
-  getSegmentedFieldMessageAttrs,
+  getSegmentedFieldInputAttrs,
   getSegmentedFieldWrapperAttrs,
   type AppProviderState,
   type SegmentedFieldEvent,
@@ -26,7 +26,7 @@ const appState = inject<ProviderStateRefs<AppProviderState>>(APP_PROVIDER_STATE_
 // Reactive state
 // ----------------------------------------------------------------------------
 const keepValue = ref<string[]>([]);
-const fields = ref<InstanceType<typeof Field>[]>([]);
+const inputs = ref<HTMLInputElement[]>([]);
 
 // Computed properties
 // ----------------------------------------------------------------------------
@@ -63,23 +63,20 @@ const wrapperAttrs = computed(() => {
 
 const contentAttrs = getSegmentedFieldContentAttrs();
 
-const fieldAttrs = computed(() => {
+const inputAttrs = computed(() => {
   const role = props.role || unref(appState?.role) || "";
   const shape = props.shape || unref(appState?.shape) || "";
-  return {
+  const direction = props.direction || unref(appState?.direction) || "left";
+
+  return getSegmentedFieldInputAttrs({
+    role,
+    shape,
+    direction,
     variant: props.variant,
     size: props.size,
     disabled: props.disabled,
-    readonly: props.readonly,
-    shape,
-    role,
-    type: props.type,
-    maxLength: 1,
-    autocomplete: "off",
-  };
+  });
 });
-
-const messageAttrs = getSegmentedFieldMessageAttrs();
 
 // Methods
 // ----------------------------------------------------------------------------
@@ -91,15 +88,12 @@ const normalizeChar = (raw: string, index: number) => {
   return char;
 };
 
-const getFieldInput = (index: number) => {
-  const root = fields.value[index]?.$el as HTMLElement | undefined;
-  return root?.querySelector("input, textarea") as HTMLInputElement | HTMLTextAreaElement | null;
-};
+const inputAt = (index: number) => inputs.value[index] ?? null;
 
 const syncFieldInputs = async () => {
   await nextTick();
   for (let i = 0; i < props.length; i++) {
-    const input = getFieldInput(i);
+    const input = inputAt(i);
     if (input) input.value = segments.value[i] ?? "";
   }
 };
@@ -121,11 +115,9 @@ const focusInput = async (index: number) => {
   if (props.disabled || props.readonly) return;
   const safeIndex = Math.max(0, Math.min(index, props.length - 1));
   await nextTick();
-  const input = getFieldInput(safeIndex);
+  const input = inputAt(safeIndex);
   input?.focus();
-  if (input && "select" in input) {
-    input.select();
-  }
+  input?.select();
 };
 
 const setCell = (index: number, char: string) => {
@@ -170,8 +162,7 @@ const onFieldClick = () => {
 
 const onSegmentFocus = (ev: FocusEvent, index: number) => {
   emit("focus", ev);
-  const input = getFieldInput(index);
-  input?.select?.();
+  inputAt(index)?.select();
 };
 
 const onSegmentBeforeinput = (ev: InputEvent, index: number) => {

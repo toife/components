@@ -1,14 +1,14 @@
 ---
 name: toife-forms
 description: >-
-  Build Toife form controls: t-field, t-select, t-checkbox, t-radio, t-radio-group,
+  Build Toife form controls: t-text-field, t-field, t-select, t-checkbox, t-radio, t-radio-group,
   t-switch, t-segmented-field, t-tag-field, t-slide-range, t-form-group, t-datepicker. Use when adding inputs,
   validation messages, toggles, OTP, sliders, or settings forms, or date/time pickers.
 ---
 
 # Toife forms
 
-Core types: `@toife/components/core/features/{field,tag-field,select,checkbox,radio,switch,segmented-field,slide-range,form-group,datepicker}`.
+Core types: `@toife/components/core/features/{field,text-field,tag-field,select,checkbox,radio,switch,segmented-field,slide-range,form-group,datepicker}`.
 
 All of these use **`v-model`**. Theme (`role`, `shape`, `size`) falls back to `t-app`.
 
@@ -16,15 +16,20 @@ Shared field chrome: `variant` = `outline` \| `fill` \| `underline`; `size` ofte
 
 ## Field — `t-field`
 
-Text / textarea.
+Wrapper for the parts outside the input box: `message` and `hint`. `t-text-field`, `t-tag-field`, and `t-segmented-field` render this around their box. Theme variables (`help-color`, falling back to `color`) come from the layer class those controls put on the wrapper.
+
+## Text field — `t-text-field`
+
+Text / textarea. The box is this component; message and hint are the `t-field` wrapper.
 
 ```vue
-<t-field
+<t-text-field
   v-model="form.email"
   type="email"
   size="large"
   placeholder="you@example.com"
   :message="errors.email"
+  hint="Work email"
 />
 ```
 
@@ -35,13 +40,14 @@ Text / textarea.
 | `variant` | `outline` | |
 | `line` / `maxLine` | `1` | Use with `type="paragraph"` |
 | `placeholder`, `disabled`, `readonly`, `name`, `id`, `maxLength` | | |
-| `message` | | Error / status under the field |
+| `message` | | Status under the box |
+| `hint` | | Second line under the box |
 
 Emits: `update:modelValue`, `focus`, `blur`, `input`, `beforeinput`.
 
 ## Tag field — `t-tag-field`
 
-Multi-tag input, standalone: it draws its own box, chips and a plain `<input>` (no `t-field` / `t-tag`) and has its own theme layer `tag-field`. `v-model` is `string[]`.
+Multi-tag input. It draws its own box, chips and a plain `<input>` (no `t-text-field` / `t-tag`), and passes `message` / `hint` to the `t-field` wrapper. Theme layer is `tag-field`. `v-model` is `string[]`.
 
 ```vue
 <t-tag-field v-model="tags" placeholder="Type a tag" :max="10" :suggestions="suggestions" @input="load" />
@@ -50,7 +56,7 @@ Multi-tag input, standalone: it draws its own box, chips and a plain `<input>` (
 | Prop | Default | Notes |
 |------|---------|-------|
 | `modelValue` | `[]` | `string[]` |
-| `variant`, `size`, `role`, `shape`, `placeholder`, `message`, `disabled`, `readonly` | | `variant` = `outline` \| `fill` \| `underline`; colors come from the `tag-field` layer |
+| `variant`, `size`, `role`, `shape`, `placeholder`, `message`, `hint`, `disabled`, `readonly` | | `variant` = `outline` \| `fill` \| `underline`; colors come from the `tag-field` layer |
 | `max` | | Max tags; the input hides when reached |
 | `separators` | `["Enter", ","]` | `KeyboardEvent.key` values; pasted text splits on them |
 | `allowDuplicates` | `false` | Case-insensitive |
@@ -61,7 +67,7 @@ Emits: `update:modelValue`, `add`, `remove`, `input` (typed text), `focus`, `blu
 
 ## Select — `t-select`
 
-Same chrome as Field. **`options` required**.
+Closed box is `t-text-field`. `message` and `hint` go through the `t-field` wrapper and use the select layer's `message-color`. **`options` required**.
 
 ```vue
 <t-select
@@ -112,7 +118,7 @@ A lone `t-radio` does nothing useful.
 
 ## Segmented field — `t-segmented-field`
 
-OTP / PIN. `v-model` is **`string[]`** (one entry per cell).
+OTP / PIN. Each cell is a native input owned by this component (not `t-text-field`). `message` and `hint` still go through `t-field`. `v-model` is **`string[]`** (one entry per cell).
 
 ```vue
 <t-segmented-field
@@ -134,7 +140,7 @@ Emits `update:modelValue` and `change`. Optional `tick`.
 
 ## Date picker — `t-datepicker`
 
-Calendar + time columns only (no input, no popup) — compose with `t-dropdown` / `t-field` yourself.
+Calendar + time columns only (no input, no popup) — compose with `t-dropdown` / `t-text-field` yourself.
 
 ```vue
 <t-datepicker v-model="value" type="datetime" :min="new Date()" @change="onPick" />
@@ -162,8 +168,8 @@ Form inside a modal + sticky submit:
 
 ```vue
 <t-modal :visible="visible" :placement="isMobile ? 'bottom' : 'center'" gesture @close="close">
-  <t-field size="large" v-model="form.loginValue" />
-  <t-field size="large" type="password" v-model="form.password" />
+  <t-text-field size="large" v-model="form.loginValue" />
+  <t-text-field size="large" type="password" v-model="form.password" />
   <t-cable placement="bottom">
     <t-toolbar>
       <t-button block size="large" :loading="submitting" @click="submit">Continue</t-button>

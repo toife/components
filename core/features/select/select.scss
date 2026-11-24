@@ -4,10 +4,7 @@
 $select: sass.fn-naming-prefix("select");
 $select-icon: sass.fn-naming-prefix("select-icon");
 $select-option: sass.fn-naming-prefix("select-option");
-$select-message: sass.fn-naming-prefix("select-message");
-$field: sass.fn-naming-prefix("field");
-$field-input: sass.fn-naming-prefix("field-input");
-$field-content: sass.fn-naming-prefix("field-content");
+$text-field-content: sass.fn-naming-prefix("text-field-content");
 $dropdown: sass.fn-naming-prefix("dropdown");
 $dropdown-panel: sass.fn-naming-prefix("dropdown-panel");
 
@@ -32,7 +29,6 @@ $select-background-color-active: sass.fn-naming-var(
 $select-color: sass.fn-naming-var("color");
 $select-color-disabled: sass.fn-naming-var("color", "disabled");
 $select-border-color: sass.fn-naming-var("border-color");
-$select-message-color: sass.fn-naming-var("message-color");
 
 $select-box-shadow: sass.fn-naming-var("box-shadow");
 $select-box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
@@ -68,7 +64,7 @@ $select-backdrop-filter-disabled: sass.fn-naming-var(
           border-bottom: none;
         }
 
-        .#{$field-content} {
+        .#{$text-field-content} {
           border-top-left-radius: 0 !important;
           border-top-right-radius: 0 !important;
         }
@@ -82,7 +78,7 @@ $select-backdrop-filter-disabled: sass.fn-naming-var(
           border-top: none;
         }
 
-        .#{$field-content} {
+        .#{$text-field-content} {
           border-bottom-left-radius: 0 !important;
           border-bottom-right-radius: 0 !important;
         }
@@ -170,19 +166,5 @@ $select-backdrop-filter-disabled: sass.fn-naming-var(
       box-shadow: #{$select-box-shadow-disabled};
       backdrop-filter: #{$select-backdrop-filter-disabled};
     }
-  }
-
-  // Message
-  .#{$select-message} {
-    color: rgba(#{$select-message-color});
-    font-size: 0.9em;
-    line-height: 1.5;
-    transition:
-      box-shadow #{$transition-duration} ease,
-      backdrop-filter #{$transition-duration} ease,
-      border-color #{$transition-duration} ease,
-      background-color #{$transition-duration} ease,
-      color #{$transition-duration} ease,
-      border-radius #{$transition-duration} ease;
   }
 }

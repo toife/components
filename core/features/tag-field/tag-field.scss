@@ -7,7 +7,6 @@ $tag-field-input: sass.fn-naming-prefix("tag-field-input");
 $tag-field-chip: sass.fn-naming-prefix("tag-field-chip");
 $tag-field-text: sass.fn-naming-prefix("tag-field-text");
 $tag-field-remove: sass.fn-naming-prefix("tag-field-remove");
-$tag-field-message: sass.fn-naming-prefix("tag-field-message");
 $tag-field-suggestions: sass.fn-naming-prefix("tag-field-suggestions");
 $tag-field-suggestion: sass.fn-naming-prefix("tag-field-suggestion");
 
@@ -32,7 +31,6 @@ $chip-background-color: sass.fn-naming-var("chip-background-color");
 $chip-border-color: sass.fn-naming-var("chip-border-color");
 $suggestion-color: sass.fn-naming-var("suggestion-color");
 $suggestion-border-color: sass.fn-naming-var("suggestion-border-color");
-$help-color: sass.fn-naming-dvar(("help-color"), $color);
 
 // Property name - size, shape, spacing
 $border-radius: sass.fn-naming-var("border-radius");
@@ -168,14 +166,6 @@ $gap-y: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.5);
     &::placeholder {
       color: rgba(#{$placeholder-color});
     }
-  }
-
-  .#{$tag-field-message} {
-    margin-top: calc(#{$spacing-y} * #{$size-coefficient-y} * 0.25);
-    color: rgba(#{$help-color});
-    font-size: 0.9em;
-    line-height: 1.5;
-    text-align: #{$direction-text-align};
   }
 
   // Tags offered under the box

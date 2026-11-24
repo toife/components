@@ -2,6 +2,7 @@ import {
   Action,
   App,
   Avatar,
+  Badge,
   Button,
   Cable,
   Card,
@@ -17,6 +18,7 @@ import {
   Divider,
   Dropdown,
   Field,
+  TextField,
   Flex,
   FlexItem,
   FormGroup,
@@ -86,6 +88,7 @@ class Toife {
     this.app.component(prefix + "app", App);
     this.app.component(prefix + "action", Action);
     this.app.component(prefix + "avatar", Avatar);
+    this.app.component(prefix + "badge", Badge);
     this.app.component(prefix + "button", Button);
     this.app.component(prefix + "cable", Cable);
     this.app.component(prefix + "card", Card);
@@ -103,6 +106,7 @@ class Toife {
     this.app.component(prefix + "divider", Divider);
     this.app.component(prefix + "dropdown", Dropdown);
     this.app.component(prefix + "field", Field);
+    this.app.component(prefix + "text-field", TextField);
     this.app.component(prefix + "flex", Flex);
     this.app.component(prefix + "flex-item", FlexItem);
     this.app.component(prefix + "form-group", FormGroup);

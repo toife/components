@@ -1,0 +1,161 @@
+@use "@toife/sass-layer" as sass;
+
+// Class name
+$text-field: sass.fn-naming-prefix("text-field");
+$text-field-content: sass.fn-naming-prefix("text-field-content");
+$text-field-input: sass.fn-naming-prefix("text-field-input");
+
+// Property name - layer: field
+$border-color: sass.fn-naming-var("border-color");
+$border-color-focus: sass.fn-naming-var("border-color", "focus");
+$border-color-hover: sass.fn-naming-var("border-color", "hover");
+$background-color: sass.fn-naming-var("background-color");
+$background-color-focus: sass.fn-naming-var("background-color", "focus");
+$background-color-hover: sass.fn-naming-var("background-color", "hover");
+$background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+$color: sass.fn-naming-var("color");
+$placeholder-color: sass.fn-naming-var("placeholder-color");
+$line: sass.fn-naming-var("line");
+$max-line: sass.fn-naming-var("max-line");
+
+$box-shadow: sass.fn-naming-var("box-shadow");
+$box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+
+$backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
+
+$border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
+
+$spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+
+$transition-duration: sass.fn-naming-var("transition-duration");
+$direction-text-align: sass.fn-naming-var("text-align");
+
+.#{$text-field} {
+  .#{$text-field-content} {
+    transition:
+      box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+    border-color: rgba(#{$border-color});
+    box-shadow: #{$box-shadow};
+    backdrop-filter: #{$backdrop-filter};
+    background-color: rgba(#{$background-color});
+    border-radius: #{$border-radius};
+    border-width: #{$border-width};
+    border-style: solid;
+    overflow: hidden;
+    line-height: 0;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // Native password <input> (single node, not wrapped).
+  .#{$text-field-input} {
+    text-align: #{$direction-text-align};
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y})
+      calc(#{$spacing-x} * #{$size-coefficient-x});
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+    min-height: calc(#{$line} * #{$size-control-block-size} - 2 * #{$border-width});
+    max-height: calc(#{$max-line} * #{$size-control-block-size} - 2 * #{$border-width});
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+    color: rgba(#{$color});
+    caret-color: rgba(#{$color});
+    border: none;
+    -webkit-user-select: text;
+    user-select: text;
+    font-size: #{$size-font-size};
+    line-height: #{$size-line-height};
+    overflow: auto;
+    resize: none;
+    transition:
+      box-shadow #{$transition-duration} ease,
+      backdrop-filter #{$transition-duration} ease,
+      border-color #{$transition-duration} ease,
+      background-color #{$transition-duration} ease,
+      color #{$transition-duration} ease,
+      border-radius #{$transition-duration} ease;
+
+    // Firefox
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    // Chrome, Edge, Safari
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      border: none;
+    }
+
+    &::placeholder {
+      color: rgba(#{$placeholder-color});
+    }
+  }
+
+  &.focus {
+    .#{$text-field-content} {
+      border-color: rgba(#{$border-color-focus});
+      box-shadow: #{$box-shadow-focus};
+      backdrop-filter: #{$backdrop-filter-focus};
+      background-color: rgba(#{$background-color-focus});
+    }
+  }
+
+  &.hover {
+    .#{$text-field-content} {
+      border-color: rgba(#{$border-color-hover});
+      box-shadow: #{$box-shadow-hover};
+      backdrop-filter: #{$backdrop-filter-hover};
+      background-color: rgba(#{$background-color-hover});
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .#{$text-field-input} {
+      cursor: not-allowed;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .#{$text-field-content} {
+      border-color: rgba(#{$border-color-disabled});
+      box-shadow: #{$box-shadow-disabled};
+      backdrop-filter: #{$backdrop-filter-disabled};
+      background-color: rgba(#{$background-color-disabled});
+    }
+  }
+}

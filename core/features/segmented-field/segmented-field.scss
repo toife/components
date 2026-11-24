@@ -3,15 +3,38 @@
 // Class name
 $segmented-field-wrapper: sass.fn-naming-prefix("segmented-field-wrapper");
 $segmented-field-content: sass.fn-naming-prefix("segmented-field-content");
-$segmented-field-message: sass.fn-naming-prefix("segmented-field-message");
+$segmented-field-input: sass.fn-naming-prefix("segmented-field-input");
 $direction-flex-direction: sass.fn-naming-prefix("direction", "right");
 
-// Property name - layer: segmented-field
-$segmented-field-color: sass.fn-naming-var("color");
-
 $spacing-x: sass.fn-naming-var("spacing", "x");
+$spacing-y: sass.fn-naming-var("spacing", "y");
+$size-font-size: sass.fn-naming-var("font-size");
+$size-control-block-size: sass.fn-naming-var("control-block-size");
+$size-coefficient-x: sass.fn-naming-var("coefficient-x");
+$size-coefficient-y: sass.fn-naming-var("coefficient-y");
+$size-line-height: sass.fn-naming-var("line-height");
+$border-radius: sass.fn-naming-var("border-radius");
+$border-width: sass.fn-naming-var("border", "width");
 $transition-duration: sass.fn-naming-var("transition-duration");
-$direction-text-align: sass.fn-naming-var("text-align");
+
+$color: sass.fn-naming-var("color");
+$placeholder-color: sass.fn-naming-var("placeholder-color");
+$background-color: sass.fn-naming-var("background-color");
+$background-color-hover: sass.fn-naming-var("background-color", "hover");
+$background-color-focus: sass.fn-naming-var("background-color", "focus");
+$background-color-disabled: sass.fn-naming-var("background-color", "disabled");
+$border-color: sass.fn-naming-var("border-color");
+$border-color-hover: sass.fn-naming-var("border-color", "hover");
+$border-color-focus: sass.fn-naming-var("border-color", "focus");
+$border-color-disabled: sass.fn-naming-var("border-color", "disabled");
+$box-shadow: sass.fn-naming-var("box-shadow");
+$box-shadow-hover: sass.fn-naming-var("box-shadow", "hover");
+$box-shadow-focus: sass.fn-naming-var("box-shadow", "focus");
+$box-shadow-disabled: sass.fn-naming-var("box-shadow", "disabled");
+$backdrop-filter: sass.fn-naming-var("backdrop-filter");
+$backdrop-filter-hover: sass.fn-naming-var("backdrop-filter", "hover");
+$backdrop-filter-focus: sass.fn-naming-var("backdrop-filter", "focus");
+$backdrop-filter-disabled: sass.fn-naming-var("backdrop-filter", "disabled");
 
 .#{$segmented-field-wrapper} {
   .#{$segmented-field-content} {
@@ -19,18 +42,27 @@ $direction-text-align: sass.fn-naming-var("text-align");
     gap: calc(#{$spacing-x} * 2);
   }
 
-  &.#{$direction-flex-direction} {
-    .#{$segmented-field-content} {
-      flex-direction: row-reverse;
-    }
-  }
-
-  // Message
-  .#{$segmented-field-message} {
-    color: rgba(#{$segmented-field-color});
-    font-size: 0.9em;
-    line-height: 1.5;
-    text-align: #{$direction-text-align};
+  .#{$segmented-field-input} {
+    flex: 1 1 0;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: #{$size-control-block-size};
+    margin: 0;
+    padding: calc(#{$spacing-y} * #{$size-coefficient-y}) calc(#{$spacing-x} * #{$size-coefficient-x});
+    text-align: center;
+    font-size: #{$size-font-size};
+    line-height: #{$size-line-height};
+    color: rgba(#{$color});
+    caret-color: rgba(#{$color});
+    background-color: rgba(#{$background-color});
+    border-style: solid;
+    border-width: #{$border-width};
+    border-color: rgba(#{$border-color});
+    border-radius: #{$border-radius};
+    box-shadow: #{$box-shadow};
+    backdrop-filter: #{$backdrop-filter};
+    -moz-appearance: textfield;
+    appearance: textfield;
     transition:
       box-shadow #{$transition-duration} ease,
       backdrop-filter #{$transition-duration} ease,
@@ -38,6 +70,45 @@ $direction-text-align: sass.fn-naming-var("text-align");
       background-color #{$transition-duration} ease,
       color #{$transition-duration} ease,
       border-radius #{$transition-duration} ease;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &::placeholder {
+      color: rgba(#{$placeholder-color});
+    }
+
+    &:hover {
+      border-color: rgba(#{$border-color-hover});
+      background-color: rgba(#{$background-color-hover});
+      box-shadow: #{$box-shadow-hover};
+      backdrop-filter: #{$backdrop-filter-hover};
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(#{$border-color-focus});
+      background-color: rgba(#{$background-color-focus});
+      box-shadow: #{$box-shadow-focus};
+      backdrop-filter: #{$backdrop-filter-focus};
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border-color: rgba(#{$border-color-disabled});
+      background-color: rgba(#{$background-color-disabled});
+      box-shadow: #{$box-shadow-disabled};
+      backdrop-filter: #{$backdrop-filter-disabled};
+    }
+  }
+
+  &.#{$direction-flex-direction} {
+    .#{$segmented-field-content} {
+      flex-direction: row-reverse;
+    }
   }
 
   // State

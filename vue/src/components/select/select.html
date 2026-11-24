@@ -1,7 +1,7 @@
-<div v-bind="selectAttrs">
+<Field :message="message" :hint="hint" v-bind="selectAttrs">
   <Dropdown v-bind="dropdownAttrs" v-model="visible">
     <template #trigger="{ toggle, isOpen }">
-      <Field
+      <TextField
         :role="role"
         variant="outline"
         @pointerup="toggle"
@@ -11,7 +11,7 @@
         <template #end-input>
           <span v-bind="selectIconAttrs" :class="{open: isOpen}"></span>
         </template>
-      </Field>
+      </TextField>
     </template>
     <button
       v-for="option in options"
@@ -24,5 +24,4 @@
       {{ option.label }}
     </button>
   </Dropdown>
-  <div v-bind="selectMessageAttrs" v-if="message">{{ message }}</div>
-</div>
+</Field>

@@ -12,5 +12,6 @@ export const SEGMENTED_FIELD_DEFAULT_PROPS = {
   readonly: false,
   type: "text",
   message: "",
+  hint: "",
   pattern: (): string[] => [],
 } as const;

@@ -1,6 +1,7 @@
 export * from "./action";
 export * from "./app";
 export * from "./avatar";
+export * from "./badge";
 export * from "./button";
 export * from "./cable";
 export * from "./callout";
@@ -13,6 +14,7 @@ export * from "./decision-modal";
 export * from "./divider";
 export * from "./dropdown";
 export * from "./field";
+export * from "./text-field";
 export * from "./form-group";
 export * from "./gesture-indicator";
 export * from "./image";
