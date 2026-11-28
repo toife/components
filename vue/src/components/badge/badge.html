@@ -1,1 +1,6 @@
-<span v-bind="badgeAttrs"><slot v-if="!dot"></slot></span>
+<span v-bind="badgeAttrs">
+  <slot></slot>
+  <span v-if="dot || hasContent || $slots.content" v-bind="markAttrs">
+    <slot v-if="!dot" name="content">{{ content }}</slot>
+  </span>
+</span>

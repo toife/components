@@ -2,7 +2,16 @@
 
 // Class
 $badge: sass.fn-naming-prefix("badge");
-$badge-dot: sass.fn-naming-prefix("badge", "dot");
+$mark: sass.fn-naming-prefix("badge", "mark");
+$dot: sass.fn-naming-prefix("badge", "dot");
+$place-top: sass.fn-naming-prefix("badge", "top");
+$place-right: sass.fn-naming-prefix("badge", "right");
+$place-bottom: sass.fn-naming-prefix("badge", "bottom");
+$place-left: sass.fn-naming-prefix("badge", "left");
+$place-top-left: sass.fn-naming-prefix("badge", "top-left");
+$place-top-right: sass.fn-naming-prefix("badge", "top-right");
+$place-bottom-left: sass.fn-naming-prefix("badge", "bottom-left");
+$place-bottom-right: sass.fn-naming-prefix("badge", "bottom-right");
 
 // Properties
 $border-radius: sass.fn-naming-var("border-radius");
@@ -22,21 +31,29 @@ $badge-background-color: sass.fn-naming-var("background-color");
 $badge-border-color: sass.fn-naming-var("border-color");
 
 $badge-box-shadow: sass.fn-naming-var("box-shadow");
-
 $badge-backdrop-filter: sass.fn-naming-var("backdrop-filter");
 
 .#{$badge} {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.#{$mark} {
+  position: absolute;
+  z-index: 1;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  overflow: hidden;
   box-sizing: border-box;
+  width: max-content;
+  overflow: hidden;
+  pointer-events: none;
+  white-space: nowrap;
   border-style: solid;
   border-width: #{$border-width};
-  white-space: nowrap;
   border-radius: #{$border-radius};
-  vertical-align: middle;
   color: rgba(#{$badge-color});
   background-color: rgba(#{$badge-background-color});
   box-shadow: #{$badge-box-shadow};
@@ -56,7 +73,7 @@ $badge-backdrop-filter: sass.fn-naming-var("backdrop-filter");
   font-size: #{$size-font-size};
   line-height: #{$size-line-height};
 
-  &.#{$badge-dot} {
+  &.#{$dot} {
     width: #{$size-control-mark-size};
     height: #{$size-control-mark-size};
     min-width: #{$size-control-mark-size};
@@ -64,5 +81,53 @@ $badge-backdrop-filter: sass.fn-naming-var("backdrop-filter");
     border-radius: 50%;
     font-size: 0;
     line-height: 0;
+  }
+
+  &.#{$place-top} {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.#{$place-bottom} {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  &.#{$place-left} {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  &.#{$place-right} {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  &.#{$place-top-left} {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  &.#{$place-top-right} {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  &.#{$place-bottom-left} {
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+  }
+
+  &.#{$place-bottom-right} {
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 50%);
   }
 }

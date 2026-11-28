@@ -6,6 +6,7 @@ import {
   BADGE_DEFAULT_PROPS,
   APP_PROVIDER_STATE_KEY,
   getBadgeAttrs,
+  getBadgeMarkAttrs,
   type AppProviderState,
   type BadgeProps,
 } from "@/core";
@@ -19,15 +20,23 @@ const appState = inject<ProviderStateRefs<AppProviderState>>(APP_PROVIDER_STATE_
 
 // Computed properties
 // ----------------------------------------------------------------------------
-const badgeAttrs = computed(() => {
+const badgeAttrs = computed(() => getBadgeAttrs());
+
+const markAttrs = computed(() => {
   const shape = props.shape || unref(appState?.shape) || "";
   const role = props.role || unref(appState?.role) || "";
 
-  return getBadgeAttrs({
+  return getBadgeMarkAttrs({
     role,
     shape,
     size: props.size,
+    variant: props.variant,
+    placement: props.placement,
     dot: props.dot,
   });
 });
+
+const hasContent = computed(
+  () => props.content !== undefined && props.content !== null && props.content !== "",
+);
 </script>

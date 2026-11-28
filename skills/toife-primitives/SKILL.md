@@ -54,19 +54,30 @@ Does **not** inject App. `defaultSrc` is the error/empty fallback.
 
 ## Badge — `t-badge`
 
-Compact count or status dot. Theme layer `badge` has roles only (no fill/outline/text).
+Wrapper. Default slot is the host. The marker is a compact tag on an edge or corner.
 
 ```vue
-<t-badge role="danger">{{ count }}</t-badge>
-<t-badge role="success" size="standard">new</t-badge>
-<t-badge role="info" dot />
+<t-badge content="3" role="danger">
+  <t-button variant="outline">Inbox</t-button>
+</t-badge>
+<t-badge content="new" role="success" variant="outline" placement="bottom-left">
+  <t-button variant="outline">Saved</t-button>
+</t-badge>
+<t-badge role="info" dot placement="top">
+  <t-avatar size="32px" />
+</t-badge>
 ```
 
 | Prop | Default | Notes |
 |------|---------|-------|
-| `size` | `small` | `small` \| `standard` \| `large` |
-| `dot` | `false` | Hides the slot and draws a circle |
+| `content` | | Marker label. Slot `content` overrides it |
+| `placement` | `top-right` | `top` \| `right` \| `bottom` \| `left` \| `top-left` \| `top-right` \| `bottom-left` \| `bottom-right` |
+| `variant` | `fill` | `fill` \| `outline` \| `text` |
+| `size` | `small` | Marker only. `small` \| `standard` \| `large` |
+| `dot` | `false` | Circle, ignores the label |
 | `role`, `shape` | Theme | `mode`, `reverse`, `primary`, `success`, `info`, `warning`, `danger` |
+
+The marker is hidden when there is no `content`, no `content` slot, and `dot` is false. It sits half outside the host (`translate 50%`) and does not receive pointer events.
 
 ## Tag — `t-tag`
 
