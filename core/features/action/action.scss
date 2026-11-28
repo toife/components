@@ -80,6 +80,10 @@ $border-width: sass.fn-naming-var("border", "width");
       border-color: transparent;
     }
   }
+
+  :deep(.#{$button} > span) {
+    gap: 0.4rem;
+  }
 }
 
 // Effect when click outside action modal

@@ -16,8 +16,10 @@
           @click="onChoose(btn)"
           :shape="shape"
           block
-          >{{ btn.text }}</CustomButton
         >
+          <t-icon v-if="btn.icon" :name="btn.icon" />
+          {{ btn.text }}
+        </CustomButton>
       </FormGroup>
     </slot>
   </div>

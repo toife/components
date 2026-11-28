@@ -6,6 +6,7 @@ export type ActionPlacement = PresentPlacement;
 // Type definitions
 export type ActionButton = {
   text?: string;
+  icon?: string;
   role?: string;
   variant?: ButtonVariant;
   handler?: () => void;
